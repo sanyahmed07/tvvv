@@ -113,7 +113,7 @@
         <!-- Sports Button now triggers full schedule -->
         <div id="footer-sports-btn" class="flex flex-col items-center cursor-pointer text-slate-400 transition-colors" onclick="toggleScheduleViaFooter()">
             <i class="fa-solid fa-trophy text-lg mb-0.5"></i>
-            <span>Sports (শিডিউল)</span>
+            <span id="sports-btn-text">Sports (শিডিউল)</span>
         </div>
         <div class="flex flex-col items-center cursor-pointer hover:text-white">
             <i class="fa-solid fa-user text-lg mb-0.5"></i>
@@ -122,20 +122,83 @@
     </div>
 
     <script>
-        // স্ক্রিনশট থেকে সংগৃহীত ম্যাচের ডাটাবেজ
+        // স্ক্রিনশট ১ ও ২ থেকে সংগৃহীত সম্পূর্ণ ৭২টি ম্যাচের নিখুঁত ডাটাবেজ
         const matchSchedule = [
-            { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, venue: "মেক্সিকো সিটি", streamUrl: "#YOUR_STREAM_URL_1" },
-            { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, venue: "গুয়াদালাহারা", streamUrl: "#YOUR_STREAM_URL_2" },
-            { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "টরন্টো", streamUrl: "#YOUR_STREAM_URL_3" },
-            { date: "১৪ জুন", day: 14, match: "যুক্তরাষ্ট্র - প্যারাগুয়ে", team1Flag: "🇺🇸", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ২টা", hour: 2, venue: "লস অ্যাঞ্জেলেস", streamUrl: "#YOUR_STREAM_URL_4" },
-            { date: "১৪ জুন", day: 14, match: "কাতার - সুইজারল্যান্ড", team1Flag: "🇶🇦", team2Flag: "🇨🇭", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "সান ফ্রান্সিসকো বে এলাকা", streamUrl: "#YOUR_STREAM_URL_5" },
-            { date: "১৪ জুন", day: 14, match: "ব্রাজিল - মরক্কো", team1Flag: "🇧🇷", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "নিউ জার্সি", streamUrl: "#YOUR_STREAM_URL_6" },
-            { date: "১৫ জুন", day: 15, match: "নেদারল্যান্ডস - জাপান", team1Flag: "🇳🇱", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "রাত ২টা", hour: 2, venue: "ডালাস", streamUrl: "#YOUR_STREAM_URL_7" },
-            { date: "১৭ জুন", day: 17, match: "আর্জেন্টিনা - আলজেরিয়া", team1Flag: "🇦🇷", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৭টা", hour: 7, venue: "কানসাস সিটি", streamUrl: "#YOUR_STREAM_URL_8" },
-            { date: "২০ জুন", day: 20, match: "ব্রাজিল - ഹൈതി", team1Flag: "🇧🇷", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "সকাল ৬.৩০টা", hour: 6.5, venue: "ফিলাдельফিয়া", streamUrl: "#YOUR_STREAM_URL_9" },
-            { date: "২২ জুন", day: 22, match: "আর্জেন্টিনা - অস্ট্রিয়া", team1Flag: "🇦🇷", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "রাত ১১টা", hour: 23, venue: "ডాలాস", streamUrl: "#YOUR_STREAM_URL_10" },
-            { date: "২৫ জুন", day: 25, match: "স্কটল্যান্ড - ব্রাজিল", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇧🇷", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "মায়ামি", streamUrl: "#YOUR_STREAM_URL_11" },
-            { date: "২৮ জুন", day: 28, match: "জর্ডান - আর্জেন্টিনা", team1Flag: "🇯🇴", team2Flag: "🇦🇷", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, venue: "ডాలాস", streamUrl: "#YOUR_STREAM_URL_12" }
+            // --- পাতা ১ (1780200382526_2.jpg) ---
+            { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, venue: "মেক্সিকো সিটি", streamUrl: "#STREAM_URL" },
+            { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, venue: "গুয়াদালাহারা", streamUrl: "#STREAM_URL" },
+            { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "টরন্টো", streamUrl: "#STREAM_URL" },
+            { date: "১৪ জুন", day: 14, match: "যুক্তরাষ্ট্র - প্যারাগুয়ে", team1Flag: "🇺🇸", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ২টা", hour: 2, venue: "লস অ্যাঞ্জেলেস", streamUrl: "#STREAM_URL" },
+            { date: "১৪ জুন", day: 14, match: "কাতার - সুইজারল্যান্ড", team1Flag: "🇶🇦", team2Flag: "🇨🇭", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "সান ফ্রান্সিসকো বে এলাকা", streamUrl: "#STREAM_URL" },
+            { date: "১৪ জুন", day: 14, match: "ব্রাজিল - মরক্কো", team1Flag: "🇧🇷", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "নিউ জার্সি", streamUrl: "#STREAM_URL" },
+            { date: "১৪ জুন", day: 14, match: "হাইতি - স্কটল্যান্ড", team1Flag: "🇭🇹", team2Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", group: "গ্রুপ- সি", time: "সকাল ২টা", hour: 2, venue: "বোস্টন", streamUrl: "#STREAM_URL" },
+            { date: "১৪ জুন", day: 14, match: "অস্ট্রেলিয়া - তুরস্ক", team1Flag: "🇦🇺", team2Flag: "🇹🇷", group: "গ্রুপ- ডি", time: "সকাল ১০টা", hour: 10, venue: "ভ্যাঙ্কুভার", streamUrl: "#STREAM_URL" },
+            { date: "১৪ জুন", day: 14, match: "জার্মানি - কুরাসাও", team1Flag: "🇩🇪", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "রাত ১১টা", hour: 23, venue: "হিউস্টন", streamUrl: "#STREAM_URL" },
+            { date: "১৫ জুন", day: 15, match: "নেদারল্যান্ডস - জাপান", team1Flag: "🇳🇱", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "রাত ২টা", hour: 2, venue: "ডালাস", streamUrl: "#STREAM_URL" },
+            { date: "১৫ জুন", day: 15, match: "আইভরি কোস্ট - ইকুয়েডর", team1Flag: "🇨🇮", team2Flag: "🇪🇨", group: "গ্রুপ- ই", time: "ভোর ৫টা", hour: 5, venue: "ফিলাডেলফিয়া", streamUrl: "#STREAM_URL" },
+            { date: "১৫ জুন", day: 15, match: "সুইডেন - তিউনিসিয়া", team1Flag: "🇸🇪", team2Flag: "🇹🇳", group: "গ্রুপ- এফ", time: "সকাল ৮টা", hour: 8, venue: "মনতেরেই", streamUrl: "#STREAM_URL" },
+            { date: "১৫ জুন", day: 15, match: "স্পেন - কেপ ভার্দে", team1Flag: "🇪🇸", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ১০টা", hour: 22, venue: "আটলান্টা", streamUrl: "#STREAM_URL" },
+            { date: "১৬ জুন", day: 16, match: "বেলজিয়াম - মিসর", team1Flag: "🇧🇪", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, venue: "সিয়াটল", streamUrl: "#STREAM_URL" },
+            { date: "১৬ জুন", day: 16, match: "সৌদি আরব - উরুগুয়ে", team1Flag: "🇸🇦", team2Flag: "🇺🇾", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, venue: "মায়ামি", streamUrl: "#STREAM_URL" },
+            { date: "১৬ জুন", day: 16, match: "ইরান - নিউজিল্যান্ড", team1Flag: "🇮🇷", team2Flag: "🇳🇿", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, venue: "লস অ্যাঞ্জেলেস", streamUrl: "#STREAM_URL" },
+            { date: "১৭ জুন", day: 17, match: "ফ্রান্স - সেনেগাল", team1Flag: "🇫🇷", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, venue: "নিউ জার্সি", streamUrl: "#STREAM_URL" },
+            { date: "১৭ জুন", day: 17, match: "ইরাক - নরওয়ে", team1Flag: "🇮🇶", team2Flag: "🇳🇴", group: "গ্রুপ- আই", time: "রাত ৪টা", hour: 4, venue: "বোস্টন", streamUrl: "#STREAM_URL" },
+            { date: "১৭ জুন", day: 17, match: "আর্জেন্টিনা - আলজেরিয়া", team1Flag: "🇦🇷", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৭টা", hour: 7, venue: "কানসাস সিটি", streamUrl: "#STREAM_URL" },
+            { date: "১৭ জুন", day: 17, match: "অস্ট্রিয়া - জর্ডান", team1Flag: "🇦🇹", team2Flag: "🇯🇴", group: "গ্রুপ- জে", time: "সকাল ১০টা", hour: 10, venue: "সান ফ্রান্সিসকো", streamUrl: "#STREAM_URL" },
+            { date: "১৭ জুন", day: 17, match: "পর্তুগাল - কঙ্গো ডিআর", team1Flag: "🇵🇹", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, venue: "হিউস্টন", streamUrl: "#STREAM_URL" },
+            { date: "১৮ জুন", day: 18, match: "ইংল্যান্ড - ক্রোয়েশিয়া", team1Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇭🇷", group: "গ্রুপ- এল", time: "রাত ২টা", hour: 2, venue: "ডালাস", streamUrl: "#STREAM_URL" },
+            { date: "১৮ জুন", day: 18, match: "ঘানা - পানামা", team1Flag: "🇬🇭", team2Flag: "🇵🇦", group: "গ্রুপ- এল", time: "ভোর ৫টা", hour: 5, venue: "টরন্টো", streamUrl: "#STREAM_URL" },
+            { date: "১৮ জুন", day: 18, match: "উজবেকিস্তান - কলম্বিয়া", team1Flag: "🇺🇿", team2Flag: "🇨🇴", group: "গ্রুপ- কে", time: "সকাল ৮টা", hour: 8, venue: "মেক্সিকো সিটি", streamUrl: "#STREAM_URL" },
+            { date: "১৮ জুন", day: 18, match: "চেক প্রজাতন্ত্র - দক্ষিণ আফ্রিকা", team1Flag: "🇨🇿", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১০টা", hour: 22, venue: "আটলান্টা", streamUrl: "#STREAM_URL" },
+            { date: "১৯ জুন", day: 19, match: "সুইজারল্যান্ড - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇭", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "লস অ্যাঞ্জেলেস", streamUrl: "#STREAM_URL" },
+            { date: "১৯ জুন", day: 19, match: "কানাডা - কাতার", team1Flag: "🇨🇦", team2Flag: "🇶🇦", group: "গ্রুপ- বি", time: "রাত ৪টা", hour: 4, venue: "ভ্যাঙ্কুভার", streamUrl: "#STREAM_URL" },
+            { date: "১৯ জুন", day: 19, match: "মেক্সিকো - দক্ষিণ কোরিয়া", team1Flag: "🇲🇽", team2Flag: "🇰🇷", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, venue: "গুয়াদালাহারা", streamUrl: "#STREAM_URL" },
+            { date: "২০ জুন", day: 20, match: "যুক্তরাষ্ট্র - অস্ট্রেলিয়া", team1Flag: "🇺🇸", team2Flag: "🇦🇺", group: "গ্রুপ- ডি", time: "রাত ১টা", hour: 1, venue: "সিয়াটল", streamUrl: "#STREAM_URL" },
+            { date: "২০ জুন", day: 20, match: "স্কটল্যান্ড - মরক্কো", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "বোস্টন", streamUrl: "#STREAM_URL" },
+            { date: "২০ জুন", day: 20, match: "ব্রাজিল - হাইতি", team1Flag: "🇧🇷", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "সকাল ৬.৩০টা", hour: 6.5, venue: "ফিলাডেলফিয়া", streamUrl: "#STREAM_URL" },
+            { date: "২০ জুন", day: 20, match: "তুরস্ক - প্যারাগুয়ে", team1Flag: "🇹🇷", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ৯টা", hour: 9, venue: "সান ফ্রান্সিসকো বে এলাকা", streamUrl: "#STREAM_URL" },
+            { date: "২০ জুন", day: 20, match: "নেদেরল্যান্ডস - সুইডেন", team1Flag: "🇳🇱", team2Flag: "🇸🇪", group: "গ্রুপ- এফ", time: "রাত ১১টা", hour: 23, venue: "হিউস্টন", streamUrl: "#STREAM_URL" },
+            { date: "২১ জুন", day: 21, match: "জার্মানি - আইভরি কোস্ট", team1Flag: "🇩🇪", team2Flag: "🇨🇮", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, venue: "টরন্টো", streamUrl: "#STREAM_URL" },
+            { date: "২১ জুন", day: 21, match: "ইকুয়েডর - কুরাসাও", team1Flag: "🇪🇨", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "সকাল ৬টা", hour: 6, venue: "কানসাস সিটি", streamUrl: "#STREAM_URL" },
+            { date: "২১ জুন", day: 21, match: "তিউনিসিয়া - জাপান", team1Flag: "🇹🇳", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "সকাল ১০টা", hour: 10, venue: "মনতেরেই", streamUrl: "#STREAM_URL" },
+
+            // --- পাতা ২ (1780200377627_2.jpg) ---
+            { date: "২১ জুন", day: 21, match: "স্পেন - সৌদি আরব", team1Flag: "🇪🇸", team2Flag: "🇸🇦", group: "গ্রুপ- এইচ", time: "রাত ১০টা", hour: 22, venue: "আটলান্টা", streamUrl: "#STREAM_URL" },
+            { date: "২২ জুন", day: 22, match: "বেলজিয়াম - ইরান", team1Flag: "🇧🇪", team2Flag: "🇮🇷", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, venue: "লস অ্যাঞ্জেলেস", streamUrl: "#STREAM_URL" },
+            { date: "২২ জুন", day: 22, match: "উরুগুয়ে - কেপ ভার্দে", team1Flag: "🇺🇾", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, venue: "মায়ামি", streamUrl: "#STREAM_URL" },
+            { date: "২২ জুন", day: 22, match: "নিউজিল্যান্ড - মিসর", team1Flag: "🇳🇿", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, venue: "ভ্যাঙ্কুভার", streamUrl: "#STREAM_URL" },
+            { date: "২২ জুন", day: 22, match: "আর্জেন্টিনা - অস্ট্রিয়া", team1Flag: "🇦🇷", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "রাত ১১টা", hour: 23, venue: "ডালাস", streamUrl: "#STREAM_URL" },
+            { date: "২৩ জুন", day: 23, match: "ফ্রান্স - ইরাক", team1Flag: "🇫🇷", team2Flag: "🇮🇶", group: "গ্রুপ- আই", time: "রাত ৩টা", hour: 3, venue: "ফিলাডেলফিয়া", streamUrl: "#STREAM_URL" },
+            { date: "২৩ জুন", day: 23, match: "নরওয়ে - সেনেগাল", team1Flag: "🇳🇴", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "সকাল ৬টা", hour: 6, venue: "নিউ জার্সি", streamUrl: "#STREAM_URL" },
+            { date: "২৩ জুন", day: 23, match: "জর্ডান - আলজেরিয়া", team1Flag: "🇯🇴", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৯টা", hour: 9, venue: "সান ফ্রান্সিসকো বে এলাকা", streamUrl: "#STREAM_URL" },
+            { date: "২৩ জুন", day: 23, match: "পর্তুগাল - উজবেকিস্তান", team1Flag: "🇵🇹", team2Flag: "🇺🇿", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, venue: "হিউস্টন", streamUrl: "#STREAM_URL" },
+            { date: "২৪ জুন", day: 24, match: "ইংল্যান্ড - ঘানা", team1Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇬🇭", group: "গ্রুপ- এল", time: "রাত ২টা", hour: 2, venue: "বোস্টন", streamUrl: "#STREAM_URL" },
+            { date: "২৪ জুন", day: 24, match: "পানামা - ক্রোয়েশিয়া", team1Flag: "🇵🇦", team2Flag: "🇭🇷", group: "গ্রুপ- এল", time: "ভোর ৫টা", hour: 5, venue: "টরন্টো", streamUrl: "#STREAM_URL" },
+            { date: "২৪ জুন", day: 24, match: "কলম্বিয়া - কঙ্গো ডিআর", team1Flag: "🇨🇴", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "সকাল ৮টা", hour: 8, venue: "গুয়াদালাহারা", streamUrl: "#STREAM_URL" },
+            { date: "২৫ জুন", day: 25, match: "সুইজারল্যান্ড - কানাডা", team1Flag: "🇨🇭", team2Flag: "🇨🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "ভ্যাঙ্কুভার", streamUrl: "#STREAM_URL" },
+            { date: "২৫ জুন", day: 25, match: "বসনিয়া ও হার্জেগোভিনা - কাতার", team1Flag: "🇧🇦", team2Flag: "🇶🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "সিয়াটল", streamUrl: "#STREAM_URL" },
+            { date: "২৫ জুন", day: 25, match: "মরক্কো - হাইতি", team1Flag: "🇲🇦", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "আটলান্টা", streamUrl: "#STREAM_URL" },
+            { date: "২৫ জুন", day: 25, match: "স্কটল্যান্ড - ব্রাজিল", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇧🇷", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "मायाমি", streamUrl: "#STREAM_URL" },
+            { date: "২৫ জুন", day: 25, match: "দক্ষিণ আফ্রিকা - দক্ষিণ কোরিয়া", team1Flag: "🇿🇦", team2Flag: "🇰🇷", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, venue: "মনতেরেই", streamUrl: "#STREAM_URL" },
+            { date: "২৫ জুন", day: 25, match: "চেক প্রজাতন্ত্র - মেক্সিকো", team1Flag: "🇨🇿", team2Flag: "🇲🇽", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, venue: "মেক্সিকো সিটি", streamUrl: "#STREAM_URL" },
+            { date: "২৬ জুন", day: 26, match: "কুরাসাও - আইভরি কোস্ট", team1Flag: "🇨🇼", team2Flag: "🇨🇮", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, venue: "ফিলাডেলফিয়া", streamUrl: "#STREAM_URL" },
+            { date: "২৬ জুন", day: 26, match: "ইকুয়েডর - জার্মানি", team1Flag: "🇪🇨", team2Flag: "🇩🇪", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, venue: "নিউ জার্সি", streamUrl: "#STREAM_URL" },
+            { date: "২৬ জুন", day: 26, match: "তিউনিসিয়া - নেদারল্যান্ডস", team1Flag: "🇹🇳", team2Flag: "🇳🇱", group: "গ্রুপ- এফ", time: "ভোর ৫টা", hour: 5, venue: "কানসাস সিটি", streamUrl: "#STREAM_URL" },
+            { date: "২৬ জুন", day: 26, match: "জাপান - সুইডেন", team1Flag: "🇯🇵", team2Flag: "🇸🇪", group: "গ্রুপ- এফ", time: "ভোর ৫টা", hour: 5, venue: "ডালাস", streamUrl: "#STREAM_URL" },
+            { date: "২৬ জুন", day: 26, match: "তুরস্ক - যুক্তরাষ্ট্র", team1Flag: "🇹🇷", team2Flag: "🇺🇸", group: "গ্রুপ- ডি", time: "সকাল ৮টা", hour: 8, venue: "লস অ্যাঞ্জেলেস", streamUrl: "#STREAM_URL" },
+            { date: "২৬ জুন", day: 26, match: "প্যারাগুয়ে - অস্ট্রেলিয়া", team1Flag: "🇵🇾", team2Flag: "🇦🇺", group: "গ্রুপ- ডি", time: "সকাল ৮টা", hour: 8, venue: "সান ফ্রান্সিসকো বে এলাকা", streamUrl: "#STREAM_URL" },
+            { date: "২৭ জুন", day: 27, match: "নরওয়ে - ফ্রান্স", team1Flag: "🇳🇴", team2Flag: "🇫🇷", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, venue: "বোস্টন", streamUrl: "#STREAM_URL" },
+            { date: "২৭ জুন", day: 27, match: "সেনেগাল - ইরাক", team1Flag: "🇸🇳", team2Flag: "🇮🇶", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, venue: "টরন্টো", streamUrl: "#STREAM_URL" },
+            { date: "২৭ জুন", day: 27, match: "কেপ ভার্দে - সৌদি আরব", team1Flag: "🇨🇻", team2Flag: "🇸🇦", group: "গ্রুপ- এইচ", time: "সকাল ৬টা", hour: 6, venue: "হিউস্টন", streamUrl: "#STREAM_URL" },
+            { date: "২৭ জুন", day: 27, match: "উরুগুয়ে - স্পেন", team1Flag: "🇺🇾", team2Flag: "🇪🇸", group: "গ্রুপ- এইচ", time: "সকাল ৬টা", hour: 6, venue: "গুয়াদালাহারা", streamUrl: "#STREAM_URL" },
+            { date: "২৭ জুন", day: 27, match: "নিউজিল্যান্ড - বেলজিয়াম", team1Flag: "🇳🇿", team2Flag: "🇧🇪", group: "গ্রুপ- জি", time: "সকাল ৯টা", hour: 9, venue: "ভ্যাঙ্কুভার", streamUrl: "#STREAM_URL" },
+            { date: "২৭ জুন", day: 27, match: "মিসর - ইরান", team1Flag: "🇪🇬", team2Flag: "🇮🇷", group: "গ্রুপ- জি", time: "সকাল ৯টা", hour: 9, venue: "সিয়াটল", streamUrl: "#STREAM_URL" },
+            { date: "২৮ জুন", day: 28, match: "পানামা - ইংল্যান্ড", team1Flag: "🇵🇦", team2Flag: "🏴 Trick", group: "গ্রুপ- এল", time: "রাত ৩টা", hour: 3, venue: "নিউ জার্সি", streamUrl: "#STREAM_URL" },
+            { date: "২৮ জুন", day: 28, match: "ক্রোয়েশিয়া - ঘানা", team1Flag: "🇭🇷", team2Flag: "🇬🇭", group: "গ্রুপ- এল", time: "রাত ৩টা", hour: 3, venue: "ফিলাডেলফিয়া", streamUrl: "#STREAM_URL" },
+            { date: "২৮ জুন", day: 28, match: "কলম্বিয়া - পর্তוגাল", team1Flag: "🇨🇴", team2Flag: "🇵🇹", group: "গ্রুপ- কে", time: "ভোর ৫.৩০টা", hour: 5.5, venue: "মায়ামি", streamUrl: "#STREAM_URL" },
+            { date: "২৮ জুন", day: 28, match: "কঙ্গো ডিআর - উজবেকিস্তান", team1Flag: "🇨🇩", team2Flag: "🇺🇿", group: "গ্রুপ- কে", time: "ভোর ৫.৩০টা", hour: 5.5, venue: "আটলান্টা", streamUrl: "#STREAM_URL" },
+            { date: "২৮ জুন", day: 28, match: "আলজেরিয়া - অস্ট্রিয়া", team1Flag: "🇩🇿", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, venue: "কানসাস সিটি", streamUrl: "#STREAM_URL" },
+            { date: "২৮ জুন", day: 28, match: "জর্ডান - আর্জেন্টিনা", team1Flag: "🇯🇴", team2Flag: "🇦🇷", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, venue: "ডালাস", streamUrl: "#STREAM_URL" }
         ];
 
         // গ্লোবাল ভেরিয়েবল উইন্ডো ট্র্যাকিংয়ের জন্য
@@ -172,9 +235,7 @@
         // লাইভ কাউন্টডাউন ক্যালকুলেশন লজিক
         function getCountdownString(targetDay, targetHour) {
             const now = new Date();
-            // ২০২৬ সালের জুনের নির্দিষ্ট দিন ও সময়ের টার্গেট অবজেক্ট তৈরি
             const targetDate = new Date(2026, 5, targetDay, Math.floor(targetHour), (targetHour % 1) * 60);
-            
             const diffMs = targetDate - now;
             
             if (diffMs <= 0) {
@@ -210,8 +271,6 @@
                 const teams = m.match.split(" - ");
                 const team1 = teams[0] || "Team A";
                 const team2 = teams[1] || "Team B";
-                
-                // কাউন্টডাউন জেনারেট করা হচ্ছে
                 const countdownHTML = getCountdownString(m.day, m.hour);
 
                 return `
@@ -304,4 +363,3 @@
     </script>
 </body>
 </html>
-```http://googleusercontent.com/image_generation_content/203
