@@ -1,1 +1,307 @@
-<!DOCTYPE html> <html lang="bn"> <head>     <meta charset="UTF-8">     <meta name="viewport" content="width=device-width, initial-scale=1.0">     <title>PlayZ TV - বিশ্বকাপ ২০২৬ রোলিং শিডিউল</title>     <!-- Tailwind CSS -->     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>     <!-- FontAwesome for Icons -->     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">     <style>         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');         body {             font-family: 'Hind Siliguri', sans-serif;             background-color: #12131a;         }         .app-card {             background-color: #1c1d26;             border: 1px solid #292a38;         }     </style> </head> <body class="text-slate-200 min-h-screen pb-20">      <!-- Top Navigation Bar (PlayZ TV Style) -->     <header class="bg-[#1c1d26] border-b border-[#292a38] sticky top-0 z-50 px-4 py-3 shadow-lg">         <div class="max-w-5xl mx-auto flex items-center justify-between">             <div class="flex items-center gap-4">                 <i class="fa-solid fa-bars text-xl text-slate-400 cursor-pointer"></i>                 <h1 class="text-xl font-bold text-white tracking-wide">PlayZ <span class="text-blue-500">TV</span></h1>             </div>             <div class="flex items-center gap-5 text-slate-400 text-lg">                 <i class="fa-regular fa-star cursor-pointer hover:text-white"></i>                 <i class="fa-solid fa-rotate-right cursor-pointer hover:text-white"></i>                 <i class="fa-solid fa-magnifying-glass cursor-pointer hover:text-white"></i>             </div>         </div>     </header>      <!-- App Categories -->     <div class="max-w-5xl mx-auto px-4 mt-4 overflow-x-auto flex gap-3 pb-2 scrollbar-none">         <button class="bg-blue-600/20 text-blue-400 border border-blue-500/40 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap"><i class="fa-solid fa-circle-dot mr-1 text-[10px]"></i> All (79)</button>         <button class="bg-[#1c1d26] text-slate-400 border border-[#292a38] px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap hover:bg-slate-800"><i class="fa-solid fa-bolt mr-1"></i> Live</button>         <button class="bg-[#1c1d26] text-slate-400 border border-[#292a38] px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap hover:bg-slate-800"><i class="fa-solid fa-calendar mr-1"></i> Upcoming</button>     </div>      <!-- Main Content Area -->     <main class="max-w-5xl mx-auto px-4 mt-6">          <!-- DYNAMIC 7-DAYS WINDOW SECTION -->         <section class="mb-8">             <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 bg-[#1c1d26] p-4 rounded-xl border border-[#292a38]">                 <div class="flex items-center gap-2">                     <span class="flex h-2.5 w-2.5 relative">                         <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>                         <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>                     </span>                     <h2 class="text-base sm:text-lg font-bold text-slate-100">চলতি সপ্তাহের ম্যাচসমূহ (৭ দিনের সময়সূচি)</h2>                 </div>                 <!-- Current Active Week Date Range Badge -->                 <span id="week-range-badge" class="text-xs font-bold text-amber-400 bg-[#12131a] px-3 py-1 rounded border border-[#292a38] self-start sm:self-center">                     হিসাব করা হচ্ছে...                 </span>             </div>                          <!-- Match Cards Container -->             <div id="rolling-matches-container" class="space-y-3">                 <!-- Data will load here automatically via JS -->             </div>         </section>          <!-- FULL SCHEDULE TABLE (HIDDEN BY DEFAULT, OPENS VIA FOOTER SPORTS BUTTON) -->         <section id="full-schedule-section" class="hidden mt-8 transition-all duration-300">             <div class="bg-[#1c1d26] rounded-xl border border-[#292a38] overflow-hidden shadow-2xl">                 <div class="p-4 bg-[#232430] border-b border-[#292a38] flex flex-col sm:flex-row justify-between items-center gap-3">                     <h3 class="text-base font-bold text-blue-400 flex items-center gap-2">                         <i class="fa-solid fa-globe"></i> সম্পূর্ণ গ্রুপ পর্বের সময়সূচি ২০২৬                     </h3>                     <input type="text" id="search-input" onkeyup="searchSchedule()" placeholder="দল বা গ্রুপ খুঁজুন..." class="bg-[#12131a] text-slate-200 px-3 py-1.5 rounded-lg border border-[#292a38] focus:outline-none focus:border-blue-500 text-xs w-full sm:w-48">                 </div>                  <div class="overflow-x-auto">                     <table class="w-full text-center border-collapse text-xs sm:text-sm">                         <thead>                             <tr class="bg-[#171821] text-slate-400 border-b border-[#292a38]">                                 <th class="p-3 font-semibold">তারিখ</th>                                 <th class="p-3 font-semibold text-left">ম্যাচ</th>                                 <th class="p-3 font-semibold">গ্রুপ</th>                                 <th class="p-3 font-semibold">বাংলাদেশ সময়</th>                                 <th class="p-3 font-semibold text-left">ভেন্যু</th>                             </tr>                         </thead>                         <tbody id="full-schedule-tbody" class="divide-y divide-[#232430]">                             <!-- Generated Rows -->                         </tbody>                     </table>                 </div>             </div>         </section>      </main>      <!-- Bottom App Navigation Mock -->     <div class="fixed bottom-0 left-0 right-0 bg-[#1c1d26] border-t border-[#292a38] py-2 flex justify-around text-slate-400 text-[11px] z-50">         <div class="flex flex-col items-center text-slate-400 cursor-pointer hover:text-white" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">             <i class="fa-solid fa-satellite-dish text-lg mb-0.5"></i>             <span>Events</span>         </div>         <div class="flex flex-col items-center cursor-pointer hover:text-white">             <i class="fa-solid fa-folder-tree text-lg mb-0.5"></i>             <span>Categories</span>         </div>         <!-- Sports Button now triggers full schedule -->         <div id="footer-sports-btn" class="flex flex-col items-center cursor-pointer text-slate-400 transition-colors" onclick="toggleScheduleViaFooter()">             <i class="fa-solid fa-trophy text-lg mb-0.5"></i>             <span>Sports (শিডিউল)</span>         </div>         <div class="flex flex-col items-center cursor-pointer hover:text-white">             <i class="fa-solid fa-user text-lg mb-0.5"></i>             <span>Profile</span>         </div>     </div>      <script>         // স্ক্রিনশট থেকে সংগৃহীত ম্যাচের ডাটাবেজ         const matchSchedule = [             { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, venue: "মেক্সিকো সিটি", streamUrl: "#YOUR_STREAM_URL_1" },             { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, venue: "গুয়াদালাহারা", streamUrl: "#YOUR_STREAM_URL_2" },             { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "টরন্টো", streamUrl: "#YOUR_STREAM_URL_3" },             { date: "১৪ জুন", day: 14, match: "যুক্তরাষ্ট্র - প্যারাগুয়ে", team1Flag: "🇺🇸", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ২টা", hour: 2, venue: "লস অ্যাঞ্জেলেস", streamUrl: "#YOUR_STREAM_URL_4" },             { date: "১৪ জুন", day: 14, match: "কাতার - সুইজারল্যান্ড", team1Flag: "🇶🇦", team2Flag: "🇨🇭", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "সান ফ্রান্সিসকো বে এলাকা", streamUrl: "#YOUR_STREAM_URL_5" },             { date: "১৪ জুন", day: 14, match: "ব্রাজিল - মরক্কো", team1Flag: "🇧🇷", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "নিউ জার্সি", streamUrl: "#YOUR_STREAM_URL_6" },             { date: "১৫ জুন", day: 15, match: "নেদারল্যান্ডস - জাপান", team1Flag: "🇳🇱", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "রাত ২টা", hour: 2, venue: "ডালাস", streamUrl: "#YOUR_STREAM_URL_7" },             { date: "১৭ জুন", day: 17, match: "আর্জেন্টিনা - আলজেরিয়া", team1Flag: "🇦🇷", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৭টা", hour: 7, venue: "কানসাস সিটি", streamUrl: "#YOUR_STREAM_URL_8" },             { date: "২০ জুন", day: 20, match: "ব্রাজিল - ഹൈതി", team1Flag: "🇧🇷", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "সকাল ৬.৩০টা", hour: 6.5, venue: "ফিলাдельফিয়া", streamUrl: "#YOUR_STREAM_URL_9" },             { date: "২২ জুন", day: 22, match: "আর্জেন্টিনা - অস্ট্রিয়া", team1Flag: "🇦🇷", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "রাত ১১টা", hour: 23, venue: "ডాలాস", streamUrl: "#YOUR_STREAM_URL_10" },             { date: "২৫ জুন", day: 25, match: "স্কটল্যান্ড - ব্রাজিল", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇧🇷", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "মায়ামি", streamUrl: "#YOUR_STREAM_URL_11" },             { date: "২৮ জুন", day: 28, match: "জর্ডান - আর্জেন্টিনা", team1Flag: "🇯🇴", team2Flag: "🇦🇷", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, venue: "ডాలాস", streamUrl: "#YOUR_STREAM_URL_12" }         ];          // গ্লোবাল ভেরিয়েবল উইন্ডো ট্র্যাকিংয়ের জন্য         let startDay = 12;         let endDay = 18;          document.addEventListener("DOMContentLoaded", () => {             calculateCurrentWindow();             renderRollingSevenDaysSchedule();             renderFullSchedule();                          // প্রতি মিনিটে কাউন্টডাউন টাইমার রিফ্রেশ হবে             setInterval(renderRollingSevenDaysSchedule, 60000);         });          // বর্তমান তারিখ অনুযায়ী চলমান ৭ দিনের উইন্ডো নির্ধারণ         function calculateCurrentWindow() {             const today = new Date();             const currentDay = today.getDate();             const currentMonth = today.getMonth(); // ৫ = জুন              if (currentMonth === 5 && currentDay >= 12) {                 const daysPassed = currentDay - 12;                 const weekMultiplier = Math.floor(daysPassed / 7);                 startDay = 12 + (weekMultiplier * 7);             }             endDay = startDay + 6;              const bnNums = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};             const toBn = (num) => String(num).split('').map(d => bnNums[d] || d).join('');             document.getElementById("week-range-badge").innerHTML = `<i class="fa-regular fa-calendar-check mr-1"></i> উইন্ডো: ${toBn(startDay)} জুন - ${toBn(endDay)} জুন`;         }          // লাইভ কাউন্টডাউন ক্যালকুলেশন লজিক         function getCountdownString(targetDay, targetHour) {             const now = new Date();             // ২০২৬ সালের জুনের নির্দিষ্ট দিন ও সময়ের টার্গেট অবজেক্ট তৈরি             const targetDate = new Date(2026, 5, targetDay, Math.floor(targetHour), (targetHour % 1) * 60);                          const diffMs = targetDate - now;                          if (diffMs <= 0) {                 return `<span class="text-red-400 font-bold"><i class="fa-solid fa-circle-play text-[9px] animate-pulse"></i> ম্যাচটি চলমান / শেষ</span>`;             }              const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));             const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));             const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));              const bnNums = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};             const toBn = (num) => String(num).split('').map(d => bnNums[d] || d).join('');              let countdownStr = "শুরু হতে: ";             if (diffDays > 0) countdownStr += `${toBn(diffDays)} দিন `;             if (diffHours > 0 || diffDays > 0) countdownStr += `${toBn(diffHours)} ঘণ্টা `;             countdownStr += `${toBn(diffMins)} মিনিট বাকি`;              return `<span class="text-amber-500 font-semibold"><i class="fa-regular fa-clock text-[10px]"></i> ${countdownStr}</span>`;         }          // হোমপেজের ৭ দিনের শিডিউল রেন্ডার         function renderRollingSevenDaysSchedule() {             const currentWeekMatches = matchSchedule.filter(m => m.day >= startDay && m.day <= endDay);             const container = document.getElementById("rolling-matches-container");              if (currentWeekMatches.length === 0) {                 container.innerHTML = `<p class="text-xs text-slate-500 bg-[#1c1d26] p-6 rounded-xl text-center border border-[#292a38]">এই উইন্ডোতে কোনো গ্রুপ পর্বের ম্যাচ পাওয়া যায়নি।</p>`;                 return;             }              container.innerHTML = currentWeekMatches.map(m => {                 const teams = m.match.split(" - ");                 const team1 = teams[0] || "Team A";                 const team2 = teams[1] || "Team B";                                  // কাউন্টডাউন জেনারেট করা হচ্ছে                 const countdownHTML = getCountdownString(m.day, m.hour);                  return `                     <a href="${m.streamUrl}" target="_blank" class="block">                         <div class="app-card rounded-xl p-4 flex flex-col gap-3 shadow-md hover:border-blue-500/50 hover:bg-[#232430] transition-all">                             <div class="flex items-center justify-between">                                 <!-- Left Team -->                                 <div class="flex items-center gap-3 w-1/3">                                     <span class="text-3xl">${m.team1Flag}</span>                                     <span class="text-xs sm:text-sm font-semibold truncate text-slate-100">${team1}</span>                                 </div>                                  <!-- Match Center -->                                 <div class="text-center flex flex-col items-center justify-center w-1/3 px-1">                                     <span class="text-[9px] text-slate-500 font-medium tracking-tight uppercase mb-0.5">Football || ${m.group}</span>                                     <span class="text-xs font-bold text-white tracking-wide">${m.time}</span>                                     <span class="text-[10px] text-blue-400 mt-0.5 font-bold">${m.date}</span>                                 </div>                                  <!-- Right Team -->                                 <div class="flex items-center gap-3 w-1/3 justify-end text-right">                                     <span class="text-xs sm:text-sm font-semibold truncate text-slate-100">${team2}</span>                                     <span class="text-3xl">${m.team2Flag}</span>                                 </div>                             </div>                                                          <!-- LOWER COUNTDOWN BLOCK -->                             <div class="text-center bg-[#12131a]/60 border-t border-[#292a38] pt-2 text-[10px] sm:text-xs flex flex-col items-center gap-1">                                 ${countdownHTML}                                 <span class="text-blue-500 font-bold"><i class="fa-solid fa-play mr-1"></i> ক্লিক করুন স্ট্রীম করতে</span>                             </div>                         </div>                     </a>                 `;             }).join('');         }          // সম্পূর্ণ শিডিউল টেবিল জেনারেট করা         function renderFullSchedule() {             const tbody = document.getElementById("full-schedule-tbody");             tbody.innerHTML = matchSchedule.map(m => {                 const teams = m.match.split(" - ");                 const team1 = teams[0] || "Team A";                 const team2 = teams[1] || "Team B";                 return `                     <tr class="hover:bg-[#232430]/40 transition-colors">                         <td class="p-3 font-semibold text-blue-400 whitespace-nowrap">${m.date}</td>                         <td class="p-3 font-bold text-slate-200 text-left flex items-center gap-2">                             <span class="text-xl">${m.team1Flag}</span> ${team1} - ${team2} <span class="text-xl">${m.team2Flag}</span>                         </td>                         <td class="p-3"><span class="bg-[#232430] text-slate-400 text-[10px] px-2 py-0.5 rounded border border-[#292a38]">${m.group}</span></td>                         <td class="p-3 font-semibold text-emerald-400 whitespace-nowrap">${m.time}</td>                         <td class="p-3 text-slate-400 text-xs text-left">${m.venue}</td>                     </tr>                 `;             }).join('');         }          // ক্যাটাগরি মেনুর Sports বাটনে চাপ দিলে টগল হবে         function toggleScheduleViaFooter() {             const section = document.getElementById("full-schedule-section");             const footerBtn = document.getElementById("footer-sports-btn");              if (section.classList.contains("hidden")) {                 section.classList.remove("hidden");                 footerBtn.classList.remove("text-slate-400");                 footerBtn.classList.add("text-blue-500");                 setTimeout(() => section.scrollIntoView({ behavior: 'smooth' }), 50);             } else {                 section.classList.add("hidden");                 footerBtn.classList.remove("text-blue-500");                 footerBtn.classList.add("text-slate-400");             }         }          // লাইভ সার্চ         function searchSchedule() {             const input = document.getElementById("search-input").value.toUpperCase();             const rows = document.getElementById("full-schedule-tbody").getElementsByTagName("tr");             for (let i = 0; i < rows.length; i++) {                 const matchText = rows[i].getElementsByTagName("td")[1]?.textContent || "";                 const groupText = rows[i].getElementsByTagName("td")[2]?.textContent || "";                 if (matchText.toUpperCase().indexOf(input) > -1 || groupText.toUpperCase().indexOf(input) > -1) {                     rows[i].style.display = "";                 } else {                     rows[i].style.display = "none";                 }             }         }     </script> </body> </html> ```http://googleusercontent.com/image_generation_content/203
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlayZ TV - বিশ্বকাপ ২০২৬ রোলিং শিডিউল</title>
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- FontAwesome for Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            background-color: #12131a;
+        }
+        .app-card {
+            background-color: #1c1d26;
+            border: 1px solid #292a38;
+        }
+    </style>
+</head>
+<body class="text-slate-200 min-h-screen pb-20">
+
+    <!-- Top Navigation Bar (PlayZ TV Style) -->
+    <header class="bg-[#1c1d26] border-b border-[#292a38] sticky top-0 z-50 px-4 py-3 shadow-lg">
+        <div class="max-w-5xl mx-auto flex items-center justify-between">
+            <div class="flex items-center gap-4">
+                <i class="fa-solid fa-bars text-xl text-slate-400 cursor-pointer"></i>
+                <h1 class="text-xl font-bold text-white tracking-wide">PlayZ <span class="text-blue-500">TV</span></h1>
+            </div>
+            <div class="flex items-center gap-5 text-slate-400 text-lg">
+                <i class="fa-regular fa-star cursor-pointer hover:text-white"></i>
+                <i class="fa-solid fa-rotate-right cursor-pointer hover:text-white"></i>
+                <i class="fa-solid fa-magnifying-glass cursor-pointer hover:text-white"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- App Categories -->
+    <div class="max-w-5xl mx-auto px-4 mt-4 overflow-x-auto flex gap-3 pb-2 scrollbar-none">
+        <button class="bg-blue-600/20 text-blue-400 border border-blue-500/40 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap"><i class="fa-solid fa-circle-dot mr-1 text-[10px]"></i> All (79)</button>
+        <button class="bg-[#1c1d26] text-slate-400 border border-[#292a38] px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap hover:bg-slate-800"><i class="fa-solid fa-bolt mr-1"></i> Live</button>
+        <button class="bg-[#1c1d26] text-slate-400 border border-[#292a38] px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap hover:bg-slate-800"><i class="fa-solid fa-calendar mr-1"></i> Upcoming</button>
+    </div>
+
+    <!-- Main Content Area -->
+    <main class="max-w-5xl mx-auto px-4 mt-6">
+
+        <!-- DYNAMIC 7-DAYS WINDOW SECTION -->
+        <section class="mb-8">
+            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 bg-[#1c1d26] p-4 rounded-xl border border-[#292a38]">
+                <div class="flex items-center gap-2">
+                    <span class="flex h-2.5 w-2.5 relative">
+                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
+                    </span>
+                    <h2 class="text-base sm:text-lg font-bold text-slate-100">চলতি সপ্তাহের ম্যাচসমূহ (৭ দিনের সময়সূচি)</h2>
+                </div>
+                <!-- Current Active Week Date Range Badge -->
+                <span id="week-range-badge" class="text-xs font-bold text-amber-400 bg-[#12131a] px-3 py-1 rounded border border-[#292a38] self-start sm:self-center">
+                    হিসাব করা হচ্ছে...
+                </span>
+            </div>
+            
+            <!-- Match Cards Container -->
+            <div id="rolling-matches-container" class="space-y-3">
+                <!-- Data will load here automatically via JS -->
+            </div>
+        </section>
+
+        <!-- FULL SCHEDULE TABLE (HIDDEN BY DEFAULT, OPENS VIA FOOTER SPORTS BUTTON) -->
+        <section id="full-schedule-section" class="hidden mt-8 transition-all duration-300">
+            <div class="bg-[#1c1d26] rounded-xl border border-[#292a38] overflow-hidden shadow-2xl">
+                <div class="p-4 bg-[#232430] border-b border-[#292a38] flex flex-col sm:flex-row justify-between items-center gap-3">
+                    <h3 class="text-base font-bold text-blue-400 flex items-center gap-2">
+                        <i class="fa-solid fa-globe"></i> সম্পূর্ণ গ্রুপ পর্বের সময়সূচি ২০২৬
+                    </h3>
+                    <input type="text" id="search-input" onkeyup="searchSchedule()" placeholder="দল বা গ্রুপ খুঁজুন..." class="bg-[#12131a] text-slate-200 px-3 py-1.5 rounded-lg border border-[#292a38] focus:outline-none focus:border-blue-500 text-xs w-full sm:w-48">
+                </div>
+
+                <div class="overflow-x-auto">
+                    <table class="w-full text-center border-collapse text-xs sm:text-sm">
+                        <thead>
+                            <tr class="bg-[#171821] text-slate-400 border-b border-[#292a38]">
+                                <th class="p-3 font-semibold">তারিখ</th>
+                                <th class="p-3 font-semibold text-left">ম্যাচ</th>
+                                <th class="p-3 font-semibold">গ্রুপ</th>
+                                <th class="p-3 font-semibold">বাংলাদেশ সময়</th>
+                                <th class="p-3 font-semibold text-left">ভেন্যু</th>
+                            </tr>
+                        </thead>
+                        <tbody id="full-schedule-tbody" class="divide-y divide-[#232430]">
+                            <!-- Generated Rows -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Bottom App Navigation Mock -->
+    <div class="fixed bottom-0 left-0 right-0 bg-[#1c1d26] border-t border-[#292a38] py-2 flex justify-around text-slate-400 text-[11px] z-50">
+        <div class="flex flex-col items-center text-slate-400 cursor-pointer hover:text-white" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <i class="fa-solid fa-satellite-dish text-lg mb-0.5"></i>
+            <span>Events</span>
+        </div>
+        <div class="flex flex-col items-center cursor-pointer hover:text-white">
+            <i class="fa-solid fa-folder-tree text-lg mb-0.5"></i>
+            <span>Categories</span>
+        </div>
+        <!-- Sports Button now triggers full schedule -->
+        <div id="footer-sports-btn" class="flex flex-col items-center cursor-pointer text-slate-400 transition-colors" onclick="toggleScheduleViaFooter()">
+            <i class="fa-solid fa-trophy text-lg mb-0.5"></i>
+            <span>Sports (শিডিউল)</span>
+        </div>
+        <div class="flex flex-col items-center cursor-pointer hover:text-white">
+            <i class="fa-solid fa-user text-lg mb-0.5"></i>
+            <span>Profile</span>
+        </div>
+    </div>
+
+    <script>
+        // স্ক্রিনশট থেকে সংগৃহীত ম্যাচের ডাটাবেজ
+        const matchSchedule = [
+            { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, venue: "মেক্সিকো সিটি", streamUrl: "#YOUR_STREAM_URL_1" },
+            { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, venue: "গুয়াদালাহারা", streamUrl: "#YOUR_STREAM_URL_2" },
+            { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "টরন্টো", streamUrl: "#YOUR_STREAM_URL_3" },
+            { date: "১৪ জুন", day: 14, match: "যুক্তরাষ্ট্র - প্যারাগুয়ে", team1Flag: "🇺🇸", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ২টা", hour: 2, venue: "লস অ্যাঞ্জেলেস", streamUrl: "#YOUR_STREAM_URL_4" },
+            { date: "১৪ জুন", day: 14, match: "কাতার - সুইজারল্যান্ড", team1Flag: "🇶🇦", team2Flag: "🇨🇭", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "সান ফ্রান্সিসকো বে এলাকা", streamUrl: "#YOUR_STREAM_URL_5" },
+            { date: "১৪ জুন", day: 14, match: "ব্রাজিল - মরক্কো", team1Flag: "🇧🇷", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "নিউ জার্সি", streamUrl: "#YOUR_STREAM_URL_6" },
+            { date: "১৫ জুন", day: 15, match: "নেদারল্যান্ডস - জাপান", team1Flag: "🇳🇱", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "রাত ২টা", hour: 2, venue: "ডালাস", streamUrl: "#YOUR_STREAM_URL_7" },
+            { date: "১৭ জুন", day: 17, match: "আর্জেন্টিনা - আলজেরিয়া", team1Flag: "🇦🇷", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৭টা", hour: 7, venue: "কানসাস সিটি", streamUrl: "#YOUR_STREAM_URL_8" },
+            { date: "২০ জুন", day: 20, match: "ব্রাজিল - ഹൈതി", team1Flag: "🇧🇷", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "সকাল ৬.৩০টা", hour: 6.5, venue: "ফিলাдельফিয়া", streamUrl: "#YOUR_STREAM_URL_9" },
+            { date: "২২ জুন", day: 22, match: "আর্জেন্টিনা - অস্ট্রিয়া", team1Flag: "🇦🇷", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "রাত ১১টা", hour: 23, venue: "ডాలాস", streamUrl: "#YOUR_STREAM_URL_10" },
+            { date: "২৫ জুন", day: 25, match: "স্কটল্যান্ড - ব্রাজিল", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇧🇷", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "মায়ামি", streamUrl: "#YOUR_STREAM_URL_11" },
+            { date: "২৮ জুন", day: 28, match: "জর্ডান - আর্জেন্টিনা", team1Flag: "🇯🇴", team2Flag: "🇦🇷", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, venue: "ডాలాস", streamUrl: "#YOUR_STREAM_URL_12" }
+        ];
+
+        // গ্লোবাল ভেরিয়েবল উইন্ডো ট্র্যাকিংয়ের জন্য
+        let startDay = 12;
+        let endDay = 18;
+
+        document.addEventListener("DOMContentLoaded", () => {
+            calculateCurrentWindow();
+            renderRollingSevenDaysSchedule();
+            renderFullSchedule();
+            
+            // প্রতি মিনিটে কাউন্টডাউন টাইমার রিফ্রেশ হবে
+            setInterval(renderRollingSevenDaysSchedule, 60000);
+        });
+
+        // বর্তমান তারিখ অনুযায়ী চলমান ৭ দিনের উইন্ডো নির্ধারণ
+        function calculateCurrentWindow() {
+            const today = new Date();
+            const currentDay = today.getDate();
+            const currentMonth = today.getMonth(); // ৫ = জুন
+
+            if (currentMonth === 5 && currentDay >= 12) {
+                const daysPassed = currentDay - 12;
+                const weekMultiplier = Math.floor(daysPassed / 7);
+                startDay = 12 + (weekMultiplier * 7);
+            }
+            endDay = startDay + 6;
+
+            const bnNums = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
+            const toBn = (num) => String(num).split('').map(d => bnNums[d] || d).join('');
+            document.getElementById("week-range-badge").innerHTML = `<i class="fa-regular fa-calendar-check mr-1"></i> উইন্ডো: ${toBn(startDay)} জুন - ${toBn(endDay)} জুন`;
+        }
+
+        // লাইভ কাউন্টডাউন ক্যালকুলেশন লজিক
+        function getCountdownString(targetDay, targetHour) {
+            const now = new Date();
+            // ২০২৬ সালের জুনের নির্দিষ্ট দিন ও সময়ের টার্গেট অবজেক্ট তৈরি
+            const targetDate = new Date(2026, 5, targetDay, Math.floor(targetHour), (targetHour % 1) * 60);
+            
+            const diffMs = targetDate - now;
+            
+            if (diffMs <= 0) {
+                return `<span class="text-red-400 font-bold"><i class="fa-solid fa-circle-play text-[9px] animate-pulse"></i> ম্যাচটি চলমান / শেষ</span>`;
+            }
+
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
+
+            const bnNums = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
+            const toBn = (num) => String(num).split('').map(d => bnNums[d] || d).join('');
+
+            let countdownStr = "শুরু হতে: ";
+            if (diffDays > 0) countdownStr += `${toBn(diffDays)} দিন `;
+            if (diffHours > 0 || diffDays > 0) countdownStr += `${toBn(diffHours)} ঘণ্টা `;
+            countdownStr += `${toBn(diffMins)} মিনিট বাকি`;
+
+            return `<span class="text-amber-500 font-semibold"><i class="fa-regular fa-clock text-[10px]"></i> ${countdownStr}</span>`;
+        }
+
+        // হোমপেজের ৭ দিনের শিডিউল রেন্ডার
+        function renderRollingSevenDaysSchedule() {
+            const currentWeekMatches = matchSchedule.filter(m => m.day >= startDay && m.day <= endDay);
+            const container = document.getElementById("rolling-matches-container");
+
+            if (currentWeekMatches.length === 0) {
+                container.innerHTML = `<p class="text-xs text-slate-500 bg-[#1c1d26] p-6 rounded-xl text-center border border-[#292a38]">এই উইন্ডোতে কোনো গ্রুপ পর্বের ম্যাচ পাওয়া যায়নি।</p>`;
+                return;
+            }
+
+            container.innerHTML = currentWeekMatches.map(m => {
+                const teams = m.match.split(" - ");
+                const team1 = teams[0] || "Team A";
+                const team2 = teams[1] || "Team B";
+                
+                // কাউন্টডাউন জেনারেট করা হচ্ছে
+                const countdownHTML = getCountdownString(m.day, m.hour);
+
+                return `
+                    <a href="${m.streamUrl}" target="_blank" class="block">
+                        <div class="app-card rounded-xl p-4 flex flex-col gap-3 shadow-md hover:border-blue-500/50 hover:bg-[#232430] transition-all">
+                            <div class="flex items-center justify-between">
+                                <!-- Left Team -->
+                                <div class="flex items-center gap-3 w-1/3">
+                                    <span class="text-3xl">${m.team1Flag}</span>
+                                    <span class="text-xs sm:text-sm font-semibold truncate text-slate-100">${team1}</span>
+                                </div>
+
+                                <!-- Match Center -->
+                                <div class="text-center flex flex-col items-center justify-center w-1/3 px-1">
+                                    <span class="text-[9px] text-slate-500 font-medium tracking-tight uppercase mb-0.5">Football || ${m.group}</span>
+                                    <span class="text-xs font-bold text-white tracking-wide">${m.time}</span>
+                                    <span class="text-[10px] text-blue-400 mt-0.5 font-bold">${m.date}</span>
+                                </div>
+
+                                <!-- Right Team -->
+                                <div class="flex items-center gap-3 w-1/3 justify-end text-right">
+                                    <span class="text-xs sm:text-sm font-semibold truncate text-slate-100">${team2}</span>
+                                    <span class="text-3xl">${m.team2Flag}</span>
+                                </div>
+                            </div>
+                            
+                            <!-- LOWER COUNTDOWN BLOCK -->
+                            <div class="text-center bg-[#12131a]/60 border-t border-[#292a38] pt-2 text-[10px] sm:text-xs flex flex-col items-center gap-1">
+                                ${countdownHTML}
+                                <span class="text-blue-500 font-bold"><i class="fa-solid fa-play mr-1"></i> ক্লিক করুন স্ট্রীম করতে</span>
+                            </div>
+                        </div>
+                    </a>
+                `;
+            }).join('');
+        }
+
+        // সম্পূর্ণ শিডিউল টেবিল জেনারেট করা
+        function renderFullSchedule() {
+            const tbody = document.getElementById("full-schedule-tbody");
+            tbody.innerHTML = matchSchedule.map(m => {
+                const teams = m.match.split(" - ");
+                const team1 = teams[0] || "Team A";
+                const team2 = teams[1] || "Team B";
+                return `
+                    <tr class="hover:bg-[#232430]/40 transition-colors">
+                        <td class="p-3 font-semibold text-blue-400 whitespace-nowrap">${m.date}</td>
+                        <td class="p-3 font-bold text-slate-200 text-left flex items-center gap-2">
+                            <span class="text-xl">${m.team1Flag}</span> ${team1} - ${team2} <span class="text-xl">${m.team2Flag}</span>
+                        </td>
+                        <td class="p-3"><span class="bg-[#232430] text-slate-400 text-[10px] px-2 py-0.5 rounded border border-[#292a38]">${m.group}</span></td>
+                        <td class="p-3 font-semibold text-emerald-400 whitespace-nowrap">${m.time}</td>
+                        <td class="p-3 text-slate-400 text-xs text-left">${m.venue}</td>
+                    </tr>
+                `;
+            }).join('');
+        }
+
+        // ক্যাটাগরি মেনুর Sports বাটনে চাপ দিলে টগল হবে
+        function toggleScheduleViaFooter() {
+            const section = document.getElementById("full-schedule-section");
+            const footerBtn = document.getElementById("footer-sports-btn");
+
+            if (section.classList.contains("hidden")) {
+                section.classList.remove("hidden");
+                footerBtn.classList.remove("text-slate-400");
+                footerBtn.classList.add("text-blue-500");
+                setTimeout(() => section.scrollIntoView({ behavior: 'smooth' }), 50);
+            } else {
+                section.classList.add("hidden");
+                footerBtn.classList.remove("text-blue-500");
+                footerBtn.classList.add("text-slate-400");
+            }
+        }
+
+        // লাইভ সার্চ
+        function searchSchedule() {
+            const input = document.getElementById("search-input").value.toUpperCase();
+            const rows = document.getElementById("full-schedule-tbody").getElementsByTagName("tr");
+            for (let i = 0; i < rows.length; i++) {
+                const matchText = rows[i].getElementsByTagName("td")[1]?.textContent || "";
+                const groupText = rows[i].getElementsByTagName("td")[2]?.textContent || "";
+                if (matchText.toUpperCase().indexOf(input) > -1 || groupText.toUpperCase().indexOf(input) > -1) {
+                    rows[i].style.display = "";
+                } else {
+                    rows[i].style.display = "none";
+                }
+            }
+        }
+    </script>
+</body>
+</html>
+```http://googleusercontent.com/image_generation_content/203
