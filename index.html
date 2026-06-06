@@ -3,16 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Sportzfy TV - লাইভ বিশ্বকাপ ২০২৬</title>
-    <!-- Tailwind CSS -->
+    <title>PlayZ TV - ফিচার ফোন</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <!-- FontAwesome for Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
         body {
             font-family: 'Hind Siliguri', sans-serif;
             background-color: #12131a;
+            max-width: 240px; /* ২৪০ পিক্সেল স্ক্রিন ফিক্সড */
+            margin: 0 auto;
+            overflow-x: hidden;
         }
         .app-card {
             background-color: #1c1d26;
@@ -27,78 +28,57 @@
         }
     </style>
 </head>
-<body class="text-slate-200 min-h-screen pb-20">
+<body class="text-slate-200 min-h-screen pb-16">
 
-    <!-- Top Navigation Bar -->
-    <header class="bg-[#1c1d26] border-b border-[#292a38] sticky top-0 z-50 px-4 py-3 shadow-lg">
-        <div class="max-w-5xl mx-auto flex items-center justify-between">
-            <div class="flex items-center gap-4">
-                <i class="fa-solid fa-bars text-xl text-slate-400 cursor-pointer"></i>
-                <h1 class="text-xl font-bold text-white tracking-wide">PlayZ <span class="text-blue-500">TV</span></h1>
-            </div>
-            <div class="flex items-center gap-5 text-slate-400 text-lg">
-                <i class="fa-regular fa-star cursor-pointer hover:text-white"></i>
-                <i class="fa-solid fa-rotate-right cursor-pointer hover:text-white"></i>
-                <i class="fa-solid fa-magnifying-glass cursor-pointer hover:text-white"></i>
+    <header class="bg-[#1c1d26] border-b border-[#292a38] sticky top-0 z-50 px-2 py-2 shadow-lg">
+        <div class="flex items-center justify-between">
+            <div class="flex items-center gap-2">
+                <i class="fa-solid fa-bars text-sm text-slate-400"></i>
+                <h1 class="text-sm font-bold text-white tracking-wide">PlayZ <span class="text-blue-500">TV</span></h1>
             </div>
         </div>
     </header>
 
-    <!-- App Categories -->
-    <div class="max-w-5xl mx-auto px-4 mt-4 overflow-x-auto flex gap-3 pb-2 scrollbar-none">
-        <button class="bg-blue-600/20 text-blue-400 border border-blue-500/40 px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap"><i class="fa-solid fa-circle-dot mr-1 text-[10px]"></i> All (72)</button>
-        <button class="bg-[#1c1d26] text-slate-400 border border-[#292a38] px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap hover:bg-slate-800"><i class="fa-solid fa-bolt mr-1"></i> Live</button>
-        <button class="bg-[#1c1d26] text-slate-400 border border-[#292a38] px-4 py-1.5 rounded-full text-xs font-bold whitespace-nowrap hover:bg-slate-800"><i class="fa-solid fa-calendar mr-1"></i> Upcoming</button>
+    <div class="px-2 mt-2 overflow-x-auto flex gap-1.5 pb-1 scrollbar-none">
+        <button class="bg-blue-600/20 text-blue-400 border border-blue-500/40 px-2.5 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap"><i class="fa-solid fa-circle-dot mr-0.5 text-[8px]"></i> All (72)</button>
+        <button class="bg-[#1c1d26] text-slate-400 border border-[#292a38] px-2.5 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap"><i class="fa-solid fa-bolt mr-0.5"></i> Live</button>
+        <button class="bg-[#1c1d26] text-slate-400 border border-[#292a38] px-2.5 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap"><i class="fa-solid fa-calendar mr-0.5"></i> Up</button>
     </div>
 
-    <!-- Main Content Area -->
-    <main class="max-w-5xl mx-auto px-4 mt-6">
+    <main class="px-2 mt-3">
 
-        <!-- DYNAMIC 7-DAYS WINDOW SECTION -->
-        <section class="mb-8">
-            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 mb-4 bg-[#1c1d26] p-4 rounded-xl border border-[#292a38]">
-                <div class="flex items-center gap-2">
-                    <span class="flex h-2.5 w-2.5 relative">
-                        <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
-                        <span class="relative inline-flex rounded-full h-2.5 w-2.5 bg-blue-500"></span>
-                    </span>
-                    <h2 class="text-base sm:text-lg font-bold text-slate-100">চলতি সপ্তাহের ম্যাচসমূহ (৭ দিনের সময়সূচি)</h2>
-                </div>
-                <span id="week-range-badge" class="text-xs font-bold text-amber-400 bg-[#12131a] px-3 py-1 rounded border border-[#292a38] self-start sm:self-center">
-                    হিসাব করা হচ্ছে...
+        <section class="mb-4">
+            <div class="flex items-center gap-1.5 mb-2 bg-[#1c1d26] p-2 rounded-lg border border-[#292a38]">
+                <span class="flex h-2 w-2 relative">
+                    <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
+                    <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                 </span>
+                <h2 class="text-[11px] font-bold text-slate-100 truncate">চলতি সপ্তাহের ম্যাচসমূহ</h2>
             </div>
             
-            <!-- Match Cards Container -->
-            <div id="rolling-matches-container" class="space-y-3">
-                <!-- JS দিয়ে ডাটা লোড হবে -->
-            </div>
+            <div id="rolling-matches-container" class="space-y-2">
+                </div>
         </section>
 
-        <!-- FULL SCHEDULE TABLE -->
-        <section id="full-schedule-section" class="hidden mt-8 transition-all duration-300">
-            <div class="bg-[#1c1d26] rounded-xl border border-[#292a38] overflow-hidden shadow-2xl">
-                <div class="p-4 bg-[#232430] border-b border-[#292a38] flex flex-col sm:flex-row justify-between items-center gap-3">
-                    <h3 class="text-base font-bold text-blue-400 flex items-center gap-2">
-                        <i class="fa-solid fa-globe"></i> সম্পূর্ণ গ্রুপ পর্বের সময়সূচি ২০২৬
+        <section id="full-schedule-section" class="hidden mt-4 pb-4">
+            <div class="bg-[#1c1d26] rounded-lg border border-[#292a38] overflow-hidden shadow-2xl">
+                <div class="p-2 bg-[#232430] border-b border-[#292a38]">
+                    <h3 class="text-[10px] font-bold text-blue-400">
+                        <i class="fa-solid fa-globe"></i> সম্পূর্ণ সময়সূচি (৭২টি ম্যাচ)
                     </h3>
-                    <input type="text" id="search-input" onkeyup="searchSchedule()" placeholder="দল বা গ্রুপ খুঁজুন..." class="bg-[#12131a] text-slate-200 px-3 py-1.5 rounded-lg border border-[#292a38] focus:outline-none focus:border-blue-500 text-xs w-full sm:w-48">
                 </div>
 
                 <div class="overflow-x-auto">
-                    <table class="w-full text-center border-collapse text-xs sm:text-sm">
+                    <table class="w-full text-center border-collapse text-[10px]">
                         <thead>
                             <tr class="bg-[#171821] text-slate-400 border-b border-[#292a38]">
-                                <th class="p-3 font-semibold">তারিখ</th>
-                                <th class="p-3 font-semibold text-left">ম্যাচ</th>
-                                <th class="p-3 font-semibold">গ্রুপ</th>
-                                <th class="p-3 font-semibold">বাংলাদেশ সময়</th>
-                                <th class="p-3 font-semibold text-left">ভেন্যু</th>
+                                <th class="p-1.5 font-semibold">তারিখ</th>
+                                <th class="p-1.5 font-semibold text-left">ম্যাচ</th>
+                                <th class="p-1.5 font-semibold">সময়</th>
                             </tr>
                         </thead>
                         <tbody id="full-schedule-tbody" class="divide-y divide-[#232430]">
-                            <!-- Generated Rows -->
-                        </tbody>
+                            </tbody>
                     </table>
                 </div>
             </div>
@@ -106,104 +86,97 @@
 
     </main>
 
-    <!-- Bottom App Navigation -->
-    <div class="fixed bottom-0 left-0 right-0 bg-[#1c1d26] border-t border-[#292a38] py-2 flex justify-around text-slate-400 text-[11px] z-50">
-        <div class="flex flex-col items-center text-slate-400 cursor-pointer hover:text-white" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-            <i class="fa-solid fa-satellite-dish text-lg mb-0.5"></i>
+    <div class="fixed bottom-0 left-0 right-0 max-w-[240px] mx-auto bg-[#1c1d26] border-t border-[#292a38] py-1 flex justify-around text-slate-400 text-[9px] z-50">
+        <div class="flex flex-col items-center cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <i class="fa-solid fa-satellite-dish text-sm mb-0.5"></i>
             <span>Events</span>
         </div>
-        <div class="flex flex-col items-center cursor-pointer hover:text-white">
-            <i class="fa-solid fa-folder-tree text-lg mb-0.5"></i>
-            <span>Categories</span>
-        </div>
-        <div id="footer-sports-btn" class="flex flex-col items-center cursor-pointer text-slate-400 transition-colors" onclick="toggleScheduleViaFooter()">
-            <i class="fa-solid fa-trophy text-lg mb-0.5"></i>
-            <span id="sports-btn-text">Sports (শিডিউল)</span>
-        </div>
-        <div class="flex flex-col items-center cursor-pointer hover:text-white">
-            <i class="fa-solid fa-user text-lg mb-0.5"></i>
-            <span>Profile</span>
+        <div id="footer-sports-btn" class="flex flex-col items-center cursor-pointer text-slate-400" onclick="toggleScheduleViaFooter()">
+            <i class="fa-solid fa-trophy text-sm mb-0.5"></i>
+            <span id="sports-btn-text">Schedule</span>
         </div>
     </div>
 
     <script>
-        // ডিফল্ট ব্যাকআপ স্ট্রিম লিংক (যদি কোনো ম্যাচের আলাদা লিংক না থাকে)
-        const defaultStreamLink = "http://103.158.133.62:8080/live/index.m3u8";
+        const defaultStreamLink = "http://99.27.51.147:8080/BeinSport2/index.m3u8";
 
-        // প্রতিটি ম্যাচের ডাটাবেজ (এখানে streamLink ফিল্ড যুক্ত করা হয়েছে)
+        // স্ক্রিনশটের সম্পূর্ণ ৭২টি ম্যাচের অফিশিয়াল ডাটাবেজ
         const matchSchedule = [
-            { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, venue: "মেক্সিকো সিটি", streamLink: "http://103.158.133.62:8080/live/index.m3u8" },
-            { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, venue: "গুয়াদালাহারা", streamLink: "https://tvsen5.aynaott.com/PtvSports/tracks-v1a1/mono.ts.m3u8" },
-            { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "টরন্টো", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
-            { date: "১৪ জুন", day: 14, match: "যুক্তরাষ্ট্র - প্যারাগুয়ে", team1Flag: "🇺🇸", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ২টা", hour: 2, venue: "লস অ্যাঞ্জেলেস", streamLink: "https://tvsen5.aynaott.com/PtvSports/tracks-v1a1/mono.ts.m3u8" },
-            { date: "১৪ জুন", day: 14, match: "কাতার - সুইজারল্যান্ড", team1Flag: "🇶🇦", team2Flag: "🇨🇭", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "সান ফ্রান্সিসকো বে এলাকা", streamLink: ""http://103.204.43.87:8080/live/1/1/266.m3u8 },
-            { date: "১৪ জুন", day: 14, match: "ব্রাজিল - মরক্কো", team1Flag: "🇧🇷", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "নিউ জার্সি", streamLink: "https://livecdn-bostahls.global.ssl.fastly.net/rongo/rongo-somoy/index.m3u8" },
-            { date: "১৪ জুন", day: 14, match: "হাইতি - স্কটল্যান্ড", team1Flag: "🇭🇹", team2Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", group: "গ্রুপ- সি", time: "সকাল ২টা", hour: 2, venue: "বোস্টন", streamLink: "http://103.158.133.62:8080/live/index.m3u8" },
-            { date: "১৪ জুন", day: 14, match: "অস্ট্রেলিয়া - তুরস্ক", team1Flag: "🇦🇺", team2Flag: "🇹🇷", group: "গ্রুপ- ডি", time: "সকাল ১০টা", hour: 10, venue: "ভ্যাঙ্কuভার", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
-            { date: "১৪ জুন", day: 14, match: "জার্মানি - কুরাসাও", team1Flag: "🇩🇪", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "রাত ১১টা", hour: 23, venue: "হিউস্টন", streamLink: "http://103.204.43.87:8080/live/1/1/264.m3u8" },
-            { date: "১৫ জুন", day: 15, match: "নেদারল্যান্ডস - জাপান", team1Flag: "🇳🇱", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "রাত ২টা", hour: 2, venue: "ডালাস", streamLink: "https://tvsen5.aynaott.com/PtvSports/tracks-v1a1/mono.ts.m3u8" },
-            { date: "১৫ জুন", day: 15, match: "আইভরি কোস্ট - ইকুয়েডর", team1Flag: "🇨🇮", team2Flag: "🇪🇨", group: "গ্রুপ- ই", time: "ভোর ৫টা", hour: 5, venue: "ফিলাডেলফিয়া", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
-            { date: "১৫ জুন", day: 15, match: "সুইডেন - তিউনিসিয়া", team1Flag: "🇸🇪", team2Flag: "🇹🇳", group: "গ্রুপ- এফ", time: "সকাল ৮টা", hour: 8, venue: "মনতেরেই", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
-            { date: "১৫ জুন", day: 15, match: "স্পেন - কেপ ভার্দে", team1Flag: "🇪🇸", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ১০টা", hour: 22, venue: "আটলান্টা", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
-            { date: "১৬ জুন", day: 16, match: "বেলজিয়াম - মিসর", team1Flag: "🇧🇪", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, venue: "সিয়াটল", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
-            { date: "১৬ জুন", day: 16, match: "সৌদি আরব - উরুগুয়ে", team1Flag: "🇸🇦", team2Flag: "🇺🇾", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, venue: "মায়ামি", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
-            { date: "১৬ জুন", day: 16, match: "ইরান - নিউজিল্যান্ড", team1Flag: "🇮🇷", team2Flag: "🇳🇿", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, venue: "লস অ্যাঞ্জেলেস", streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "ফ্রান্স - সেনেগাল", team1Flag: "🇫🇷", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, venue: "নিউ জার্সি", streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "ইরাক - নরওয়ে", team1Flag: "🇮🇶", team2Flag: "🇳🇴", group: "গ্রুপ- আই", time: "রাত ৪টা", hour: 4, venue: "বোস্টন", streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "আর্জেন্টিনা - আলজেরিয়া", team1Flag: "🇦🇷", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৭টা", hour: 7, venue: "কানসাস সিটি", streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "অস্ট্রিয়া - জর্ডান", team1Flag: "🇦🇹", team2Flag: "🇯🇴", group: "গ্রুপ- জে", time: "সকাল ১০টা", hour: 10, venue: "সান ফ্রান্সিসকো", streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "পর্তוגাল - কঙ্গো ডিআর", team1Flag: "🇵🇹", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, venue: "হিউস্টন", streamLink: "" },
-            { date: "১৮ জুন", day: 18, match: "ইংল্যান্ড - ক্রোয়েশিয়া", team1Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇭🇷", group: "গ্রুপ- এল", time: "রাত ২টা", hour: 2, venue: "ডালাস", streamLink: "" },
-            { date: "১৮ জুন", day: 18, match: "ঘানা - পানামা", team1Flag: "🇬🇭", team2Flag: "🇵🇦", group: "গ্রুপ- এল", time: "ভোর ৫টা", hour: 5, venue: "টরন্টো", streamLink: "" },
-            { date: "১৮ জুন", day: 18, match: "উজবেকিস্তান - কলম্বিয়া", team1Flag: "🇺🇿", team2Flag: "🇨🇴", group: "গ্রুপ- কে", time: "সকাল ৮টা", hour: 8, venue: "মেক্সিকো সিটি", streamLink: "" },
-            { date: "১৮ জুন", day: 18, match: "চেক প্রজাতন্ত্র - দক্ষিণ আফ্রিকা", team1Flag: "🇨🇿", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১০টা", hour: 22, venue: "আটলান্টা", streamLink: "" },
-            { date: "১৯ জুন", day: 19, match: "সুইজারল্যান্ড - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇭", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "লস অ্যাঞ্জেলেস", streamLink: "" },
-            { date: "১৯ জুন", day: 19, match: "কানাডা - কাতার", team1Flag: "🇨🇦", team2Flag: "🇶🇦", group: "গ্রুপ- বি", time: "রাত ৪টা", hour: 4, venue: "ভ্যাঙ্কuভার", streamLink: "" },
-            { date: "১৯ জুন", day: 19, match: "মেক্সিকো - দক্ষিণ কোরিয়া", team1Flag: "🇲🇽", team2Flag: "🇰🇷", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, venue: "গুয়াদালাহারা", streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "যুক্তরাষ্ট্র - অস্ট্রেলিয়া", team1Flag: "🇺🇸", team2Flag: "🇦🇺", group: "গ্রুপ- ডি", time: "রাত ১টা", hour: 1, venue: "সিয়াটল", streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "স্কটল্যান্ড - মরক্কো", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "বোস্টন", streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "ব্রাজিল - হাইতি", team1Flag: "🇧🇷", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "সকাল ৬.৩০টা", hour: 6.5, venue: "ফিলাডেলфিয়া", streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "তুরস্ক - প্যারাগুয়ে", team1Flag: "🇹🇷", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ৯টা", hour: 9, venue: "সান ফ্রান্সিসকো বে এলাকা", streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "নেদারল্যান্ডস - সুইডেন", team1Flag: "🇳🇱", team2Flag: "🇸🇪", group: "গ্রুপ- এফ", time: "রাত ১১টা", hour: 23, venue: "হিউস্টন", streamLink: "" },
-            { date: "২১ জুন", day: 21, match: "জার্মানি - আইভরি কোস্ট", team1Flag: "🇩🇪", team2Flag: "🇨🇮", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, venue: "টরন্টো", streamLink: "" },
-            { date: "২১ জুন", day: 21, match: "ইকুয়েডর - কুরাসাও", team1Flag: "🇪🇨", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "সকাল ৬টা", hour: 6, venue: "কানসাস সিটি", streamLink: "" },
-            { date: "২১ জুন", day: 21, match: "তিউনিসিয়া - জাপান", team1Flag: "🇹🇳", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "সকাল ১০টা", hour: 10, venue: "মনতেরেই", streamLink: "" },
-            { date: "২১ জুন", day: 21, match: "স্পেন - সৌদি আরব", team1Flag: "🇪🇸", team2Flag: "🇸🇦", group: "গ্রুপ- এইচ", time: "রাত ১০টা", hour: 22, venue: "আটলান্টা", streamLink: "" },
-            { date: "২২ জুন", day: 22, match: "বেলজিয়াম - ইরান", team1Flag: "🇧🇪", team2Flag: "🇮🇷", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, venue: "লস অ্যাঞ্জেলেস", streamLink: "" },
-            { date: "২২ জুন", day: 22, match: "উরুগুয়ে - কেপ ভার্দে", team1Flag: "🇺🇾", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, venue: "মায়ামি", streamLink: "" },
-            { date: "২২ জুন", day: 22, match: "নিউজিল্যান্ড - মিসর", team1Flag: "🇳🇿", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, venue: "ভ্যাঙ্কuভার", streamLink: "" },
-            { date: "২২ জুন", day: 22, match: "আর্জেন্টিনা - অস্ট্রিয়া", team1Flag: "🇦🇷", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "রাত ১১টা", hour: 23, venue: "ডালাস", streamLink: "" },
-            { date: "২৩ জুন", day: 23, match: "ফ্রান্স - ইরাক", team1Flag: "🇫🇷", team2Flag: "🇮🇶", group: "গ্রুপ- আই", time: "রাত ৩টা", hour: 3, venue: "ফিলাডেলфিয়া", streamLink: "" },
-            { date: "২৩ জুন", day: 23, match: "নরওয়ে - সেনেগাল", team1Flag: "🇳🇴", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "সকাল ৬টা", hour: 6, venue: "নিউ জার্সি", streamLink: "" },
-            { date: "২৩ জুন", day: 23, match: "জর্ডান - আলজেরিয়া", team1Flag: "🇯🇴", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৯টা", hour: 9, venue: "সান ফ্রান্সিসকো বে এলাকা", streamLink: "" },
-            { date: "২৩ জুন", day: 23, match: "পর্তוגাল - উজবেকিস্তান", team1Flag: "🇵🇹", team2Flag: "🇺🇿", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, venue: "হিউস্টন", streamLink: "" },
-            { date: "২৪ জুন", day: 24, match: "ইংল্যান্ড - ঘানা", team1Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇬🇭", group: "গ্রুপ- এল", time: "রাত ২টা", hour: 2, venue: "বোস্টন", streamLink: "" },
-            { date: "২৪ জুন", day: 24, match: "পানামা - ক্রোয়েশিয়া", team1Flag: "🇵🇦", team2Flag: "🇭🇷", group: "গ্রুপ- এল", time: "ভোর ৫টা", hour: 5, venue: "টরন্টো", streamLink: "" },
-            { date: "২৪ জুন", day: 24, match: "কলম্বিয়া - কঙ্গো ডিআর", team1Flag: "🇨🇴", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "সকাল ৮টা", hour: 8, venue: "গুয়াদালাহারা", streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "সুইজারল্যান্ড - কানাডা", team1Flag: "🇨🇭", team2Flag: "🇨🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "ভ্যাঙ্কuভার", streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "বসনিয়া ও হার্জেগোভিনা - কাতার", team1Flag: "🇧🇦", team2Flag: "🇶🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "সিয়াটল", streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "মরক্কো - হাইতি", team1Flag: "🇲🇦", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "আটলান্টা", streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "স্কটল্যান্ড - ব্রাজিল", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇧🇷", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "মায়ামি", streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "দক্ষিণ আফ্রিকা - দক্ষিণ কোরিয়া", team1Flag: "🇿🇦", team2Flag: "🇰🇷", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, venue: "মনতেরেই", streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "চেক প্রজাতন্ত্র - মেক্সিকো", team1Flag: "🇨🇿", team2Flag: "🇲🇽", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, venue: "মেক্সিকো সিটি", streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "কুরাসাও - আইভরি কোস্ট", team1Flag: "🇨🇼", team2Flag: "🇨🇮", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, venue: "ফিলাডেলфিয়া", streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "ইকুয়েডর - জার্মানি", team1Flag: "🇪🇨", team2Flag: "🇩🇪", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, venue: "নিউ জার্সি", streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "তিউনিসিয়া - নেদারল্যান্ডস", team1Flag: "🇹🇳", team2Flag: "🇳🇱", group: "গ্রুপ- এফ", time: "ভোর ৫টা", hour: 5, venue: "কানসাস সিটি", streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "জাপান - সুইডেন", team1Flag: "🇯🇵", team2Flag: "🇸🇪", group: "গ্রুপ- এফ", time: "ভোর ৫টা", hour: 5, venue: "ডালাস", streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "তুরস্ক - যুক্তরাষ্ট্র", team1Flag: "🇹🇷", team2Flag: "🇺🇸", group: "গ্রুপ- ডি", time: "সকাল ৮টা", hour: 8, venue: "লস অ্যাঞ্জেলেস", streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "প্যারাগুয়ে - অস্ট্রেলিয়া", team1Flag: "🇵🇾", team2Flag: "🇦🇺", group: "গ্রুপ- ডি", time: "সকাল ৮টা", hour: 8, venue: "সান ফ্রান্সিসকো বে এলাকা", streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "নরওয়ে - ফ্রান্স", team1Flag: "🇳🇴", team2Flag: "🇫🇷", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, venue: "বোস্টন", streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "সেনেগাল - ইরাক", team1Flag: "🇸🇳", team2Flag: "🇮🇶", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, venue: "টরন্টো", streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "কেপ ভার্দে - সৌদি আরব", team1Flag: "🇨🇻", team2Flag: "🇸🇦", group: "গ্রুপ- এইচ", time: "সকাল ৬টা", hour: 6, venue: "হিউস্টন", streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "উরুগুয়ে - স্পেন", team1Flag: "🇺🇾", team2Flag: "🇪🇸", group: "গ্রুপ- এইচ", time: "সকাল ৬টা", hour: 6, venue: "গুয়াদালাহারা", streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "নিউজিল্যান্ড - বেলজিয়াম", team1Flag: "🇳🇿", team2Flag: "🇧🇪", group: "গ্রুপ- জি", time: "সকাল ৯টা", hour: 9, venue: "ভ্যাঙ্কuভার", streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "মিসর - ইরান", team1Flag: "🇪🇬", team2Flag: "🇮🇷", group: "গ্রুপ- জি", time: "সকাল ৯টা", hour: 9, venue: "সিয়াটল", streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "পানামা - ইংল্যান্ড", team1Flag: "🇵🇦", team2Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", group: "গ্রুপ- এল", time: "রাত ৩টা", hour: 3, venue: "নিউ জার্সি", streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "ক্রোয়েশিয়া - ঘানা", team1Flag: "🇭🇷", team2Flag: "🇬🇭", group: "গ্রুপ- এল", time: "রাত ৩টা", hour: 3, venue: "ফিলাডেলфিয়া", streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "কলম্বিয়া - পর্তুগাল", team1Flag: "🇨🇴", team2Flag: "🇵🇹", group: "গ্রুপ- কে", time: "ভোর ৫.৩০টা", hour: 5.5, venue: "মায়ামি", streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "কঙ্গো ডিআর - উজবেকিস্তান", team1Flag: "🇨🇩", team2Flag: "🇺🇿", group: "গ্রুপ- কে", time: "ভোর ৫.৩০টা", hour: 5.5, venue: "আটলান্টা", streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "আলজেরিয়া - অস্ট্রিয়া", team1Flag: "🇩🇿", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, venue: "কানসাস সিটি", streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "জর্ডান - আর্জেন্টিনা", team1Flag: "🇯🇴", team2Flag: "🇦🇷", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, venue: "ডালাস", streamLink: "" }
+            // পৃষ্ঠা ১ এর ম্যাচসমূহ
+            { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, streamLink: "" },
+            { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "১৪ জুন", day: 14, match: "যুক্তরাষ্ট্র - প্যারাগুয়ে", team1Flag: "🇺🇸", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ২টা", hour: 2, streamLink: "" },
+            { date: "১৪ জুন", day: 14, match: "কাতার - সুইজারল্যান্ড", team1Flag: "🇶🇦", team2Flag: "🇨🇭", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "১৪ জুন", day: 14, match: "ব্রাজিল - মরক্কো", team1Flag: "🇧🇷", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, streamLink: "" },
+            { date: "১৪ জুন", day: 14, match: "হাইতি - স্কটল্যান্ড", team1Flag: "🇭🇹", team2Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", group: "গ্রুপ- সি", time: "সকাল ২টা", hour: 2, streamLink: "" },
+            { date: "১৪ জুন", day: 14, match: "অস্ট্রেলিয়া - তুরস্ক", team1Flag: "🇦🇺", team2Flag: "🇹🇷", group: "গ্রুপ- ডি", time: "সকাল ১০টা", hour: 10, streamLink: "" },
+            { date: "১৪ জুন", day: 14, match: "জার্মানি - কুরাসাও", team1Flag: "🇩🇪", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "রাত ১১টা", hour: 23, streamLink: "" },
+            { date: "১৫ জুন", day: 15, match: "নেদারল্যান্ডস - জাপান", team1Flag: "🇳🇱", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "রাত ২টা", hour: 2, streamLink: "" },
+            { date: "১৫ জুন", day: 15, match: "আইভরি কোস্ট - ইকুয়েডর", team1Flag: "🇨🇮", team2Flag: "🇪🇨", group: "গ্রুপ- ই", time: "ভোর ৫টা", hour: 5, streamLink: "" },
+            { date: "১৫ জুন", day: 15, match: "সুইডেন - তিউনিসিয়া", team1Flag: "🇸🇪", team2Flag: "🇹🇳", group: "গ্রুপ- এফ", time: "সকাল ৮টা", hour: 8, streamLink: "" },
+            { date: "১৫ জুন", day: 15, match: "স্পেন - কেপ ভার্দে", team1Flag: "🇪🇸", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ১০টা", hour: 22, streamLink: "" },
+            { date: "১৬ জুন", day: 16, match: "বেলজিয়াম - মিসর", team1Flag: "🇧🇪", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "১৬ জুন", day: 16, match: "সৌদি আরব - উরুগুয়ে", team1Flag: "🇸🇦", team2Flag: "🇺🇾", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, streamLink: "" },
+            { date: "১৬ জুন", day: 16, match: "ইরান - নিউজিল্যান্ড", team1Flag: "🇮🇷", team2Flag: "🇳🇿", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, streamLink: "" },
+            { date: "১৭ জুন", day: 17, match: "ফ্রান্স - সেনেগাল", team1Flag: "🇫🇷", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "১৭ জুন", day: 17, match: "ইরাক - নরওয়ে", team1Flag: "🇮🇶", team2Flag: "🇳🇴", group: "গ্রুপ- আই", time: "রাত ৪টা", hour: 4, streamLink: "" },
+            { date: "১৭ জুন", day: 17, match: "আর্জেন্টিনা - আলজেরিয়া", team1Flag: "🇦🇷", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৭টা", hour: 7, streamLink: "" },
+            { date: "১৭ জুন", day: 17, match: "অস্ট্রিয়া - জর্ডান", team1Flag: "🇦🇹", team2Flag: "🇯🇴", group: "গ্রুপ- জে", time: "সকাল ১০টা", hour: 10, streamLink: "" },
+            { date: "১৭ জুন", day: 17, match: "পর্তוגাল - কঙ্গো ডিআর", team1Flag: "🇵🇹", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, streamLink: "" },
+            { date: "১৮ জুন", day: 18, match: "ইংল্যান্ড - ক্রোয়েশিয়া", team1Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇭🇷", group: "গ্রুপ- এল", time: "রাত ২টা", hour: 2, streamLink: "" },
+            { date: "১৮ জুন", day: 18, match: "ঘানা - পানামা", team1Flag: "🇬🇭", team2Flag: "🇵🇦", group: "গ্রুপ- এল", time: "ভোর ৫টা", hour: 5, streamLink: "" },
+            { date: "১৮ জুন", day: 18, match: "উজবেকিস্তান - কলম্বিয়া", team1Flag: "🇺🇿", team2Flag: "🇨🇴", group: "গ্রুপ- কে", time: "সকাল ৮টা", hour: 8, streamLink: "" },
+            { date: "১৮ জুন", day: 18, match: "চেক প্রজাতন্ত্র - দক্ষিণ আফ্রিকা", team1Flag: "🇨🇿", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১০টা", hour: 22, streamLink: "" },
+            { date: "১৯ জুন", day: 19, match: "সুইজারল্যান্ড - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇭", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "১৯ জুন", day: 19, match: "কানাডা - কাতার", team1Flag: "🇨🇦", team2Flag: "🇶🇦", group: "গ্রুপ- বি", time: "রাত ৪টা", hour: 4, streamLink: "" },
+            { date: "১৯ জুন", day: 19, match: "মেক্সিকো - দক্ষিণ কোরিয়া", team1Flag: "🇲🇽", team2Flag: "🇰🇷", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, streamLink: "" },
+            { date: "২০ জুন", day: 20, match: "যুক্তরাষ্ট্র - অস্ট্রেলিয়া", team1Flag: "🇺🇸", team2Flag: "🇦🇺", group: "গ্রুপ- ডি", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "২০ জুন", day: 20, match: "স্কটল্যান্ড - মরক্কো", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, streamLink: "" },
+            { date: "২০ জুন", day: 20, match: "ব্রাজিল - হাইতি", team1Flag: "🇧🇷", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "সকাল ৬.৩০টা", hour: 6.5, streamLink: "" },
+            { date: "২০ জুন", day: 20, match: "তুরস্ক - প্যারাগুয়ে", team1Flag: "🇹🇷", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ৯টা", hour: 9, streamLink: "" },
+            { date: "২০ জুন", day: 20, match: "নেদারল্যান্ডস - Sweden", team1Flag: "🇳🇱", team2Flag: "🇸🇪", group: "গ্রুপ- এফ", time: "রাত ১১টা", hour: 23, streamLink: "" },
+            { date: "২১ জুন", day: 21, match: "জার্মানি - আইভরি কোস্ট", team1Flag: "🇩🇪", team2Flag: "🇨🇮", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, streamLink: "" },
+            { date: "২১ জুন", day: 21, match: "ইকুয়েডর - কুরাসাও", team1Flag: "🇪🇨", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "সকাল ৬টা", hour: 6, streamLink: "" },
+            { date: "২১ জুন", day: 21, match: "তিউনিসিয়া - জাপান", team1Flag: "🇹🇳", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "সকাল ১০টা", hour: 10, streamLink: "" },
+
+            // পৃষ্ঠা ২ এর ম্যাচসমূহ
+            { date: "২১ জুন", day: 21, match: "স্পেন - সৌদি আরব", team1Flag: "🇪🇸", team2Flag: "🇸🇦", group: "গ্রুপ- এইচ", time: "রাত ১০টা", hour: 22, streamLink: "" },
+            { date: "২২ জুন", day: 22, match: "বেলজিয়াম - ইরান", team1Flag: "🇧🇪", team2Flag: "🇮🇷", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "২২ জুন", day: 22, match: "উরুগুয়ে - কেপ ভার্দে", team1Flag: "🇺🇾", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, streamLink: "" },
+            { date: "২২ জুন", day: 22, match: "নিউজিল্যান্ড - মিসর", team1Flag: "🇳🇿", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, streamLink: "" },
+            { date: "২২ জুন", day: 22, match: "আنتিনা - অস্ট্রিয়া", team1Flag: "🇦🇷", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "রাত ১১টা", hour: 23, streamLink: "" },
+            { date: "২৩ জুন", day: 23, match: "ফ্রান্স - ইরাক", team1Flag: "🇫🇷", team2Flag: "🇮🇶", group: "গ্রুপ- আই", time: "রাত ৩টা", hour: 3, streamLink: "" },
+            { date: "২৩ জুন", day: 23, match: "নরওয়ে - সেনেগাল", team1Flag: "🇳🇴", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "সকাল ৬টা", hour: 6, streamLink: "" },
+            { date: "২৩ জুন", day: 23, match: "জর্ডান - আলজেরিয়া", team1Flag: "🇯🇴", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৯টা", hour: 9, streamLink: "" },
+            { date: "২৩ জুন", day: 23, match: "পর্তוגাল - উজবেকিস্তান", team1Flag: "🇵🇹", team2Flag: "🇺🇿", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, streamLink: "" },
+            { date: "২৪ জুন", day: 24, match: "ইংল্যান্ড - ঘানা", team1Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇬🇭", group: "গ্রুপ- এল", time: "রাত ২টা", hour: 2, streamLink: "" },
+            { date: "২৪ জুন", day: 24, match: "পানামা - ক্রোয়েশিয়া", team1Flag: "🇵🇦", team2Flag: "🇭🇷", group: "গ্রুপ- এল", time: "ভোর ৫টা", hour: 5, streamLink: "" },
+            { date: "২৪ জুন", day: 24, match: "কলম্বিয়া - কঙ্গো ডিআর", team1Flag: "🇨🇴", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "সকাল ৮টা", hour: 8, streamLink: "" },
+            { date: "২৫ জুন", day: 25, match: "সুইজারল্যান্ড - কানাডা", team1Flag: "🇨🇭", team2Flag: "🇨🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "২৫ জুন", day: 25, match: "বসনিয়া ও হার্জেগোভিনা - কাতার", team1Flag: "🇧🇦", team2Flag: "🇶🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "২৫ জুন", day: 25, match: "মরক্কো - হাইতি", team1Flag: "🇲🇦", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, streamLink: "" },
+            { date: "২৫ জুন", day: 25, match: "স্কটল্যান্ড - ব্রাজিল", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇧🇷", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, streamLink: "" },
+            { date: "২৫ জুন", day: 25, match: "দক্ষিণ আফ্রিকা - দক্ষিণ কোরিয়া", team1Flag: "🇿🇦", team2Flag: "🇰🇷", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, streamLink: "" },
+            { date: "২৫ জুন", day: 25, match: "চেক প্রজাতন্ত্র - মেক্সিকো", team1Flag: "🇨🇿", team2Flag: "🇲🇽", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, streamLink: "" },
+            { date: "২৬ জুন", day: 26, match: "কুরাসাও - আইভরি কোস্ট", team1Flag: "🇨🇼", team2Flag: "🇨🇮", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, streamLink: "" },
+            { date: "২৬ জুন", day: 26, match: "ইকুয়েডর - জার্মানি", team1Flag: "🇪🇨", team2Flag: "🇩🇪", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, streamLink: "" },
+            { date: "২৬ জুন", day: 26, match: "তিউনিসিয়া - নেদারল্যান্ডস", team1Flag: "🇹🇳", team2Flag: "🇳🇱", group: "গ্রুপ- এফ", time: "ভোর ৫টা", hour: 5, streamLink: "" },
+            { date: "২৬ জুন", day: 26, match: "জাপান - সুইডেন", team1Flag: "🇯🇵", team2Flag: "🇸🇪", group: "গ্রুপ- এফ", time: "ভোর ৫টা", hour: 5, streamLink: "" },
+            { date: "২৬ জুন", day: 26, match: "তুরস্ক - যুক্তরাষ্ট্র", team1Flag: "🇹🇷", team2Flag: "🇺🇸", group: "গ্রুপ- ডি", time: "সকাল ৮টা", hour: 8, streamLink: "" },
+            { date: "২৬ জুন", day: 26, match: "প্যারাগুয়ে - অস্ট্রেলিয়া", team1Flag: "🇵🇾", team2Flag: "🇦🇺", group: "গ্রুপ- ডি", time: "সকাল ৮টা", hour: 8, streamLink: "" },
+            { date: "২৭ জুন", day: 27, match: "নরওয়ে - ফ্রান্স", team1Flag: "🇳🇴", team2Flag: "🇫🇷", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "২৭ জুন", day: 27, match: "সেনেগাল - ইরাক", team1Flag: "🇸🇳", team2Flag: "🇮🇶", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "২৭ জুন", day: 27, match: "কেপ ভার্দে - সৌদি আরব", team1Flag: "🇨🇻", team2Flag: "🇸🇦", group: "গ্রুপ- এইচ", time: "সকাল ৬টা", hour: 6, streamLink: "" },
+            { date: "২৭ জুন", day: 27, match: "উরুগুয়ে - স্পেন", team1Flag: "🇺🇾", team2Flag: "🇪🇸", group: "গ্রুপ- এইচ", time: "সকাল ৬টা", hour: 6, streamLink: "" },
+            { date: "২৭ জুন", day: 27, match: "নিউজিল্যান্ড - বেলজিয়াম", team1Flag: "🇳🇿", team2Flag: "🇧🇪", group: "গ্রুপ- জি", time: "সকাল ৯টা", hour: 9, streamLink: "" },
+            { date: "২৭ জুন", day: 27, match: "মিসর - ইরান", team1Flag: "🇪🇬", team2Flag: "🇮🇷", group: "গ্রুপ- জি", time: "সকাল ৯টা", hour: 9, streamLink: "" },
+            { date: "২৮ জুন", day: 28, match: "পানামা - ইংল্যান্ড", team1Flag: "🇵🇦", team2Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", group: "গ্রুপ- এল", time: "রাত ৩টা", hour: 3, streamLink: "" },
+            { date: "২৮ জুন", day: 28, match: "ক্রোয়েশিয়া - ঘানা", team1Flag: "🇭🇷", team2Flag: "🇬🇭", group: "গ্রুপ- এল", time: "রাত ৩টা", hour: 3, streamLink: "" },
+            { date: "২৮ জুন", day: 28, match: "কলম্বিয়া - পর্তוגাল", team1Flag: "🇨🇴", team2Flag: "🇵🇹", group: "গ্রুপ- কে", time: "ভোর ৫.৩০টা", hour: 5.5, streamLink: "" },
+            { date: "২৮ জুন", day: 28, match: "কঙ্গো ডিআর - উজবেকিস্তান", team1Flag: "🇨🇩", team2Flag: "🇺🇿", group: "গ্রুপ- কে", time: "ভোর ৫.৩০টা", hour: 5.5, streamLink: "" },
+            { date: "২৮ জুন", day: 28, match: "আলজেরিয়া - অস্ট্রিয়া", team1Flag: "🇩🇿", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, streamLink: "" },
+            { date: "২৮ জুন", day: 28, match: "জর্ডান - আর্জেন্টিনা", team1Flag: "🇯🇴", team2Flag: "🇦🇷", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, streamLink: "" }
         ];
 
         let startDay = 12;
@@ -239,13 +212,6 @@
                 startDay = 12;
                 endDay = 18;
             }
-            updateBadge();
-        }
-
-        function updateBadge() {
-            const bnNums = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
-            const toBn = (num) => String(num).split('').map(d => bnNums[d] || d).join('');
-            document.getElementById("week-range-badge").innerHTML = `<i class="fa-regular fa-calendar-check mr-1"></i> উইন্ডো: ${toBn(startDay)} জুন - ${toBn(endDay)} জুন`;
         }
 
         function getCountdownString(targetDay, targetHour) {
@@ -254,7 +220,7 @@
             const diffMs = targetDate - now;
             
             if (diffMs <= 0) {
-                return `<span class="text-red-400 font-bold flex items-center justify-center gap-1"><i class="fa-solid fa-circle-play text-[8px] animate-pulse"></i> লাইভ</span>`;
+                return `<span class="text-red-500 font-bold"><i class="fa-solid fa-circle-play text-[7px] animate-pulse"></i> লাইভ</span>`;
             }
 
             const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
@@ -267,62 +233,48 @@
             let countdownStr = "";
             if (diffDays > 0) countdownStr += `${toBn(diffDays)}দ `;
             if (diffHours > 0 || diffDays > 0) countdownStr += `${toBn(diffHours)}ঘ `;
-            countdownStr += `${toBn(diffMins)}মি বাকি`;
+            countdownStr += `${toBn(diffMins)}মি`;
 
-            return `<span class="text-amber-500 font-medium whitespace-nowrap"><i class="fa-regular fa-clock text-[9px]"></i> ${countdownStr}</span>`;
+            return `<span class="text-amber-500 font-medium"><i class="fa-regular fa-clock text-[8px]"></i> ${countdownStr}</span>`;
         }
 
-        // ম্যাচ কার্ড রেন্ডার (এখানে streamLink চেক করে বসানো হচ্ছে)
         function renderRollingSevenDaysSchedule() {
             const currentWeekMatches = matchSchedule.filter(m => m.day >= startDay && m.day <= endDay);
             const container = document.getElementById("rolling-matches-container");
 
             if (currentWeekMatches.length === 0) {
-                container.innerHTML = `<p class="text-xs text-slate-500 bg-[#1c1d26] p-6 rounded-xl text-center border border-[#292a38]">এই উইন্ডোতে কোনো লাইভ ম্যাচ নেই।</p>`;
+                container.innerHTML = `<p class="text-[10px] text-slate-500 bg-[#1c1d26] p-4 rounded-lg text-center border border-[#292a38]">ম্যাচ নেই</p>`;
                 return;
             }
 
             container.innerHTML = currentWeekMatches.map(m => {
                 const teams = m.match.split(" - ");
-                const team1 = teams[0] || "Team A";
-                const team2 = teams[1] || "Team B";
+                const team1 = teams[0] || "A";
+                const team2 = teams[1] || "B";
                 const countdownHTML = getCountdownString(m.day, m.hour);
-                
-                // যদি নিজস্ব স্ট্রিমলিংক থাকে তবে তা নিবে, না থাকলে ডিফল্ট লিংক বসবে
                 const finalLink = (m.streamLink && m.streamLink.trim() !== "") ? m.streamLink : defaultStreamLink;
 
                 return `
-                    <a href="${finalLink}" target="_blank" class="block group">
-                        <div class="app-card rounded-xl p-4 flex flex-col gap-2 shadow-md border-[#292a38] group-hover:border-blue-500/60 group-hover:bg-[#232430] transition-all cursor-pointer">
+                    <a href="${finalLink}" target="_blank" class="block">
+                        <div class="app-card rounded-lg p-2 flex flex-col gap-1 shadow-md border-[#292a38] active:bg-[#232430]">
                             <div class="flex items-center justify-between">
-                                <!-- Left Team -->
-                                <div class="flex items-center gap-3 w-1/3">
-                                    <span class="text-3xl">${m.team1Flag}</span>
-                                    <span class="text-xs sm:text-sm font-semibold truncate text-slate-100 group-hover:text-blue-400 transition-colors">${team1}</span>
+                                <div class="flex items-center gap-1 w-[38%]">
+                                    <span class="text-lg">${m.team1Flag}</span>
+                                    <span class="text-[10px] font-semibold truncate text-slate-100">${team1}</span>
                                 </div>
 
-                                <!-- Match Center -->
-                                <div class="text-center flex flex-col items-center justify-center w-1/3 px-1">
-                                    <span class="text-[9px] text-slate-500 font-medium tracking-tight uppercase mb-0.5">${m.group}</span>
-                                    <span class="text-xs font-bold text-white tracking-wide">${m.time}</span>
-                                    <span class="text-[10px] text-blue-400 mt-0.5 font-bold">${m.date}</span>
-                                    <div class="mt-1 text-[9px] sm:text-[10px]">
+                                <div class="text-center flex flex-col items-center justify-center w-[24%]">
+                                    <span class="text-[10px] font-bold text-white leading-tight">${m.time}</span>
+                                    <span class="text-[9px] text-blue-400 font-bold">${m.date}</span>
+                                    <div class="text-[8px] mt-0.5">
                                         ${countdownHTML}
                                     </div>
                                 </div>
 
-                                <!-- Right Team -->
-                                <div class="flex items-center gap-3 w-1/3 justify-end text-right">
-                                    <span class="text-xs sm:text-sm font-semibold truncate text-slate-100 group-hover:text-blue-400 transition-colors">${team2}</span>
-                                    <span class="text-3xl">${m.team2Flag}</span>
+                                <div class="flex items-center gap-1 w-[38%] justify-end text-right">
+                                    <span class="text-[10px] font-semibold truncate text-slate-100">${team2}</span>
+                                    <span class="text-lg">${m.team2Flag}</span>
                                 </div>
-                            </div>
-                            
-                            <!-- BOTTOM TEXT -->
-                            <div class="text-center border-t border-[#292a38]/40 pt-1.5 flex justify-center items-center">
-                                <span class="text-slate-500 text-[10px] group-hover:text-blue-500 font-medium transition-colors">
-                                    <i class="fa-solid fa-play mr-0.5 text-[8px]"></i> ট্যাপ করে সরাসরি লাইভ স্ট্রিম দেখুন
-                                </span>
                             </div>
                         </div>
                     </a>
@@ -333,18 +285,11 @@
         function renderFullSchedule() {
             const tbody = document.getElementById("full-schedule-tbody");
             tbody.innerHTML = matchSchedule.map(m => {
-                const teams = m.match.split(" - ");
-                const team1 = teams[0] || "Team A";
-                const team2 = teams[1] || "Team B";
                 return `
-                    <tr class="hover:bg-[#232430]/40 transition-colors">
-                        <td class="p-3 font-semibold text-blue-400 whitespace-nowrap">${m.date}</td>
-                        <td class="p-3 font-bold text-slate-200 text-left flex items-center gap-2">
-                            <span class="text-xl">${m.team1Flag}</span> ${team1} - ${team2} <span class="text-xl">${m.team2Flag}</span>
-                        </td>
-                        <td class="p-3"><span class="bg-[#232430] text-slate-400 text-[10px] px-2 py-0.5 rounded border border-[#292a38]">${m.group}</span></td>
-                        <td class="p-3 font-semibold text-emerald-400 whitespace-nowrap">${m.time}</td>
-                        <td class="p-3 text-slate-400 text-xs text-left">${m.venue}</td>
+                    <tr class="border-b border-[#232430]">
+                        <td class="p-1.5 font-semibold text-blue-400 whitespace-nowrap">${m.date}</td>
+                        <td class="p-1.5 text-slate-200 text-left truncate max-w-[100px]">${m.match}</td>
+                        <td class="p-1.5 font-semibold text-emerald-400 whitespace-nowrap">${m.time}</td>
                     </tr>
                 `;
             }).join('');
@@ -356,27 +301,11 @@
 
             if (section.classList.contains("hidden")) {
                 section.classList.remove("hidden");
-                footerBtn.classList.remove("text-slate-400");
                 footerBtn.classList.add("text-blue-500");
                 setTimeout(() => section.scrollIntoView({ behavior: 'smooth' }), 50);
             } else {
                 section.classList.add("hidden");
                 footerBtn.classList.remove("text-blue-500");
-                footerBtn.classList.add("text-slate-400");
-            }
-        }
-
-        function searchSchedule() {
-            const input = document.getElementById("search-input").value.toUpperCase();
-            const rows = document.getElementById("full-schedule-tbody").getElementsByTagName("tr");
-            for (let i = 0; i < rows.length; i++) {
-                const matchText = rows[i].getElementsByTagName("td")[1]?.textContent || "";
-                const groupText = rows[i].getElementsByTagName("td")[2]?.textContent || "";
-                if (matchText.toUpperCase().indexOf(input) > -1 || groupText.toUpperCase().indexOf(input) > -1) {
-                    rows[i].style.display = "";
-                } else {
-                    rows[i].style.display = "none";
-                }
             }
         }
     </script>
