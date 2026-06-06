@@ -7,7 +7,7 @@
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght=400;600;700&display=swap');
         body {
             font-family: 'Hind Siliguri', sans-serif;
             background-color: #12131a;
@@ -34,7 +34,7 @@
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-2">
                 <i class="fa-solid fa-bars text-sm text-slate-400"></i>
-                <h1 class="text-sm font-bold text-white tracking-wide">PlayZ <span class="text-blue-500">TV</span></h1>
+                <h1 class="text-sm font-bold text-white tracking-wide">Sportzfy <span class="text-blue-500">TV</span></h1>
             </div>
         </div>
     </header>
@@ -73,7 +73,7 @@
                         <thead>
                             <tr class="bg-[#171821] text-slate-400 border-b border-[#292a38]">
                                 <th class="p-1.5 font-semibold">তারিখ</th>
-                                <th class="p-1.5 font-semibold text-left">ম্যাচ</th>
+                                <th class="p-1.5 font-semibold text-left">م্যাচ</th>
                                 <th class="p-1.5 font-semibold">সময়</th>
                             </tr>
                         </thead>
@@ -103,9 +103,9 @@
         // স্ক্রিনশটের সম্পূর্ণ ৭২টি ম্যাচের অফিশিয়াল ডাটাবেজ
         const matchSchedule = [
             // পৃষ্ঠা ১ এর ম্যাচসমূহ
-            { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, streamLink: "" },
-            { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
+            { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
+            { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, streamLink: "http://103.204.43.87:8080/live/1/1/264.m3u8" },
+            { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "http://103.158.133.62:8080/live/index.m3u8" },
             { date: "১৪ জুন", day: 14, match: "যুক্তরাষ্ট্র - প্যারাগুয়ে", team1Flag: "🇺🇸", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ২টা", hour: 2, streamLink: "" },
             { date: "১৪ জুন", day: 14, match: "কাতার - সুইজারল্যান্ড", team1Flag: "🇶🇦", team2Flag: "🇨🇭", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
             { date: "১৪ জুন", day: 14, match: "ব্রাজিল - মরক্কো", team1Flag: "🇧🇷", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, streamLink: "" },
@@ -120,10 +120,10 @@
             { date: "১৬ জুন", day: 16, match: "সৌদি আরব - উরুগুয়ে", team1Flag: "🇸🇦", team2Flag: "🇺🇾", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, streamLink: "" },
             { date: "১৬ জুন", day: 16, match: "ইরান - নিউজিল্যান্ড", team1Flag: "🇮🇷", team2Flag: "🇳🇿", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, streamLink: "" },
             { date: "১৭ জুন", day: 17, match: "ফ্রান্স - সেনেগাল", team1Flag: "🇫🇷", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "ইরাক - নরওয়ে", team1Flag: "🇮🇶", team2Flag: "🇳🇴", group: "গ্রুপ- আই", time: "রাত ৪টা", hour: 4, streamLink: "" },
+            { date: "১৭ জুন", day: 17, match: "ইраক - নরওয়ে", team1Flag: "🇮🇶", team2Flag: "🇳🇴", group: "গ্রুপ- আই", time: "রাত ৪টা", hour: 4, streamLink: "" },
             { date: "১৭ জুন", day: 17, match: "আর্জেন্টিনা - আলজেরিয়া", team1Flag: "🇦🇷", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৭টা", hour: 7, streamLink: "" },
             { date: "১৭ জুন", day: 17, match: "অস্ট্রিয়া - জর্ডান", team1Flag: "🇦🇹", team2Flag: "🇯🇴", group: "গ্রুপ- জে", time: "সকাল ১০টা", hour: 10, streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "পর্তוגাল - কঙ্গো ডিআর", team1Flag: "🇵🇹", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, streamLink: "" },
+            { date: "১৭ জুন", day: 17, match: "پর্তুগাল - কঙ্গো ডিআর", team1Flag: "🇵🇹", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, streamLink: "" },
             { date: "১৮ জুন", day: 18, match: "ইংল্যান্ড - ক্রোয়েশিয়া", team1Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇭🇷", group: "গ্রুপ- এল", time: "রাত ২টা", hour: 2, streamLink: "" },
             { date: "১৮ জুন", day: 18, match: "ঘানা - পানামা", team1Flag: "🇬🇭", team2Flag: "🇵🇦", group: "গ্রুপ- এল", time: "ভোর ৫টা", hour: 5, streamLink: "" },
             { date: "১৮ জুন", day: 18, match: "উজবেকিস্তান - কলম্বিয়া", team1Flag: "🇺🇿", team2Flag: "🇨🇴", group: "গ্রুপ- কে", time: "সকাল ৮টা", hour: 8, streamLink: "" },
@@ -135,7 +135,7 @@
             { date: "২০ জুন", day: 20, match: "স্কটল্যান্ড - মরক্কো", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, streamLink: "" },
             { date: "২০ জুন", day: 20, match: "ব্রাজিল - হাইতি", team1Flag: "🇧🇷", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "সকাল ৬.৩০টা", hour: 6.5, streamLink: "" },
             { date: "২০ জুন", day: 20, match: "তুরস্ক - প্যারাগুয়ে", team1Flag: "🇹🇷", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ৯টা", hour: 9, streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "নেদারল্যান্ডস - Sweden", team1Flag: "🇳🇱", team2Flag: "🇸🇪", group: "গ্রুপ- এফ", time: "রাত ১১টা", hour: 23, streamLink: "" },
+            { date: "২০ জুন", day: 20, match: "নেদারল্যান্ডস - সুইডেন", team1Flag: "🇳🇱", team2Flag: "🇸🇪", group: "গ্রুপ- এফ", time: "রাত ১১টা", hour: 23, streamLink: "" },
             { date: "২১ জুন", day: 21, match: "জার্মানি - আইভরি কোস্ট", team1Flag: "🇩🇪", team2Flag: "🇨🇮", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, streamLink: "" },
             { date: "২১ জুন", day: 21, match: "ইকুয়েডর - কুরাসাও", team1Flag: "🇪🇨", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "সকাল ৬টা", hour: 6, streamLink: "" },
             { date: "২১ জুন", day: 21, match: "তিউনিসিয়া - জাপান", team1Flag: "🇹🇳", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "সকাল ১০টা", hour: 10, streamLink: "" },
@@ -145,11 +145,11 @@
             { date: "২২ জুন", day: 22, match: "বেলজিয়াম - ইরান", team1Flag: "🇧🇪", team2Flag: "🇮🇷", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, streamLink: "" },
             { date: "২২ জুন", day: 22, match: "উরুগুয়ে - কেপ ভার্দে", team1Flag: "🇺🇾", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, streamLink: "" },
             { date: "২২ জুন", day: 22, match: "নিউজিল্যান্ড - মিসর", team1Flag: "🇳🇿", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, streamLink: "" },
-            { date: "২২ জুন", day: 22, match: "আنتিনা - অস্ট্রিয়া", team1Flag: "🇦🇷", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "রাত ১১টা", hour: 23, streamLink: "" },
+            { date: "২২ জুন", day: 22, match: "আর্জেন্টিনা - অস্ট্রিয়া", team1Flag: "🇦🇷", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "রাত ১১টা", hour: 23, streamLink: "" },
             { date: "২৩ জুন", day: 23, match: "ফ্রান্স - ইরাক", team1Flag: "🇫🇷", team2Flag: "🇮🇶", group: "গ্রুপ- আই", time: "রাত ৩টা", hour: 3, streamLink: "" },
             { date: "২৩ জুন", day: 23, match: "নরওয়ে - সেনেগাল", team1Flag: "🇳🇴", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "সকাল ৬টা", hour: 6, streamLink: "" },
             { date: "২৩ জুন", day: 23, match: "জর্ডান - আলজেরিয়া", team1Flag: "🇯🇴", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৯টা", hour: 9, streamLink: "" },
-            { date: "২৩ জুন", day: 23, match: "পর্তוגাল - উজবেকিস্তান", team1Flag: "🇵🇹", team2Flag: "🇺🇿", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, streamLink: "" },
+            { date: "২৩ জুন", day: 23, match: "پর্তוגাল - উজবেকিস্তান", team1Flag: "🇵🇹", team2Flag: "🇺🇿", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, streamLink: "" },
             { date: "২৪ জুন", day: 24, match: "ইংল্যান্ড - ঘানা", team1Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇬🇭", group: "গ্রুপ- এল", time: "রাত ২টা", hour: 2, streamLink: "" },
             { date: "২৪ জুন", day: 24, match: "পানামা - ক্রোয়েশিয়া", team1Flag: "🇵🇦", team2Flag: "🇭🇷", group: "গ্রুপ- এল", time: "ভোর ৫টা", hour: 5, streamLink: "" },
             { date: "২৪ জুন", day: 24, match: "কলম্বিয়া - কঙ্গো ডিআর", team1Flag: "🇨🇴", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "সকাল ৮টা", hour: 8, streamLink: "" },
@@ -190,7 +190,7 @@
             setInterval(() => {
                 calculateCurrentWindow();
                 renderRollingSevenDaysSchedule();
-            }, 60000);
+            }, 60000); // প্রতি ১ মিনিটে লাইভ স্টেটাস ও ১০ মিনিট বাফার রিমুভাল মেকানিজম রিফ্রেশ হবে
         });
 
         function calculateCurrentWindow() {
@@ -214,15 +214,30 @@
             }
         }
 
-        function getCountdownString(targetDay, targetHour) {
+        // টাইম কাউন্ট, লাইভ স্টেটাস এবং ১০ মিনিট পর অটো হাইড মেকানিজম
+        function getCountdownData(targetDay, targetHour) {
             const now = new Date();
-            const targetDate = new Date(2026, 5, targetDay, Math.floor(targetHour), (targetHour % 1) * 60);
+            const targetDate = new Date(2026, 5, targetDay, Math.floor(targetHour), Math.round((targetHour % 1) * 60));
             const diffMs = targetDate - now;
             
-            if (diffMs <= 0) {
-                return `<span class="text-red-500 font-bold"><i class="fa-solid fa-circle-play text-[7px] animate-pulse"></i> লাইভ</span>`;
+            // একটি ফুটবল ম্যাচ প্রায় ১০৫ মিনিট স্থায়ী হয় (৯০ মিনিট + ১৫ মিনিট বিরতি ও এক্সট্রা টাইম)।
+            // ম্যাচ শেষ হওয়ার আরও ১০ মিনিট পর কার্ড রিমুভ হবে। মোট ১১৫ মিনিট বাফার।
+            const removalBufferMs = 115 * 60 * 1000;
+
+            // ম্যাচ শেষ হওয়ার ১০ মিনিট অতিক্রান্ত হলে সম্পূর্ণ মুছে ফেলা হবে
+            if (diffMs < -removalBufferMs) {
+                return { shouldRemove: true, html: "" };
             }
 
+            // ম্যাচ শুরু হয়েছে কিন্তু এখনও শেষ হয়নি (লাইভ স্টেটাস)
+            if (diffMs <= 0) {
+                return {
+                    shouldRemove: false,
+                    html: `<span class="text-red-500 font-bold flex items-center justify-center gap-0.5"><i class="fa-solid fa-circle-play text-[7px] animate-pulse"></i> লাইভ</span>`
+                };
+            }
+
+            // ম্যাচ এখনও শুরু হয়নি (উজ্জ্বল নিয়ন সায়ান কালার কাউন্টডাউন)
             const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
             const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
@@ -235,26 +250,32 @@
             if (diffHours > 0 || diffDays > 0) countdownStr += `${toBn(diffHours)}ঘ `;
             countdownStr += `${toBn(diffMins)}মি`;
 
-            return `<span class="text-amber-500 font-medium"><i class="fa-regular fa-clock text-[8px]"></i> ${countdownStr}</span>`;
+            return {
+                shouldRemove: false,
+                html: `<span class="text-cyan-400 font-semibold flex items-center justify-center gap-0.5"><i class="fa-regular fa-clock text-[8px]"></i> ${countdownStr}</span>`
+            };
         }
 
         function renderRollingSevenDaysSchedule() {
             const currentWeekMatches = matchSchedule.filter(m => m.day >= startDay && m.day <= endDay);
             const container = document.getElementById("rolling-matches-container");
 
-            if (currentWeekMatches.length === 0) {
-                container.innerHTML = `<p class="text-[10px] text-slate-500 bg-[#1c1d26] p-4 rounded-lg text-center border border-[#292a38]">ম্যাচ নেই</p>`;
-                return;
-            }
+            let visibleCardsHtml = "";
 
-            container.innerHTML = currentWeekMatches.map(m => {
+            currentWeekMatches.forEach(m => {
+                const countdownData = getCountdownData(m.day, m.hour);
+                
+                // শর্ত পূরণ হলে ম্যাচ শেষ হওয়ার ১০ মিনিট পর কার্ড রিমুভ হবে
+                if (countdownData.shouldRemove) {
+                    return;
+                }
+
                 const teams = m.match.split(" - ");
                 const team1 = teams[0] || "A";
                 const team2 = teams[1] || "B";
-                const countdownHTML = getCountdownString(m.day, m.hour);
                 const finalLink = (m.streamLink && m.streamLink.trim() !== "") ? m.streamLink : defaultStreamLink;
 
-                return `
+                visibleCardsHtml += `
                     <a href="${finalLink}" target="_blank" class="block">
                         <div class="app-card rounded-lg p-2 flex flex-col gap-1 shadow-md border-[#292a38] active:bg-[#232430]">
                             <div class="flex items-center justify-between">
@@ -267,7 +288,7 @@
                                     <span class="text-[10px] font-bold text-white leading-tight">${m.time}</span>
                                     <span class="text-[9px] text-blue-400 font-bold">${m.date}</span>
                                     <div class="text-[8px] mt-0.5">
-                                        ${countdownHTML}
+                                        ${countdownData.html}
                                     </div>
                                 </div>
 
@@ -279,7 +300,13 @@
                         </div>
                     </a>
                 `;
-            }).join('');
+            });
+
+            if (visibleCardsHtml === "") {
+                container.innerHTML = `<p class="text-[10px] text-slate-500 bg-[#1c1d26] p-4 rounded-lg text-center border border-[#292a38]">এই সপ্তাহে কোনো ম্যাচ নেই</p>`;
+            } else {
+                container.innerHTML = visibleCardsHtml;
+            }
         }
 
         function renderFullSchedule() {
