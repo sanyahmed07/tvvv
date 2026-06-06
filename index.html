@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayZ TV - লাইভ বিশ্বকাপ ২০২৬</title>
+    <title>Sportzfy TV - লাইভ বিশ্বকাপ ২০২৬</title>
     <!-- Tailwind CSS -->
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <!-- FontAwesome for Icons -->
@@ -128,25 +128,25 @@
 
     <script>
         // ডিফল্ট ব্যাকআপ স্ট্রিম লিংক (যদি কোনো ম্যাচের আলাদা লিংক না থাকে)
-        const defaultStreamLink = "http://99.27.51.147:8080/BeinSport2/index.m3u8";
+        const defaultStreamLink = "http://103.158.133.62:8080/live/index.m3u8";
 
         // প্রতিটি ম্যাচের ডাটাবেজ (এখানে streamLink ফিল্ড যুক্ত করা হয়েছে)
         const matchSchedule = [
-            { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, venue: "মেক্সিকো সিটি", streamLink: "http://example.com/stream1.m3u8" },
-            { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, venue: "গুয়াদালাহারা", streamLink: "http://example.com/stream2.m3u8" },
-            { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "টরন্টো", streamLink: "" },
-            { date: "১৪ জুন", day: 14, match: "যুক্তরাষ্ট্র - প্যারাগুয়ে", team1Flag: "🇺🇸", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ২টা", hour: 2, venue: "লস অ্যাঞ্জেলেস", streamLink: "" },
-            { date: "১৪ জুন", day: 14, match: "কাতার - সুইজারল্যান্ড", team1Flag: "🇶🇦", team2Flag: "🇨🇭", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "সান ফ্রান্সিসকো বে এলাকা", streamLink: "" },
-            { date: "১৪ জুন", day: 14, match: "ব্রাজিল - মরক্কো", team1Flag: "🇧🇷", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "নিউ জার্সি", streamLink: "http://example.com/brazil-live.m3u8" },
-            { date: "১৪ জুন", day: 14, match: "হাইতি - স্কটল্যান্ড", team1Flag: "🇭🇹", team2Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", group: "গ্রুপ- সি", time: "সকাল ২টা", hour: 2, venue: "বোস্টন", streamLink: "" },
-            { date: "১৪ জুন", day: 14, match: "অস্ট্রেলিয়া - তুরস্ক", team1Flag: "🇦🇺", team2Flag: "🇹🇷", group: "গ্রুপ- ডি", time: "সকাল ১০টা", hour: 10, venue: "ভ্যাঙ্কuভার", streamLink: "" },
-            { date: "১৪ জুন", day: 14, match: "জার্মানি - কুরাসাও", team1Flag: "🇩🇪", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "রাত ১১টা", hour: 23, venue: "হিউস্টন", streamLink: "" },
-            { date: "১৫ জুন", day: 15, match: "নেদারল্যান্ডস - জাপান", team1Flag: "🇳🇱", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "রাত ২টা", hour: 2, venue: "ডালাস", streamLink: "" },
-            { date: "১৫ জুন", day: 15, match: "আইভরি কোস্ট - ইকুয়েডর", team1Flag: "🇨🇮", team2Flag: "🇪🇨", group: "গ্রুপ- ই", time: "ভোর ৫টা", hour: 5, venue: "ফিলাডেলফিয়া", streamLink: "" },
-            { date: "১৫ জুন", day: 15, match: "সুইডেন - তিউনিসিয়া", team1Flag: "🇸🇪", team2Flag: "🇹🇳", group: "গ্রুপ- এফ", time: "সকাল ৮টা", hour: 8, venue: "মনতেরেই", streamLink: "" },
-            { date: "১৫ জুন", day: 15, match: "স্পেন - কেপ ভার্দে", team1Flag: "🇪🇸", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ১০টা", hour: 22, venue: "আটলান্টা", streamLink: "" },
-            { date: "১৬ জুন", day: 16, match: "বেলজিয়াম - মিসর", team1Flag: "🇧🇪", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, venue: "সিয়াটল", streamLink: "" },
-            { date: "১৬ জুন", day: 16, match: "সৌদি আরব - উরুগুয়ে", team1Flag: "🇸🇦", team2Flag: "🇺🇾", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, venue: "মায়ামি", streamLink: "" },
+            { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, venue: "মেক্সিকো সিটি", streamLink: "http://103.158.133.62:8080/live/index.m3u8" },
+            { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, venue: "গুয়াদালাহারা", streamLink: "https://tvsen5.aynaott.com/PtvSports/tracks-v1a1/mono.ts.m3u8" },
+            { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "টরন্টো", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
+            { date: "১৪ জুন", day: 14, match: "যুক্তরাষ্ট্র - প্যারাগুয়ে", team1Flag: "🇺🇸", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ২টা", hour: 2, venue: "লস অ্যাঞ্জেলেস", streamLink: "https://tvsen5.aynaott.com/PtvSports/tracks-v1a1/mono.ts.m3u8" },
+            { date: "১৪ জুন", day: 14, match: "কাতার - সুইজারল্যান্ড", team1Flag: "🇶🇦", team2Flag: "🇨🇭", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, venue: "সান ফ্রান্সিসকো বে এলাকা", streamLink: ""http://103.204.43.87:8080/live/1/1/266.m3u8 },
+            { date: "১৪ জুন", day: 14, match: "ব্রাজিল - মরক্কো", team1Flag: "🇧🇷", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, venue: "নিউ জার্সি", streamLink: "https://livecdn-bostahls.global.ssl.fastly.net/rongo/rongo-somoy/index.m3u8" },
+            { date: "১৪ জুন", day: 14, match: "হাইতি - স্কটল্যান্ড", team1Flag: "🇭🇹", team2Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", group: "গ্রুপ- সি", time: "সকাল ২টা", hour: 2, venue: "বোস্টন", streamLink: "http://103.158.133.62:8080/live/index.m3u8" },
+            { date: "১৪ জুন", day: 14, match: "অস্ট্রেলিয়া - তুরস্ক", team1Flag: "🇦🇺", team2Flag: "🇹🇷", group: "গ্রুপ- ডি", time: "সকাল ১০টা", hour: 10, venue: "ভ্যাঙ্কuভার", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
+            { date: "১৪ জুন", day: 14, match: "জার্মানি - কুরাসাও", team1Flag: "🇩🇪", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "রাত ১১টা", hour: 23, venue: "হিউস্টন", streamLink: "http://103.204.43.87:8080/live/1/1/264.m3u8" },
+            { date: "১৫ জুন", day: 15, match: "নেদারল্যান্ডস - জাপান", team1Flag: "🇳🇱", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "রাত ২টা", hour: 2, venue: "ডালাস", streamLink: "https://tvsen5.aynaott.com/PtvSports/tracks-v1a1/mono.ts.m3u8" },
+            { date: "১৫ জুন", day: 15, match: "আইভরি কোস্ট - ইকুয়েডর", team1Flag: "🇨🇮", team2Flag: "🇪🇨", group: "গ্রুপ- ই", time: "ভোর ৫টা", hour: 5, venue: "ফিলাডেলফিয়া", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
+            { date: "১৫ জুন", day: 15, match: "সুইডেন - তিউনিসিয়া", team1Flag: "🇸🇪", team2Flag: "🇹🇳", group: "গ্রুপ- এফ", time: "সকাল ৮টা", hour: 8, venue: "মনতেরেই", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
+            { date: "১৫ জুন", day: 15, match: "স্পেন - কেপ ভার্দে", team1Flag: "🇪🇸", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ১০টা", hour: 22, venue: "আটলান্টা", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
+            { date: "১৬ জুন", day: 16, match: "বেলজিয়াম - মিসর", team1Flag: "🇧🇪", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, venue: "সিয়াটল", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
+            { date: "১৬ জুন", day: 16, match: "সৌদি আরব - উরুগুয়ে", team1Flag: "🇸🇦", team2Flag: "🇺🇾", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, venue: "মায়ামি", streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
             { date: "১৬ জুন", day: 16, match: "ইরান - নিউজিল্যান্ড", team1Flag: "🇮🇷", team2Flag: "🇳🇿", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, venue: "লস অ্যাঞ্জেলেস", streamLink: "" },
             { date: "১৭ জুন", day: 17, match: "ফ্রান্স - সেনেগাল", team1Flag: "🇫🇷", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, venue: "নিউ জার্সি", streamLink: "" },
             { date: "১৭ জুন", day: 17, match: "ইরাক - নরওয়ে", team1Flag: "🇮🇶", team2Flag: "🇳🇴", group: "গ্রুপ- আই", time: "রাত ৪টা", hour: 4, venue: "বোস্টন", streamLink: "" },
