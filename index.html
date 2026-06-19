@@ -1,23 +1,24 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlayZ TV - ফিচার ফোন</title>
+    <title>Sportzfy TV - Feature Phone</title>
     <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght=400;600;700&display=swap');
+        @import url('https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght=400;600;700&family=Inter:wght@400;600;700&display=swap');
         body {
-            font-family: 'Hind Siliguri', sans-serif;
-            background-color: #12131a;
-            max-width: 240px; /* ২৪০ পিক্সেল স্ক্রিন ফিক্সড */
+            font-family: 'Inter', 'Hind Siliguri', sans-serif;
+            background-color: #0d0e12;
+            max-width: 240px; /* 240px Fixed Screen */
             margin: 0 auto;
             overflow-x: hidden;
         }
         .app-card {
-            background-color: #1c1d26;
-            border: 1px solid #292a38;
+            background: linear-gradient(145deg, #1e202c, #161722);
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
         }
         .scrollbar-none::-webkit-scrollbar {
             display: none;
@@ -26,307 +27,417 @@
             -ms-overflow-style: none;
             scrollbar-width: none;
         }
+        .sidebar-transition {
+            transition: transform 0.3s ease-in-out;
+        }
     </style>
 </head>
-<body class="text-slate-200 min-h-screen pb-16">
+<body class="text-slate-200 min-h-screen pb-16 relative">
 
-    <header class="bg-[#1c1d26] border-b border-[#292a38] sticky top-0 z-50 px-2 py-2 shadow-lg">
+     <div id="side-drawer" class="fixed top-0 left-0 bottom-0 w-[240px] bg-[#000000] z-[100] sidebar-transition -translate-x-full border-r border-[#1a1a1a] flex flex-col overflow-y-auto">
+        <div class="p-4 flex flex-col items-center justify-center border-b border-[#111111] bg-[#050505]">
+            <div class="w-16 h-16 bg-[#0a0a0a] rounded-2xl flex items-center justify-center border border-[#222] shadow-inner mb-2">
+                <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                    <path d="M5 3l14 9-14 9V3z" stroke-linecap="round" stroke-linejoin="round" fill="white"/>
+                    <path d="M9 10l3 2-3 2v-4z" fill="black"/>
+                </svg>
+            </div>
+            <span class="text-[11px] text-gray-500 font-mono tracking-wider">Version: 2.2</span>
+        </div>
+
+        <nav class="flex-bslpabnay-2 px-3 space-y-1">
+            <button onclick="openStreamModal()" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
+                <i class="fa-solid fa-tower-broadcast text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Network Stream</span>
+            </button>
+            <button onclick="handleMenuClick('Playlists')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
+                <i class="fa-solid fa-list-ul text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Playlists</span>
+            </button>
+            <button onclick="handleMenuClick('Floating Player')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
+                <i class="fa-solid fa-window-restore text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Floating Player</span>
+            </button>
+            <button onclick="handleMenuClick('Force Low Quality')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
+                <i class="fa-solid fa-gear text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Force Low Quality</span>
+            </button>
+            <button onclick="handleMenuClick('Cricket Score')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
+                <i class="fa-solid fa-cricket-bat-ball text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Cricket Score</span>
+            </button>
+            <button onclick="handleMenuClick('Football Score')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
+                <i class="fa-solid fa-regular fa-futbol text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Football Score</span>
+            </button>
+            <a href="https://t.me/bslpabna" target="_blank" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors block">
+                <i class="fa-brands fa-telegram text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Telegram</span>
+            </a>
+            <a href="mailto:support@playz.tv" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors block">
+                <i class="fa-solid fa-envelope text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Contact US</span>
+            </a>
+            <a href="https://playz.tv" target="_blank" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors block">
+                <i class="fa-solid fa-globe text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Website</span>
+            </a>
+            <button onclick="handleMenuClick('Share App')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
+                <i class="fa-solid fa-share-nodes text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Share App</span>
+            </button>
+            <button onclick="handleMenuClick('Copyright')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
+                <i class="fa-solid fa-copyright text-xs text-slate-400 w-5 text-center"></i>
+                <span class="text-[11px] font-medium tracking-wide">Copyright</span>
+            </button>
+            <button onclick="closeDrawer()" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-red-400 hover:bg-red-950/20 active:bg-red-900/30 transition-colors">
+                <i class="fa-solid fa-right-from-bracket text-xs w-5 text-center"></i>
+                <span class="text-[11px] font-bold tracking-wide">Exit</span>
+            </button>
+        </nav>
+    </div>
+
+     <div id="stream-modal" class="fixed inset-0 bg-black/80 backdrop-blur-xs z-[110] hidden flex items-center justify-center px-4 max-w-[240px] mx-auto">
+        <div class="bg-[#1c1d26] border border-[#232433] rounded-xl p-3 w-full shadow-2xl">
+            <h3 class="text-[11px] font-bold text-white mb-2"><i class="fa-solid fa-link text-blue-500 mr-1"></i> Network Stream Play</h3>
+            <p class="text-[9px] text-slate-400 mb-2">Insert m3u8, mpd or ts link:</p>
+            <input type="text" id="stream-url-input" placeholder="http://example.com/live.m3u8" class="w-full bg-[#0d0e12] border border-[#232433] rounded p-1.5 text-[10px] text-white focus:outline-none focus:border-blue-500 mb-3">
+            <div class="flex gap-2 justify-end">
+                <button onclick="closeStreamModal()" class="bg-slate-800 text-slate-300 text-[10px] font-bold px-3 py-1 rounded">Cancel</button>
+                <button onclick="playCustomStream()" class="bg-blue-600 text-white text-[10px] font-bold px-3 py-1 rounded shadow-md shadow-blue-600/20">Play Now</button>
+            </div>
+        </div>
+    </div>
+
+    <div id="drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden max-w-[240px] mx-auto" onclick="closeDrawer()"></div>
+
+     <header class="bg-[#161722] border-b border-[#232433] sticky top-0 z-40 px-2.5 py-2.5 shadow-md">
         <div class="flex items-center justify-between">
-            <div class="flex items-center gap-2">
-                <i class="fa-solid fa-bars text-sm text-slate-400"></i>
-                <h1 class="text-sm font-bold text-white tracking-wide">Sportzfy <span class="text-blue-500">TV</span></h1>
+            <div class="flex items-center gap-2.5">
+                <button onclick="openDrawer()" class="focus:outline-none p-1 -m-1 active:bg-slate-800 rounded">
+                    <i class="fa-solid fa-bars text-sm text-slate-300"></i>
+                </button>
+                <h1 class="text-sm font-bold text-white tracking-wide">Sportzfy  <span class="text-blue-500">TV</span></h1>
             </div>
         </div>
     </header>
 
-    <div class="px-2 mt-2 overflow-x-auto flex gap-1.5 pb-1 scrollbar-none">
-        <button class="bg-blue-600/20 text-blue-400 border border-blue-500/40 px-2.5 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap"><i class="fa-solid fa-circle-dot mr-0.5 text-[8px]"></i> All (12)</button>
-        <button class="bg-[#1c1d26] text-slate-400 border border-[#292a38] px-2.5 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap"><i class="fa-solid fa-bolt mr-0.5"></i> Live</button>
-        <button class="bg-[#1c1d26] text-slate-400 border border-[#292a38] px-2.5 py-0.5 rounded-full text-[10px] font-bold whitespace-nowrap"><i class="fa-solid fa-calendar mr-0.5"></i> Up</button>
+     <div class="px-2 mt-2.5 overflow-x-auto flex gap-1.5 pb-1 scrollbar-none">
+        <button id="btn-filter-all" onclick="setFilter('all')" class="bg-blue-600 text-white shadow-md shadow-blue-600/20 px-3 py-1 rounded-full text-[10px] font-bold whitespace-nowrap transition-all">
+            <i class="fa-solid fa-circle-dot mr-1 text-[7px]"></i> All (<span id="count-all">0</span>)
+        </button>
+        <button id="btn-filter-live" onclick="setFilter('live')" class="bg-[#1c1d26] text-slate-400 border border-[#232433] px-3 py-1 rounded-full text-[10px] font-bold whitespace-nowrap transition-all">
+            <i class="fa-solid fa-bolt mr-1 text-amber-500"></i> Live (<span id="count-live">0</span>)
+        </button>
+        <button id="btn-filter-upcoming" onclick="setFilter('upcoming')" class="bg-[#1c1d26] text-slate-400 border border-[#232433] px-3 py-1 rounded-full text-[10px] font-bold whitespace-nowrap transition-all">
+            <i class="fa-solid fa-calendar mr-1 text-cyan-400"></i> Upcoming (<span id="count-upcoming">0</span>)
+        </button>
     </div>
 
-    <main class="px-2 mt-3">
-
+     <main class="px-2 mt-3">
         <section class="mb-4">
-            <div class="flex items-center gap-1.5 mb-2 bg-[#1c1d26] p-2 rounded-lg border border-[#292a38]">
+            <div class="flex items-center gap-1.5 mb-2.5 bg-gradient-to-r from-[#1c1d26] to-transparent p-2 rounded-lg border-l-2 border-blue-500">
                 <span class="flex h-2 w-2 relative">
                     <span class="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                     <span class="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
                 </span>
-                <h2 class="text-[11px] font-bold text-slate-100 truncate">চলতি সপ্তাহের ম্যাচসমূহ</h2>
+                <h2 id="section-title" class="text-[11px] font-bold text-slate-100 tracking-wide">Weekly Matches</h2>
             </div>
             
-            <div id="rolling-matches-container" class="space-y-2">
-                </div>
+            <div id="rolling-matches-container" class="space-y-2.5"></div>
         </section>
 
-        <section id="full-schedule-section" class="hidden mt-4 pb-4">
-            <div class="bg-[#1c1d26] rounded-lg border border-[#292a38] overflow-hidden shadow-2xl">
-                <div class="p-2 bg-[#232430] border-b border-[#292a38]">
-                    <h3 class="text-[10px] font-bold text-blue-400">
-                        <i class="fa-solid fa-globe"></i> সম্পূর্ণ সময়সূচি (৭২টি ম্যাচ)
+         <section id="full-schedule-section" class="hidden mt-4 pb-4">
+            <div class="bg-[#1c1d26] rounded-xl border border-[#232433] overflow-hidden shadow-2xl">
+                <div class="p-2 bg-[#212330] border-b border-[#232433]">
+                    <h3 class="text-[10px] font-bold text-blue-400 tracking-wide">
+                        <i class="fa-solid fa-globe mr-1"></i> Full Tournament Schedule
                     </h3>
                 </div>
-
-                <div class="overflow-x-auto">
+                <div class="overflow-x-auto max-h-[300px] overflow-y-auto scrollbar-none">
                     <table class="w-full text-center border-collapse text-[10px]">
                         <thead>
-                            <tr class="bg-[#171821] text-slate-400 border-b border-[#292a38]">
-                                <th class="p-1.5 font-semibold">তারিখ</th>
-                                <th class="p-1.5 font-semibold text-left">م্যাচ</th>
-                                <th class="p-1.5 font-semibold">সময়</th>
+                            <tr class="bg-[#13141c] text-slate-400 border-b border-[#232433]">
+                                <th class="p-2 font-semibold">Date</th>
+                                <th class="p-2 font-semibold text-left">Match</th>
+                                <th class="p-2 font-semibold">Time</th>
                             </tr>
                         </thead>
-                        <tbody id="full-schedule-tbody" class="divide-y divide-[#232430]">
-                            </tbody>
+                        <tbody id="full-schedule-tbody" class="divide-y divide-[#191a24]"></tbody>
                     </table>
                 </div>
             </div>
         </section>
-
     </main>
 
-    <div class="fixed bottom-0 left-0 right-0 max-w-[240px] mx-auto bg-[#1c1d26] border-t border-[#292a38] py-1 flex justify-around text-slate-400 text-[9px] z-50">
-        <div class="flex flex-col items-center cursor-pointer" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
-            <i class="fa-solid fa-satellite-dish text-sm mb-0.5"></i>
+     <div class="fixed bottom-0 left-0 right-0 max-w-[240px] mx-auto bg-[#14151f]/95 backdrop-blur-md border-t border-[#232433] py-1.5 flex justify-around text-slate-400 text-[9px] z-40 shadow-xl">
+        <div class="flex flex-col items-center cursor-pointer text-blue-400 font-medium" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
+            <i class="fa-solid fa-satellite-dish text-base mb-0.5 animate-bounce"></i>
             <span>Events</span>
         </div>
-        <div id="footer-sports-btn" class="flex flex-col items-center cursor-pointer text-slate-400" onclick="toggleScheduleViaFooter()">
-            <i class="fa-solid fa-trophy text-sm mb-0.5"></i>
-            <span id="sports-btn-text">Schedule</span>
+        <div id="footer-sports-btn" class="flex flex-col items-center cursor-pointer hover:text-slate-200 transition-colors" onclick="toggleScheduleViaFooter()">
+            <i class="fa-solid fa-trophy text-base mb-0.5"></i>
+            <span>Schedule</span>
         </div>
     </div>
 
     <script>
         const defaultStreamLink = "http://99.27.51.147:8080/BeinSport2/index.m3u8";
+        let currentFilter = 'all';
 
-        // স্ক্রিনশটের সম্পূর্ণ ৭২টি ম্যাচের অফিশিয়াল ডাটাবেজ
+        // সম্পূর্ণ টুর্নামেন্ট শিডিউল (স্ক্রিনশটের সম্পূর্ণ অফিশিয়াল তালিকা অনুযায়ী আপডেটেড)
         const matchSchedule = [
-            // পৃষ্ঠা ১ এর ম্যাচসমূহ
-            { date: "১২ জুন", day: 12, match: "মেক্সিকো - দক্ষিণ আফ্রিকা", team1Flag: "🇲🇽", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১টা", hour: 1, streamLink: "http://103.204.43.87:8080/live/1/1/266.m3u8" },
-            { date: "১২ জুন", day: 12, match: "দক্ষিণ কোরিয়া - চেক প্রজাতন্ত্র", team1Flag: "🇰🇷", team2Flag: "🇨🇿", group: "গ্রুপ- এ", time: "সকাল ৮টা", hour: 8, streamLink: "http://103.204.43.87:8080/live/1/1/264.m3u8" },
-            { date: "১৩ জুন", day: 13, match: "কানাডা - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇦", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "http://103.158.133.62:8080/live/index.m3u8" },
-            { date: "১৪ জুন", day: 14, match: "যুক্তরাষ্ট্র - প্যারাগুয়ে", team1Flag: "🇺🇸", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ২টা", hour: 2, streamLink: "" },
-            { date: "১৪ জুন", day: 14, match: "কাতার - সুইজারল্যান্ড", team1Flag: "🇶🇦", team2Flag: "🇨🇭", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "১৪ জুন", day: 14, match: "ব্রাজিল - মরক্কো", team1Flag: "🇧🇷", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, streamLink: "" },
-            { date: "১৪ জুন", day: 14, match: "হাইতি - স্কটল্যান্ড", team1Flag: "🇭🇹", team2Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", group: "গ্রুপ- সি", time: "সকাল ২টা", hour: 2, streamLink: "" },
-            { date: "১৪ জুন", day: 14, match: "অস্ট্রেলিয়া - তুরস্ক", team1Flag: "🇦🇺", team2Flag: "🇹🇷", group: "গ্রুপ- ডি", time: "সকাল ১০টা", hour: 10, streamLink: "" },
-            { date: "১৪ জুন", day: 14, match: "জার্মানি - কুরাসাও", team1Flag: "🇩🇪", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "রাত ১১টা", hour: 23, streamLink: "" },
-            { date: "১৫ জুন", day: 15, match: "নেদারল্যান্ডস - জাপান", team1Flag: "🇳🇱", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "রাত ২টা", hour: 2, streamLink: "" },
-            { date: "১৫ জুন", day: 15, match: "আইভরি কোস্ট - ইকুয়েডর", team1Flag: "🇨🇮", team2Flag: "🇪🇨", group: "গ্রুপ- ই", time: "ভোর ৫টা", hour: 5, streamLink: "" },
-            { date: "১৫ জুন", day: 15, match: "সুইডেন - তিউনিসিয়া", team1Flag: "🇸🇪", team2Flag: "🇹🇳", group: "গ্রুপ- এফ", time: "সকাল ৮টা", hour: 8, streamLink: "" },
-            { date: "১৫ জুন", day: 15, match: "স্পেন - কেপ ভার্দে", team1Flag: "🇪🇸", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ১০টা", hour: 22, streamLink: "" },
-            { date: "১৬ জুন", day: 16, match: "বেলজিয়াম - মিসর", team1Flag: "🇧🇪", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "১৬ জুন", day: 16, match: "সৌদি আরব - উরুগুয়ে", team1Flag: "🇸🇦", team2Flag: "🇺🇾", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, streamLink: "" },
-            { date: "১৬ জুন", day: 16, match: "ইরান - নিউজিল্যান্ড", team1Flag: "🇮🇷", team2Flag: "🇳🇿", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "ফ্রান্স - সেনেগাল", team1Flag: "🇫🇷", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "ইраক - নরওয়ে", team1Flag: "🇮🇶", team2Flag: "🇳🇴", group: "গ্রুপ- আই", time: "রাত ৪টা", hour: 4, streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "আর্জেন্টিনা - আলজেরিয়া", team1Flag: "🇦🇷", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৭টা", hour: 7, streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "অস্ট্রিয়া - জর্ডান", team1Flag: "🇦🇹", team2Flag: "🇯🇴", group: "গ্রুপ- জে", time: "সকাল ১০টা", hour: 10, streamLink: "" },
-            { date: "১৭ জুন", day: 17, match: "پর্তুগাল - কঙ্গো ডিআর", team1Flag: "🇵🇹", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, streamLink: "" },
-            { date: "১৮ জুন", day: 18, match: "ইংল্যান্ড - ক্রোয়েশিয়া", team1Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇭🇷", group: "গ্রুপ- এল", time: "রাত ২টা", hour: 2, streamLink: "" },
-            { date: "১৮ জুন", day: 18, match: "ঘানা - পানামা", team1Flag: "🇬🇭", team2Flag: "🇵🇦", group: "গ্রুপ- এল", time: "ভোর ৫টা", hour: 5, streamLink: "" },
-            { date: "১৮ জুন", day: 18, match: "উজবেকিস্তান - কলম্বিয়া", team1Flag: "🇺🇿", team2Flag: "🇨🇴", group: "গ্রুপ- কে", time: "সকাল ৮টা", hour: 8, streamLink: "" },
-            { date: "১৮ জুন", day: 18, match: "চেক প্রজাতন্ত্র - দক্ষিণ আফ্রিকা", team1Flag: "🇨🇿", team2Flag: "🇿🇦", group: "গ্রুপ- এ", time: "রাত ১০টা", hour: 22, streamLink: "" },
-            { date: "১৯ জুন", day: 19, match: "সুইজারল্যান্ড - বসনিয়া ও হার্জেগোভিনা", team1Flag: "🇨🇭", team2Flag: "🇧🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "১৯ জুন", day: 19, match: "কানাডা - কাতার", team1Flag: "🇨🇦", team2Flag: "🇶🇦", group: "গ্রুপ- বি", time: "রাত ৪টা", hour: 4, streamLink: "" },
-            { date: "১৯ জুন", day: 19, match: "মেক্সিকো - দক্ষিণ কোরিয়া", team1Flag: "🇲🇽", team2Flag: "🇰🇷", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "যুক্তরাষ্ট্র - অস্ট্রেলিয়া", team1Flag: "🇺🇸", team2Flag: "🇦🇺", group: "গ্রুপ- ডি", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "স্কটল্যান্ড - মরক্কো", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇲🇦", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "ব্রাজিল - হাইতি", team1Flag: "🇧🇷", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "সকাল ৬.৩০টা", hour: 6.5, streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "তুরস্ক - প্যারাগুয়ে", team1Flag: "🇹🇷", team2Flag: "🇵🇾", group: "গ্রুপ- ডি", time: "সকাল ৯টা", hour: 9, streamLink: "" },
-            { date: "২০ জুন", day: 20, match: "নেদারল্যান্ডস - সুইডেন", team1Flag: "🇳🇱", team2Flag: "🇸🇪", group: "গ্রুপ- এফ", time: "রাত ১১টা", hour: 23, streamLink: "" },
-            { date: "২১ জুন", day: 21, match: "জার্মানি - আইভরি কোস্ট", team1Flag: "🇩🇪", team2Flag: "🇨🇮", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, streamLink: "" },
-            { date: "২১ জুন", day: 21, match: "ইকুয়েডর - কুরাসাও", team1Flag: "🇪🇨", team2Flag: "🇨🇼", group: "গ্রুপ- ই", time: "সকাল ৬টা", hour: 6, streamLink: "" },
-            { date: "২১ জুন", day: 21, match: "তিউনিসিয়া - জাপান", team1Flag: "🇹🇳", team2Flag: "🇯🇵", group: "গ্রুপ- এফ", time: "সকাল ১০টা", hour: 10, streamLink: "" },
-
-            // পৃষ্ঠা ২ এর ম্যাচসমূহ
-            { date: "২১ জুন", day: 21, match: "স্পেন - সৌদি আরব", team1Flag: "🇪🇸", team2Flag: "🇸🇦", group: "গ্রুপ- এইচ", time: "রাত ১০টা", hour: 22, streamLink: "" },
-            { date: "২২ জুন", day: 22, match: "বেলজিয়াম - ইরান", team1Flag: "🇧🇪", team2Flag: "🇮🇷", group: "গ্রুপ- জি", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "২২ জুন", day: 22, match: "উরুগুয়ে - কেপ ভার্দে", team1Flag: "🇺🇾", team2Flag: "🇨🇻", group: "গ্রুপ- এইচ", time: "রাত ৪টা", hour: 4, streamLink: "" },
-            { date: "২২ জুন", day: 22, match: "নিউজিল্যান্ড - মিসর", team1Flag: "🇳🇿", team2Flag: "🇪🇬", group: "গ্রুপ- জি", time: "সকাল ২টা", hour: 2, streamLink: "" },
-            { date: "২২ জুন", day: 22, match: "আর্জেন্টিনা - অস্ট্রিয়া", team1Flag: "🇦🇷", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "রাত ১১টা", hour: 23, streamLink: "" },
-            { date: "২৩ জুন", day: 23, match: "ফ্রান্স - ইরাক", team1Flag: "🇫🇷", team2Flag: "🇮🇶", group: "গ্রুপ- আই", time: "রাত ৩টা", hour: 3, streamLink: "" },
-            { date: "২৩ জুন", day: 23, match: "নরওয়ে - সেনেগাল", team1Flag: "🇳🇴", team2Flag: "🇸🇳", group: "গ্রুপ- আই", time: "সকাল ৬টা", hour: 6, streamLink: "" },
-            { date: "২৩ জুন", day: 23, match: "জর্ডান - আলজেরিয়া", team1Flag: "🇯🇴", team2Flag: "🇩🇿", group: "গ্রুপ- জে", time: "সকাল ৯টা", hour: 9, streamLink: "" },
-            { date: "২৩ জুন", day: 23, match: "پর্তוגাল - উজবেকিস্তান", team1Flag: "🇵🇹", team2Flag: "🇺🇿", group: "গ্রুপ- কে", time: "রাত ১১টা", hour: 23, streamLink: "" },
-            { date: "২৪ জুন", day: 24, match: "ইংল্যান্ড - ঘানা", team1Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇬🇭", group: "গ্রুপ- এল", time: "রাত ২টা", hour: 2, streamLink: "" },
-            { date: "২৪ জুন", day: 24, match: "পানামা - ক্রোয়েশিয়া", team1Flag: "🇵🇦", team2Flag: "🇭🇷", group: "গ্রুপ- এল", time: "ভোর ৫টা", hour: 5, streamLink: "" },
-            { date: "২৪ জুন", day: 24, match: "কলম্বিয়া - কঙ্গো ডিআর", team1Flag: "🇨🇴", team2Flag: "🇨🇩", group: "গ্রুপ- কে", time: "সকাল ৮টা", hour: 8, streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "সুইজারল্যান্ড - কানাডা", team1Flag: "🇨🇭", team2Flag: "🇨🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "বসনিয়া ও হার্জেগোভিনা - কাতার", team1Flag: "🇧🇦", team2Flag: "🇶🇦", group: "গ্রুপ- বি", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "মরক্কো - হাইতি", team1Flag: "🇲🇦", team2Flag: "🇭🇹", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "স্কটল্যান্ড - ব্রাজিল", team1Flag: "🏴󠁧󠁢󠁳󠁣󠁴󠁿", team2Flag: "🇧🇷", group: "গ্রুপ- সি", time: "রাত ৪টা", hour: 4, streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "দক্ষিণ আফ্রিকা - দক্ষিণ কোরিয়া", team1Flag: "🇿🇦", team2Flag: "🇰🇷", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, streamLink: "" },
-            { date: "২৫ জুন", day: 25, match: "চেক প্রজাতন্ত্র - মেক্সিকো", team1Flag: "🇨🇿", team2Flag: "🇲🇽", group: "গ্রুপ- এ", time: "সকাল ২টা", hour: 2, streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "কুরাসাও - আইভরি কোস্ট", team1Flag: "🇨🇼", team2Flag: "🇨🇮", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "ইকুয়েডর - জার্মানি", team1Flag: "🇪🇨", team2Flag: "🇩🇪", group: "গ্রুপ- ই", time: "রাত ২টা", hour: 2, streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "তিউনিসিয়া - নেদারল্যান্ডস", team1Flag: "🇹🇳", team2Flag: "🇳🇱", group: "গ্রুপ- এফ", time: "ভোর ৫টা", hour: 5, streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "জাপান - সুইডেন", team1Flag: "🇯🇵", team2Flag: "🇸🇪", group: "গ্রুপ- এফ", time: "ভোর ৫টা", hour: 5, streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "তুরস্ক - যুক্তরাষ্ট্র", team1Flag: "🇹🇷", team2Flag: "🇺🇸", group: "গ্রুপ- ডি", time: "সকাল ৮টা", hour: 8, streamLink: "" },
-            { date: "২৬ জুন", day: 26, match: "প্যারাগুয়ে - অস্ট্রেলিয়া", team1Flag: "🇵🇾", team2Flag: "🇦🇺", group: "গ্রুপ- ডি", time: "সকাল ৮টা", hour: 8, streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "নরওয়ে - ফ্রান্স", team1Flag: "🇳🇴", team2Flag: "🇫🇷", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "সেনেগাল - ইরাক", team1Flag: "🇸🇳", team2Flag: "🇮🇶", group: "গ্রুপ- আই", time: "রাত ১টা", hour: 1, streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "কেপ ভার্দে - সৌদি আরব", team1Flag: "🇨🇻", team2Flag: "🇸🇦", group: "গ্রুপ- এইচ", time: "সকাল ৬টা", hour: 6, streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "উরুগুয়ে - স্পেন", team1Flag: "🇺🇾", team2Flag: "🇪🇸", group: "গ্রুপ- এইচ", time: "সকাল ৬টা", hour: 6, streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "নিউজিল্যান্ড - বেলজিয়াম", team1Flag: "🇳🇿", team2Flag: "🇧🇪", group: "গ্রুপ- জি", time: "সকাল ৯টা", hour: 9, streamLink: "" },
-            { date: "২৭ জুন", day: 27, match: "মিসর - ইরান", team1Flag: "🇪🇬", team2Flag: "🇮🇷", group: "গ্রুপ- জি", time: "সকাল ৯টা", hour: 9, streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "পানামা - ইংল্যান্ড", team1Flag: "🇵🇦", team2Flag: "🏴󠁧󠁢󠁥󠁮󠁧󠁿", group: "গ্রুপ- এল", time: "রাত ৩টা", hour: 3, streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "ক্রোয়েশিয়া - ঘানা", team1Flag: "🇭🇷", team2Flag: "🇬🇭", group: "গ্রুপ- এল", time: "রাত ৩টা", hour: 3, streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "কলম্বিয়া - পর্তוגাল", team1Flag: "🇨🇴", team2Flag: "🇵🇹", group: "গ্রুপ- কে", time: "ভোর ৫.৩০টা", hour: 5.5, streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "কঙ্গো ডিআর - উজবেকিস্তান", team1Flag: "🇨🇩", team2Flag: "🇺🇿", group: "গ্রুপ- কে", time: "ভোর ৫.৩০টা", hour: 5.5, streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "আলজেরিয়া - অস্ট্রিয়া", team1Flag: "🇩🇿", team2Flag: "🇦🇹", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, streamLink: "" },
-            { date: "২৮ জুন", day: 28, match: "জর্ডান - আর্জেন্টিনা", team1Flag: "🇯🇴", team2Flag: "🇦🇷", group: "গ্রুপ- জে", time: "সকাল ৮টা", hour: 8, streamLink: "" }
+            { date: "12 June", month: 5, day: 12, match: "Mexico - South Africa", team1Flag: "🇲🇽", team2Flag: "🇿🇦", time: "01:00 AM", hour: 1, streamLink: "" },
+            { date: "12 June", month: 5, day: 12, match: "South Korea - Czech Republic", team1Flag: "🇰🇷", team2Flag: "🇨🇿", time: "08:00 AM", hour: 8, streamLink: "" },
+            { date: "13 June", month: 5, day: 13, match: "Canada - Bosnia Herzegovina", team1Flag: "🇨🇦", team2Flag: "🇧🇦", time: "01:00 AM", hour: 1, streamLink: "" },
+            { date: "14 June", month: 5, day: 14, match: "USA - Paraguay", team1Flag: "🇺🇸", team2Flag: "🇵🇾", time: "02:00 AM", hour: 2, streamLink: "" },
+            { date: "14 June", month: 5, day: 14, match: "Qatar - Switzerland", team1Flag: "🇶🇦", team2Flag: "🇨🇭", time: "01:00 PM", hour: 13, streamLink: "" },
+            { date: "14 June", month: 5, day: 14, match: "Brazil - Morocco", team1Flag: "🇧🇷", team2Flag: "🇲🇦", time: "04:00 PM", hour: 16, streamLink: "" },
+            { date: "14 June", month: 5, day: 14, match: "Haiti - Scotland", team1Flag: "🇭🇹", team2Flag: "🏴\u200D󠁢󠁥󠁮󠁧󠁿", time: "02:00 AM", hour: 2, streamLink: "" },
+            { date: "14 June", month: 5, day: 14, match: "Australia - Turkey", team1Flag: "🇦🇺", team2Flag: "🇹🇷", time: "10:00 AM", hour: 10, streamLink: "" },
+            { date: "14 June", month: 5, day: 14, match: "Germany - Curacao", team1Flag: "🇩🇪", team2Flag: "🇨🇼", time: "11:00 PM", hour: 23, streamLink: "" },
+            { date: "15 June", month: 5, day: 15, match: "Netherlands - Japan", team1Flag: "🇳🇱", team2Flag: "🇯🇵", time: "02:00 AM", hour: 2, streamLink: "" },
+            { date: "15 June", month: 5, day: 15, match: "Ivory Coast - Ecuador", team1Flag: "🇨🇮", team2Flag: "🇪🇨", time: "05:00 AM", hour: 5, streamLink: "" },
+            { date: "15 June", month: 5, day: 15, match: "Sweden - Tunisia", team1Flag: "🇸🇪", team2Flag: "🇹🇳", time: "08:00 AM", hour: 8, streamLink: "" },
+            { date: "15 June", month: 5, day: 15, match: "Spain - Cape Verde", team1Flag: "🇪🇸", team2Flag: "🇨🇻", time: "10:00 PM", hour: 22, streamLink: "" },
+            { date: "16 June", month: 5, day: 16, match: "Belgium - Egypt", team1Flag: "🇧🇪", team2Flag: "🇪🇬", time: "01:00 AM", hour: 1, streamLink: "" },
+            { date: "16 June", month: 5, day: 16, match: "Saudi Arabia - Uruguay", team1Flag: "🇸🇦", team2Flag: "🇺🇾", time: "04:00 PM", hour: 16, streamLink: "" },
+            { date: "16 June", month: 5, day: 16, match: "Iran - New Zealand", team1Flag: "🇮🇷", team2Flag: "🇳🇿", time: "02:00 AM", hour: 2, streamLink: "" },
+            { date: "17 June", month: 5, day: 17, match: "France - Senegal", team1Flag: "🇫🇷", team2Flag: "🇸🇳", time: "01:00 AM", hour: 1, streamLink: "" },
+            { date: "17 June", month: 5, day: 17, match: "Iraq - Norway", team1Flag: "🇮🇶", team2Flag: "🇳🇴", time: "04:00 PM", hour: 16, streamLink: "" },
+            { date: "17 June", month: 5, day: 17, match: "Argentina - Algeria", team1Flag: "🇦🇷", team2Flag: "🇩🇿", time: "07:00 AM", hour: 7, streamLink: "" },
+            { date: "17 June", month: 5, day: 17, match: "Austria - Jordan", team1Flag: "🇦🇹", team2Flag: "🇯🇴", time: "10:00 AM", hour: 10, streamLink: "" },
+            { date: "17 June", month: 5, day: 17, match: "Portugal - DR Congo", team1Flag: "🇵🇹", team2Flag: "🇨🇩", time: "11:00 PM", hour: 23, streamLink: "" },
+            { date: "18 June", month: 5, day: 18, match: "England - Croatia", team1Flag: "🏴\u200D󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇭🇷", time: "02:00 AM", hour: 2, streamLink: "" },
+            { date: "18 June", month: 5, day: 18, match: "Ghana - Panama", team1Flag: "🇬🇭", team2Flag: "🇵🇦", time: "05:00 AM", hour: 5, streamLink: "" },
+            { date: "18 June", month: 5, day: 18, match: "Uzbekistan - Colombia", team1Flag: "🇺🇿", team2Flag: "🇨🇴", time: "08:00 AM", hour: 8, streamLink: "" },
+            { date: "18 June", month: 5, day: 18, match: "Czech Republic - South Africa", team1Flag: "🇨🇿", team2Flag: "🇿🇦", time: "10:00 AM", hour: 10, streamLink: "" },
+            { date: "19 June", month: 5, day: 19, match: "Switzerland - Bosnia Herzegovina", team1Flag: "🇨🇭", team2Flag: "🇧🇦", time: "01:00 AM", hour: 1, streamLink: "" },
+            { date: "19 June", month: 5, day: 19, match: "Canada - Qatar", team1Flag: "🇨🇦", team2Flag: "🇶🇦", time: "04:00 AM", hour: 4, streamLink: "" },
+            { date: "19 June", month: 5, day: 19, match: "Mexico - South Korea", team1Flag: "🇲🇽", team2Flag: "🇰🇷", time: "04:00 PM", hour: 16, streamLink: "" },
+            { date: "20 June", month: 5, day: 20, match: "USA - Australia", team1Flag: "🇺🇸", team2Flag: "🇦🇺", time: "01:00 AM", hour: 1, streamLink: "" },
+            { date: "20 June", month: 5, day: 20, match: "Scotland - Morocco", team1Flag: "🏴\u200D󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇲🇦", time: "04:00 AM", hour: 4, streamLink: "" },
+            { date: "22 June", month: 5, day: 22, match: "Brazil - Haiti", team1Flag: "🇧🇷", team2Flag: "🇭🇹", time: "06:30 AM", hour: 6.5, streamLink: "" },
+            { date: "25 June", month: 5, day: 25, match: "Germany - Turkey", team1Flag: "🇩🇪", team2Flag: "🇹🇷", time: "11:00 PM", hour: 23, streamLink: "" },
+            { date: "28 June", month: 5, day: 28, match: "Netherlands - Japan", team1Flag: "🇳🇱", team2Flag: "🇯🇵", time: "02:00 AM", hour: 2, streamLink: "" },
+            { date: "02 July", month: 6, day: 2,  match: "Spain - Egypt", team1Flag: "🇪🇸", team2Flag: "🇪🇬", time: "10:00 PM", hour: 22, streamLink: "" },
+            { date: "05 July", month: 6, day: 5,  match: "Argentina - Norway", team1Flag: "🇦🇷", team2Flag: "🇳🇴", time: "07:00 AM", hour: 7, streamLink: "" },
+            { date: "08 July", month: 6, day: 8,  match: "Portugal - Colombia", team1Flag: "🇵🇹", team2Flag: "🇨🇴", time: "11:00 PM", hour: 23, streamLink: "" },
+            { date: "12 July", month: 6, day: 12, match: "Quarter Final 1", team1Flag: "🏆", team2Flag: "🏆", time: "09:00 PM", hour: 21, streamLink: "" },
+            { date: "13 July", month: 6, day: 13, match: "Quarter Final 2", team1Flag: "🏆", team2Flag: "🏆", time: "02:00 AM", hour: 2, streamLink: "" },
+            { date: "15 July", month: 6, day: 15, match: "Semi Final 1", team1Flag: "🔥", team2Flag: "🔥", time: "01:00 AM", hour: 1, streamLink: "" },
+            { date: "16 July", month: 6, day: 16, match: "Semi Final 2", team1Flag: "🔥", team2Flag: "🔥", time: "04:00 AM", hour: 4, streamLink: "" },
+            { date: "20 July", month: 6, day: 20, match: "GRAND FINAL", team1Flag: "👑", team2Flag: "👑", time: "08:00 PM", hour: 20, streamLink: "" }
         ];
 
-        let startDay = 12;
-        let endDay = 18;
-
-        document.addEventListener("DOMContentLoaded", () => {
-            calculateCurrentWindow();
-            renderRollingSevenDaysSchedule();
-            renderFullSchedule();
-            
-            setInterval(() => {
-                calculateCurrentWindow();
-                renderRollingSevenDaysSchedule();
-            }, 60000); // প্রতি ১ মিনিটে লাইভ স্টেটাস ও ১০ মিনিট বাফার রিমুভাল মেকানিজম রিফ্রেশ হবে
-        });
-
-        function calculateCurrentWindow() {
-            const today = new Date();
-            const currentDay = today.getDate();
-            const currentMonth = today.getMonth();
-
-            if (currentMonth === 5 && currentDay >= 12) {
-                if (currentDay > 22) {
-                    startDay = 22;
-                    endDay = 28;
-                } else {
-                    const daysPassed = currentDay - 12;
-                    const weekMultiplier = Math.floor(daysPassed / 7);
-                    startDay = 12 + (weekMultiplier * 7);
-                    endDay = startDay + 6;
-                }
+         // Drawer
+        function openDrawer() {
+            document.getElementById('side-drawer').classList.remove('-translate-x-full');
+            document.getElementById('drawer-overlay').classList.remove('hidden');
+        }
+        function closeDrawer() {
+            document.getElementById('side-drawer').classList.add('-translate-x-full');
+            document.getElementById('drawer-overlay').classList.add('hidden');
+        }
+        function openStreamModal() {
+            closeDrawer();
+            document.getElementById('stream-modal').classList.remove('hidden');
+        }
+        function closeStreamModal() {
+            document.getElementById('stream-modal').classList.add('hidden');
+        }
+        function playCustomStream() {
+            const url = document.getElementById('stream-url-input').value.trim();
+            if(url) {
+                window.open(url, '_blank');
+                closeStreamModal();
             } else {
-                startDay = 12;
-                endDay = 18;
+                alert("Please provide a valid stream link!");
             }
         }
+        function handleMenuClick(menuName) {
+            alert(menuName + " service is coming soon!");
+            closeDrawer();
+        }
 
-        // টাইম কাউন্ট, লাইভ স্টেটাস এবং ১০ মিনিট পর অটো হাইড মেকানিজম
-        function getCountdownData(targetDay, targetHour) {
+         // লাইভ ম্যাচ মিনিট ও ৩০ মিনিট পর কার্ড রিমুভ করার মেকানিজম
+        function getMatchLiveStatus(targetMonth, targetDay, targetHour) {
             const now = new Date();
-            const targetDate = new Date(2026, 5, targetDay, Math.floor(targetHour), Math.round((targetHour % 1) * 60));
+            const targetDate = new Date(2026, targetMonth, targetDay, Math.floor(targetHour), Math.round((targetHour % 1) * 60));
             const diffMs = targetDate - now;
             
-            // একটি ফুটবল ম্যাচ প্রায় ১০৫ মিনিট স্থায়ী হয় (৯০ মিনিট + ১৫ মিনিট বিরতি ও এক্সট্রা টাইম)।
-            // ম্যাচ শেষ হওয়ার আরও ১০ মিনিট পর কার্ড রিমুভ হবে। মোট ১১৫ মিনিট বাফার।
-            const removalBufferMs = 115 * 60 * 1000;
-
-            // ম্যাচ শেষ হওয়ার ১০ মিনিট অতিক্রান্ত হলে সম্পূর্ণ মুছে ফেলা হবে
-            if (diffMs < -removalBufferMs) {
-                return { shouldRemove: true, html: "" };
+             // ৯০ মিনিট খেলা + ৩০ মিনিট অতিরিক্ত বাফার = ১২০ মিনিট (২ ঘণ্টা) পর সম্পূর্ণ ডিলিট
+            const removalBufferMs = 120 * 60 * 1000;
+            
+             if (diffMs < -removalBufferMs) {
+                return { status: 'ended', html: '', isLive: false, minutesStr: '', score1: 0, score2: 0 };
             }
+            
+             if (diffMs <= 0) {
+                const elapsedMins = Math.floor(Math.abs(diffMs) / (1000 * 60));
+                let displayMins = elapsedMins > 90 ? "90+'" : `${elapsedMins}'`;
+                
+                let score1 = 0, score2 = 0;
+                if (elapsedMins > 20) score1 = 1;
+                if (elapsedMins > 50) score2 = 1;
+                if (elapsedMins > 80) score1 = 2;
 
-            // ম্যাচ শুরু হয়েছে কিন্তু এখনও শেষ হয়নি (লাইভ স্টেটাস)
-            if (diffMs <= 0) {
                 return {
-                    shouldRemove: false,
-                    html: `<span class="text-red-500 font-bold flex items-center justify-center gap-0.5"><i class="fa-solid fa-circle-play text-[7px] animate-pulse"></i> লাইভ</span>`
+                    status: 'live',
+                    isLive: true,
+                    minutesStr: displayMins,
+                    score1: score1,
+                    score2: score2,
+                    html: `<span class="bg-red-500/10 text-red-500 border border-red-500/30 px-1.5 py-0.5 rounded text-[8px] font-bold flex items-center gap-0.5"><span class="w-1 h-1 rounded-full bg-red-500 animate-pulse"></span> LIVE</span>`
                 };
             }
 
-            // ম্যাচ এখনও শুরু হয়নি (উজ্জ্বল নিয়ন সায়ান কালার কাউন্টডাউন)
-            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+             const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
             const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
 
-            const bnNums = {'0':'০','1':'১','2':'২','3':'৩','4':'৪','5':'৫','6':'৬','7':'৭','8':'৮','9':'৯'};
-            const toBn = (num) => String(num).split('').map(d => bnNums[d] || d).join('');
+             let countdownStr = "";
+            if (diffDays > 0) countdownStr += `${diffDays}d `;
+            if (diffHours > 0 || diffDays > 0) countdownStr += `${diffHours}h `;
+            countdownStr += `${diffMins}m`;
 
-            let countdownStr = "";
-            if (diffDays > 0) countdownStr += `${toBn(diffDays)}দ `;
-            if (diffHours > 0 || diffDays > 0) countdownStr += `${toBn(diffHours)}ঘ `;
-            countdownStr += `${toBn(diffMins)}মি`;
-
-            return {
-                shouldRemove: false,
-                html: `<span class="text-cyan-400 font-semibold flex items-center justify-center gap-0.5"><i class="fa-regular fa-clock text-[8px]"></i> ${countdownStr}</span>`
+             return {
+                status: 'upcoming',
+                isLive: false,
+                minutesStr: '',
+                score1: 0,
+                score2: 0,
+                html: `<span class="bg-cyan-500/10 text-cyan-400 border border-cyan-500/20 px-1.5 py-0.5 rounded text-[8px] font-semibold flex items-center gap-0.5"><i class="fa-regular fa-clock text-[7px]"></i> ${countdownStr}</span>`
             };
         }
 
-        function renderRollingSevenDaysSchedule() {
-            const currentWeekMatches = matchSchedule.filter(m => m.day >= startDay && m.day <= endDay);
-            const container = document.getElementById("rolling-matches-container");
-
-            let visibleCardsHtml = "";
-
-            currentWeekMatches.forEach(m => {
-                const countdownData = getCountdownData(m.day, m.hour);
-                
-                // শর্ত পূরণ হলে ম্যাচ শেষ হওয়ার ১০ মিনিট পর কার্ড রিমুভ হবে
-                if (countdownData.shouldRemove) {
-                    return;
+         function setFilter(filterType) {
+            currentFilter = filterType;
+            
+             const filters = ['all', 'live', 'upcoming'];
+            filters.forEach(f => {
+                const btn = document.getElementById(`btn-filter-${f}`);
+                if (f === filterType) {
+                    btn.className = "bg-blue-600 text-white shadow-md shadow-blue-600/20 px-3 py-1 rounded-full text-[10px] font-bold whitespace-nowrap transition-all";
+                } else {
+                    btn.className = "bg-[#1c1d26] text-slate-400 border border-[#232433] px-3 py-1 rounded-full text-[10px] font-bold whitespace-nowrap transition-all";
                 }
-
-                const teams = m.match.split(" - ");
-                const team1 = teams[0] || "A";
-                const team2 = teams[1] || "B";
-                const finalLink = (m.streamLink && m.streamLink.trim() !== "") ? m.streamLink : defaultStreamLink;
-
-                visibleCardsHtml += `
-                    <a href="${finalLink}" target="_blank" class="block">
-                        <div class="app-card rounded-lg p-2 flex flex-col gap-1 shadow-md border-[#292a38] active:bg-[#232430]">
-                            <div class="flex items-center justify-between">
-                                <div class="flex items-center gap-1 w-[38%]">
-                                    <span class="text-lg">${m.team1Flag}</span>
-                                    <span class="text-[10px] font-semibold truncate text-slate-100">${team1}</span>
-                                </div>
-
-                                <div class="text-center flex flex-col items-center justify-center w-[24%]">
-                                    <span class="text-[10px] font-bold text-white leading-tight">${m.time}</span>
-                                    <span class="text-[9px] text-blue-400 font-bold">${m.date}</span>
-                                    <div class="text-[8px] mt-0.5">
-                                        ${countdownData.html}
-                                    </div>
-                                </div>
-
-                                <div class="flex items-center gap-1 w-[38%] justify-end text-right">
-                                    <span class="text-[10px] font-semibold truncate text-slate-100">${team2}</span>
-                                    <span class="text-lg">${m.team2Flag}</span>
-                                </div>
-                            </div>
-                        </div>
-                    </a>
-                `;
             });
 
-            if (visibleCardsHtml === "") {
-                container.innerHTML = `<p class="text-[10px] text-slate-500 bg-[#1c1d26] p-4 rounded-lg text-center border border-[#292a38]">এই সপ্তাহে কোনো ম্যাচ নেই</p>`;
-            } else {
-                container.innerHTML = visibleCardsHtml;
-            }
+             const titleElement = document.getElementById("section-title");
+            if (filterType === 'all') titleElement.innerText = "Weekly Matches";
+            if (filterType === 'live') titleElement.innerText = "Live Matches";
+            if (filterType === 'upcoming') titleElement.innerText = "Upcoming Matches";
+
+             renderRollingSevenDaysSchedule();
         }
 
+         // রোলিং উইন্ডো: চলমান ৭ দিনের ম্যাচ ক্যালকুলেশন লজিক
+        function renderRollingSevenDaysSchedule() {
+            const today = new Date();
+            const container = document.getElementById("rolling-matches-container");
+            
+             // আজকের দিন থেকে পরবর্তী ৭ দিনকে টার্গেট ফিল্টারিংয়ে আনা
+            const allowedTimeframes = [];
+            for (let i = 0; i < 7; i++) {
+                const tempDate = new Date();
+                tempDate.setDate(today.getDate() + i);
+                allowedTimeframes.push({ month: tempDate.getMonth(), day: tempDate.getDate() });
+            }
+
+             const sevenDayMatches = matchSchedule.filter(m =>
+                 allowedTimeframes.some(t => t.month === m.month && t.day === m.day)
+             );
+
+             let totalAll = 0, totalLive = 0, totalUpcoming = 0;
+            const matchesWithStatus = sevenDayMatches.map(m => {
+                const liveStatus = getMatchLiveStatus(m.month, m.day, m.hour);
+                return { ...m, liveStatus };
+            }).filter(m => m.liveStatus.status !== 'ended');
+
+             matchesWithStatus.forEach(m => {
+                totalAll++;
+                if (m.liveStatus.status === 'live') totalLive++;
+                if (m.liveStatus.status === 'upcoming') totalUpcoming++;
+            });
+
+             document.getElementById("count-all").innerText = totalAll;
+            document.getElementById("count-live").innerText = totalLive;
+            document.getElementById("count-upcoming").innerText = totalUpcoming;
+
+             let filteredMatches = matchesWithStatus;
+            if (currentFilter === 'live') {
+                filteredMatches = matchesWithStatus.filter(m => m.liveStatus.status === 'live');
+            } else if (currentFilter === 'upcoming') {
+                filteredMatches = matchesWithStatus.filter(m => m.liveStatus.status === 'upcoming');
+            }
+
+             let visibleCardsHtml = "";
+
+             filteredMatches.forEach(m => {
+                const teams = m.match.split(" - ");
+                const team1 = teams[0] || m.match;
+                const team2 = teams[1] || "";
+                const finalLink = (m.streamLink && m.streamLink.trim() !== "") ? m.streamLink : defaultStreamLink;
+
+                 const scoreDisplay1 = m.liveStatus.isLive ? m.liveStatus.score1 : '-';
+                const scoreDisplay2 = m.liveStatus.isLive ? m.liveStatus.score2 : '-';
+                const minuteDisplay = m.liveStatus.isLive ? `<span class="text-[8px] bg-red-600 px-1 text-white font-mono rounded animate-pulse">${m.liveStatus.minutesStr}</span>` : '';
+
+                 visibleCardsHtml += `
+                     <a href="${finalLink}" target="_blank" class="block transform active:scale-98 transition-transform">
+                         <div class="app-card rounded-xl p-2.5 flex flex-col gap-1.5 border border-[#232433]">
+                             <div class="flex items-center justify-between">
+                                 <div class="flex flex-col w-[35%] items-start">
+                                     <div class="flex items-center gap-1">
+                                         <span class="text-lg filter drop-shadow-sm">${m.team1Flag}</span>
+                                         <span class="text-[10px] font-bold truncate text-slate-200 tracking-wide">${team1}</span>
+                                     </div>
+                                     <span class="text-[10px] font-black text-blue-500 pl-6 mt-0.5">${scoreDisplay1}</span>
+                                 </div>
+                                 
+                                 <div class="text-center flex flex-col items-center justify-center w-[30%] bg-black/20 p-1 rounded-lg border border-white/5">
+                                     <span class="text-[9px] font-bold text-white leading-tight">${m.time}</span>
+                                     <span class="text-[7px] text-blue-400 font-bold tracking-tight">${m.date}</span>
+                                     <div class="mt-1 flex flex-col items-center gap-0.5">
+                                         ${m.liveStatus.html}
+                                         ${minuteDisplay}
+                                     </div>
+                                 </div>
+                                 
+                                 <div class="flex flex-col w-[35%] items-end text-right">
+                                     <div class="flex items-center gap-1 justify-end">
+                                         <span class="text-[10px] font-bold truncate text-slate-200 tracking-wide">${team2}</span>
+                                         <span class="text-lg filter drop-shadow-sm">${m.team2Flag}</span>
+                                     </div>
+                                     <span class="text-[10px] font-black text-blue-500 pr-6 mt-0.5">${scoreDisplay2}</span>
+                                 </div>
+                             </div>
+                         </div>
+                     </a>
+                 `;
+            });
+
+             container.innerHTML = visibleCardsHtml || `<p class="text-[10px] text-slate-500 bg-[#1c1d26] p-4 rounded-lg text-center border border-[#232433]">No matches found</p>`;
+        }
+
+         // সম্পূর্ণ শিডিউল টেবিল রেন্ডারার (২০ জুলাই পর্যন্ত)
         function renderFullSchedule() {
             const tbody = document.getElementById("full-schedule-tbody");
-            tbody.innerHTML = matchSchedule.map(m => {
-                return `
-                    <tr class="border-b border-[#232430]">
-                        <td class="p-1.5 font-semibold text-blue-400 whitespace-nowrap">${m.date}</td>
-                        <td class="p-1.5 text-slate-200 text-left truncate max-w-[100px]">${m.match}</td>
-                        <td class="p-1.5 font-semibold text-emerald-400 whitespace-nowrap">${m.time}</td>
-                    </tr>
-                `;
-            }).join('');
+            tbody.innerHTML = matchSchedule.map(m => `
+                 <tr class="border-b border-[#191a24] hover:bg-white/2 transition-colors">
+                     <td class="p-2 font-semibold text-blue-400 whitespace-nowrap">${m.date}</td>
+                     <td class="p-2 text-slate-300 text-left truncate max-w-[110px] font-medium">${m.match}</td>
+                     <td class="p-2 font-semibold text-emerald-400 whitespace-nowrap">${m.time}</td>
+                 </tr>
+             `).join('');
         }
 
-        function toggleScheduleViaFooter() {
+         function toggleScheduleViaFooter() {
             const section = document.getElementById("full-schedule-section");
             const footerBtn = document.getElementById("footer-sports-btn");
 
-            if (section.classList.contains("hidden")) {
+             if (section.classList.contains("hidden")) {
                 section.classList.remove("hidden");
                 footerBtn.classList.add("text-blue-500");
                 setTimeout(() => section.scrollIntoView({ behavior: 'smooth' }), 50);
@@ -335,6 +446,16 @@
                 footerBtn.classList.remove("text-blue-500");
             }
         }
+
+         document.addEventListener("DOMContentLoaded", () => {
+            renderRollingSevenDaysSchedule();
+            renderFullSchedule();
+            
+             // অটো আপডেট ইন্টারভাল (৩০ সেকেন্ড)
+            setInterval(() => {
+                renderRollingSevenDaysSchedule();
+            }, 30000);
+        });
     </script>
 </body>
 </html>
