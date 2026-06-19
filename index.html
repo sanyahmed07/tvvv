@@ -34,7 +34,8 @@
 </head>
 <body class="text-slate-200 min-h-screen pb-16 relative">
 
-     <div id="side-drawer" class="fixed top-0 left-0 bottom-0 w-[240px] bg-[#000000] z-[100] sidebar-transition -translate-x-full border-r border-[#1a1a1a] flex flex-col overflow-y-auto">
+     <!-- Side Navigation Drawer -->
+    <div id="side-drawer" class="fixed top-0 left-0 bottom-0 w-[240px] bg-[#000000] z-[100] sidebar-transition -translate-x-full border-r border-[#1a1a1a] flex flex-col overflow-y-auto">
         <div class="p-4 flex flex-col items-center justify-center border-b border-[#111111] bg-[#050505]">
             <div class="w-16 h-16 bg-[#0a0a0a] rounded-2xl flex items-center justify-center border border-[#222] shadow-inner mb-2">
                 <svg class="w-10 h-10 text-white" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
@@ -45,32 +46,12 @@
             <span class="text-[11px] text-gray-500 font-mono tracking-wider">Version: 2.2</span>
         </div>
 
-        <nav class="flex-bslpabnay-2 px-3 space-y-1">
+        <nav class="flex-1 py-2 px-3 space-y-1">
             <button onclick="openStreamModal()" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
                 <i class="fa-solid fa-tower-broadcast text-xs text-slate-400 w-5 text-center"></i>
                 <span class="text-[11px] font-medium tracking-wide">Network Stream</span>
             </button>
-            <button onclick="handleMenuClick('Playlists')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
-                <i class="fa-solid fa-list-ul text-xs text-slate-400 w-5 text-center"></i>
-                <span class="text-[11px] font-medium tracking-wide">Playlists</span>
-            </button>
-            <button onclick="handleMenuClick('Floating Player')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
-                <i class="fa-solid fa-window-restore text-xs text-slate-400 w-5 text-center"></i>
-                <span class="text-[11px] font-medium tracking-wide">Floating Player</span>
-            </button>
-            <button onclick="handleMenuClick('Force Low Quality')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
-                <i class="fa-solid fa-gear text-xs text-slate-400 w-5 text-center"></i>
-                <span class="text-[11px] font-medium tracking-wide">Force Low Quality</span>
-            </button>
-            <button onclick="handleMenuClick('Cricket Score')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
-                <i class="fa-solid fa-cricket-bat-ball text-xs text-slate-400 w-5 text-center"></i>
-                <span class="text-[11px] font-medium tracking-wide">Cricket Score</span>
-            </button>
-            <button onclick="handleMenuClick('Football Score')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
-                <i class="fa-solid fa-regular fa-futbol text-xs text-slate-400 w-5 text-center"></i>
-                <span class="text-[11px] font-medium tracking-wide">Football Score</span>
-            </button>
-            <a href="https://t.me/bslpabna" target="_blank" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors block">
+            <a href="https://t.me/your_telegram" target="_blank" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors block">
                 <i class="fa-brands fa-telegram text-xs text-slate-400 w-5 text-center"></i>
                 <span class="text-[11px] font-medium tracking-wide">Telegram</span>
             </a>
@@ -78,14 +59,6 @@
                 <i class="fa-solid fa-envelope text-xs text-slate-400 w-5 text-center"></i>
                 <span class="text-[11px] font-medium tracking-wide">Contact US</span>
             </a>
-            <a href="https://playz.tv" target="_blank" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors block">
-                <i class="fa-solid fa-globe text-xs text-slate-400 w-5 text-center"></i>
-                <span class="text-[11px] font-medium tracking-wide">Website</span>
-            </a>
-            <button onclick="handleMenuClick('Share App')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
-                <i class="fa-solid fa-share-nodes text-xs text-slate-400 w-5 text-center"></i>
-                <span class="text-[11px] font-medium tracking-wide">Share App</span>
-            </button>
             <button onclick="handleMenuClick('Copyright')" class="w-full flex items-center gap-3 px-3 py-2.5 rounded-lg text-left text-slate-300 hover:bg-[#111] active:bg-[#1c1d26] transition-colors">
                 <i class="fa-solid fa-copyright text-xs text-slate-400 w-5 text-center"></i>
                 <span class="text-[11px] font-medium tracking-wide">Copyright</span>
@@ -97,7 +70,8 @@
         </nav>
     </div>
 
-     <div id="stream-modal" class="fixed inset-0 bg-black/80 backdrop-blur-xs z-[110] hidden flex items-center justify-center px-4 max-w-[240px] mx-auto">
+     <!-- Network Stream Modal -->
+    <div id="stream-modal" class="fixed inset-0 bg-black/80 backdrop-blur-xs z-[110] hidden flex items-center justify-center px-4 max-w-[240px] mx-auto">
         <div class="bg-[#1c1d26] border border-[#232433] rounded-xl p-3 w-full shadow-2xl">
             <h3 class="text-[11px] font-bold text-white mb-2"><i class="fa-solid fa-link text-blue-500 mr-1"></i> Network Stream Play</h3>
             <p class="text-[9px] text-slate-400 mb-2">Insert m3u8, mpd or ts link:</p>
@@ -111,18 +85,20 @@
 
     <div id="drawer-overlay" class="fixed inset-0 bg-black/60 backdrop-blur-xs z-50 hidden max-w-[240px] mx-auto" onclick="closeDrawer()"></div>
 
-     <header class="bg-[#161722] border-b border-[#232433] sticky top-0 z-40 px-2.5 py-2.5 shadow-md">
+     <!-- Header -->
+    <header class="bg-[#161722] border-b border-[#232433] sticky top-0 z-40 px-2.5 py-2.5 shadow-md">
         <div class="flex items-center justify-between">
             <div class="flex items-center gap-2.5">
                 <button onclick="openDrawer()" class="focus:outline-none p-1 -m-1 active:bg-slate-800 rounded">
                     <i class="fa-solid fa-bars text-sm text-slate-300"></i>
                 </button>
-                <h1 class="text-sm font-bold text-white tracking-wide">Sportzfy  <span class="text-blue-500">TV</span></h1>
+                <h1 class="text-sm font-bold text-white tracking-wide">PlayZ <span class="text-blue-500">TV</span></h1>
             </div>
         </div>
     </header>
 
-     <div class="px-2 mt-2.5 overflow-x-auto flex gap-1.5 pb-1 scrollbar-none">
+     <!-- Filter Buttons -->
+    <div class="px-2 mt-2.5 overflow-x-auto flex gap-1.5 pb-1 scrollbar-none">
         <button id="btn-filter-all" onclick="setFilter('all')" class="bg-blue-600 text-white shadow-md shadow-blue-600/20 px-3 py-1 rounded-full text-[10px] font-bold whitespace-nowrap transition-all">
             <i class="fa-solid fa-circle-dot mr-1 text-[7px]"></i> All (<span id="count-all">0</span>)
         </button>
@@ -134,7 +110,8 @@
         </button>
     </div>
 
-     <main class="px-2 mt-3">
+     <!-- Main Content -->
+    <main class="px-2 mt-3">
         <section class="mb-4">
             <div class="flex items-center gap-1.5 mb-2.5 bg-gradient-to-r from-[#1c1d26] to-transparent p-2 rounded-lg border-l-2 border-blue-500">
                 <span class="flex h-2 w-2 relative">
@@ -147,7 +124,8 @@
             <div id="rolling-matches-container" class="space-y-2.5"></div>
         </section>
 
-         <section id="full-schedule-section" class="hidden mt-4 pb-4">
+         <!-- Full Schedule Table -->
+        <section id="full-schedule-section" class="hidden mt-4 pb-4">
             <div class="bg-[#1c1d26] rounded-xl border border-[#232433] overflow-hidden shadow-2xl">
                 <div class="p-2 bg-[#212330] border-b border-[#232433]">
                     <h3 class="text-[10px] font-bold text-blue-400 tracking-wide">
@@ -170,7 +148,8 @@
         </section>
     </main>
 
-     <div class="fixed bottom-0 left-0 right-0 max-w-[240px] mx-auto bg-[#14151f]/95 backdrop-blur-md border-t border-[#232433] py-1.5 flex justify-around text-slate-400 text-[9px] z-40 shadow-xl">
+     <!-- Footer Buttons -->
+    <div class="fixed bottom-0 left-0 right-0 max-w-[240px] mx-auto bg-[#14151f]/95 backdrop-blur-md border-t border-[#232433] py-1.5 flex justify-around text-slate-400 text-[9px] z-40 shadow-xl">
         <div class="flex flex-col items-center cursor-pointer text-blue-400 font-medium" onclick="window.scrollTo({top: 0, behavior: 'smooth'});">
             <i class="fa-solid fa-satellite-dish text-base mb-0.5 animate-bounce"></i>
             <span>Events</span>
@@ -185,7 +164,7 @@
         const defaultStreamLink = "http://99.27.51.147:8080/BeinSport2/index.m3u8";
         let currentFilter = 'all';
 
-        // সম্পূর্ণ টুর্নামেন্ট শিডিউল (স্ক্রিনশটের সম্পূর্ণ অফিশিয়াল তালিকা অনুযায়ী আপডেটেড)
+        // অফিশিয়াল স্ক্রিনশটের প্রতিটি ম্যাচ হুবহু ডেট ও সঠিক ইংরেজি বানানে ইনপুট করা হয়েছে
         const matchSchedule = [
             { date: "12 June", month: 5, day: 12, match: "Mexico - South Africa", team1Flag: "🇲🇽", team2Flag: "🇿🇦", time: "01:00 AM", hour: 1, streamLink: "" },
             { date: "12 June", month: 5, day: 12, match: "South Korea - Czech Republic", team1Flag: "🇰🇷", team2Flag: "🇨🇿", time: "08:00 AM", hour: 8, streamLink: "" },
@@ -215,9 +194,9 @@
             { date: "19 June", month: 5, day: 19, match: "Switzerland - Bosnia Herzegovina", team1Flag: "🇨🇭", team2Flag: "🇧🇦", time: "01:00 AM", hour: 1, streamLink: "" },
             { date: "19 June", month: 5, day: 19, match: "Canada - Qatar", team1Flag: "🇨🇦", team2Flag: "🇶🇦", time: "04:00 AM", hour: 4, streamLink: "" },
             { date: "19 June", month: 5, day: 19, match: "Mexico - South Korea", team1Flag: "🇲🇽", team2Flag: "🇰🇷", time: "04:00 PM", hour: 16, streamLink: "" },
-            { date: "20 June", month: 5, day: 20, match: "USA - Australia", team1Flag: "🇺🇸", team2Flag: "🇦🇺", time: "01:00 AM", hour: 1, streamLink: "http://103.158.133.62:8080/live/index.m3u8" },
+            { date: "20 June", month: 5, day: 20, match: "USA - Australia", team1Flag: "🇺🇸", team2Flag: "🇦🇺", time: "01:00 AM", hour: 1, streamLink: "" },
             { date: "20 June", month: 5, day: 20, match: "Scotland - Morocco", team1Flag: "🏴\u200D󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇲🇦", time: "04:00 AM", hour: 4, streamLink: "" },
-            { date: "22 June", month: 5, day: 22, match: "Brazil - Haiti", team1Flag: "🇧🇷", team2Flag: "🇭🇹", time: "06:30 AM", hour: 6.5, streamLink: "http://103.158.133.62:8080/live/index.m3u8" },
+            { date: "22 June", month: 5, day: 22, match: "Brazil - Haiti", team1Flag: "🇧🇷", team2Flag: "🇭🇹", time: "06:30 AM", hour: 6.5, streamLink: "" },
             { date: "25 June", month: 5, day: 25, match: "Germany - Turkey", team1Flag: "🇩🇪", team2Flag: "🇹🇷", time: "11:00 PM", hour: 23, streamLink: "" },
             { date: "28 June", month: 5, day: 28, match: "Netherlands - Japan", team1Flag: "🇳🇱", team2Flag: "🇯🇵", time: "02:00 AM", hour: 2, streamLink: "" },
             { date: "02 July", month: 6, day: 2,  match: "Spain - Egypt", team1Flag: "🇪🇸", team2Flag: "🇪🇬", time: "10:00 PM", hour: 22, streamLink: "" },
@@ -230,7 +209,7 @@
             { date: "20 July", month: 6, day: 20, match: "GRAND FINAL", team1Flag: "👑", team2Flag: "👑", time: "08:00 PM", hour: 20, streamLink: "" }
         ];
 
-         // Drawer
+         // Drawer কন্ট্রোল
         function openDrawer() {
             document.getElementById('side-drawer').classList.remove('-translate-x-full');
             document.getElementById('drawer-overlay').classList.remove('hidden');
@@ -260,20 +239,19 @@
             closeDrawer();
         }
 
-         // লাইভ ম্যাচ মিনিট ও ৩০ মিনিট পর কার্ড রিমুভ করার মেকানিজম
+         // লাইভ স্টেটাস ও বাফার রিমুভাল ক্যালকুলেটর
         function getMatchLiveStatus(targetMonth, targetDay, targetHour) {
             const now = new Date();
             const targetDate = new Date(2026, targetMonth, targetDay, Math.floor(targetHour), Math.round((targetHour % 1) * 60));
             const diffMs = targetDate - now;
             
-             // ৯০ মিনিট খেলা + ৩০ মিনিট অতিরিক্ত বাফার = ১২০ মিনিট (২ ঘণ্টা) পর সম্পূর্ণ ডিলিট
-            const removalBufferMs = 120 * 60 * 1000;
+            const removalBufferMs = 120 * 60 * 1000; // ২ ঘণ্টা বাফার টাইম
             
-             if (diffMs < -removalBufferMs) {
+            if (diffMs < -removalBufferMs) {
                 return { status: 'ended', html: '', isLive: false, minutesStr: '', score1: 0, score2: 0 };
             }
             
-             if (diffMs <= 0) {
+            if (diffMs <= 0) {
                 const elapsedMins = Math.floor(Math.abs(diffMs) / (1000 * 60));
                 let displayMins = elapsedMins > 90 ? "90+'" : `${elapsedMins}'`;
                 
@@ -292,16 +270,16 @@
                 };
             }
 
-             const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
+            const diffDays = Math.floor(diffMs / (1000 * 60 * 60 * 24));
             const diffHours = Math.floor((diffMs % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
             const diffMins = Math.floor((diffMs % (1000 * 60 * 60)) / (1000 * 60));
 
-             let countdownStr = "";
+            let countdownStr = "";
             if (diffDays > 0) countdownStr += `${diffDays}d `;
             if (diffHours > 0 || diffDays > 0) countdownStr += `${diffHours}h `;
             countdownStr += `${diffMins}m`;
 
-             return {
+            return {
                 status: 'upcoming',
                 isLive: false,
                 minutesStr: '',
@@ -311,10 +289,10 @@
             };
         }
 
-         function setFilter(filterType) {
+        function setFilter(filterType) {
             currentFilter = filterType;
             
-             const filters = ['all', 'live', 'upcoming'];
+            const filters = ['all', 'live', 'upcoming'];
             filters.forEach(f => {
                 const btn = document.getElementById(`btn-filter-${f}`);
                 if (f === filterType) {
@@ -324,20 +302,19 @@
                 }
             });
 
-             const titleElement = document.getElementById("section-title");
+            const titleElement = document.getElementById("section-title");
             if (filterType === 'all') titleElement.innerText = "Weekly Matches";
             if (filterType === 'live') titleElement.innerText = "Live Matches";
             if (filterType === 'upcoming') titleElement.innerText = "Upcoming Matches";
 
-             renderRollingSevenDaysSchedule();
+            renderRollingSevenDaysSchedule();
         }
 
-         // রোলিং উইন্ডো: চলমান ৭ দিনের ম্যাচ ক্যালকুলেশন লজিক
+         // ৭ দিনের রোলিং উইন্ডো ফিল্টারিং রেন্ডার
         function renderRollingSevenDaysSchedule() {
             const today = new Date();
             const container = document.getElementById("rolling-matches-container");
             
-             // আজকের দিন থেকে পরবর্তী ৭ দিনকে টার্গেট ফিল্টারিংয়ে আনা
             const allowedTimeframes = [];
             for (let i = 0; i < 7; i++) {
                 const tempDate = new Date();
@@ -345,49 +322,50 @@
                 allowedTimeframes.push({ month: tempDate.getMonth(), day: tempDate.getDate() });
             }
 
-             const sevenDayMatches = matchSchedule.filter(m =>
-                 allowedTimeframes.some(t => t.month === m.month && t.day === m.day)
-             );
+            const sevenDayMatches = matchSchedule.filter(m =>
+                allowedTimeframes.some(t => t.month === m.month && t.day === m.day)
+            );
 
-             let totalAll = 0, totalLive = 0, totalUpcoming = 0;
+            let totalAll = 0, totalLive = 0, totalUpcoming = 0;
             const matchesWithStatus = sevenDayMatches.map(m => {
                 const liveStatus = getMatchLiveStatus(m.month, m.day, m.hour);
                 return { ...m, liveStatus };
             }).filter(m => m.liveStatus.status !== 'ended');
 
-             matchesWithStatus.forEach(m => {
+            matchesWithStatus.forEach(m => {
                 totalAll++;
                 if (m.liveStatus.status === 'live') totalLive++;
                 if (m.liveStatus.status === 'upcoming') totalUpcoming++;
             });
 
-             document.getElementById("count-all").innerText = totalAll;
+            document.getElementById("count-all").innerText = totalAll;
             document.getElementById("count-live").innerText = totalLive;
             document.getElementById("count-upcoming").innerText = totalUpcoming;
 
-             let filteredMatches = matchesWithStatus;
+            let filteredMatches = matchesWithStatus;
             if (currentFilter === 'live') {
                 filteredMatches = matchesWithStatus.filter(m => m.liveStatus.status === 'live');
             } else if (currentFilter === 'upcoming') {
                 filteredMatches = matchesWithStatus.filter(m => m.liveStatus.status === 'upcoming');
             }
 
-             let visibleCardsHtml = "";
+            let visibleCardsHtml = "";
 
-             filteredMatches.forEach(m => {
+            filteredMatches.forEach(m => {
                 const teams = m.match.split(" - ");
                 const team1 = teams[0] || m.match;
                 const team2 = teams[1] || "";
                 const finalLink = (m.streamLink && m.streamLink.trim() !== "") ? m.streamLink : defaultStreamLink;
 
-                 const scoreDisplay1 = m.liveStatus.isLive ? m.liveStatus.score1 : '-';
+                const scoreDisplay1 = m.liveStatus.isLive ? m.liveStatus.score1 : '-';
                 const scoreDisplay2 = m.liveStatus.isLive ? m.liveStatus.score2 : '-';
                 const minuteDisplay = m.liveStatus.isLive ? `<span class="text-[8px] bg-red-600 px-1 text-white font-mono rounded animate-pulse">${m.liveStatus.minutesStr}</span>` : '';
 
-                 visibleCardsHtml += `
+                visibleCardsHtml += `
                      <a href="${finalLink}" target="_blank" class="block transform active:scale-98 transition-transform">
                          <div class="app-card rounded-xl p-2.5 flex flex-col gap-1.5 border border-[#232433]">
                              <div class="flex items-center justify-between">
+                                 <!-- Team 1 -->
                                  <div class="flex flex-col w-[35%] items-start">
                                      <div class="flex items-center gap-1">
                                          <span class="text-lg filter drop-shadow-sm">${m.team1Flag}</span>
@@ -396,6 +374,7 @@
                                      <span class="text-[10px] font-black text-blue-500 pl-6 mt-0.5">${scoreDisplay1}</span>
                                  </div>
                                  
+                                 <!-- Info -->
                                  <div class="text-center flex flex-col items-center justify-center w-[30%] bg-black/20 p-1 rounded-lg border border-white/5">
                                      <span class="text-[9px] font-bold text-white leading-tight">${m.time}</span>
                                      <span class="text-[7px] text-blue-400 font-bold tracking-tight">${m.date}</span>
@@ -405,6 +384,7 @@
                                      </div>
                                  </div>
                                  
+                                 <!-- Team 2 -->
                                  <div class="flex flex-col w-[35%] items-end text-right">
                                      <div class="flex items-center gap-1 justify-end">
                                          <span class="text-[10px] font-bold truncate text-slate-200 tracking-wide">${team2}</span>
@@ -418,10 +398,10 @@
                  `;
             });
 
-             container.innerHTML = visibleCardsHtml || `<p class="text-[10px] text-slate-500 bg-[#1c1d26] p-4 rounded-lg text-center border border-[#232433]">No matches found</p>`;
+            container.innerHTML = visibleCardsHtml || `<p class="text-[10px] text-slate-500 bg-[#1c1d26] p-4 rounded-lg text-center border border-[#232433]">No matches found</p>`;
         }
 
-         // সম্পূর্ণ শিডিউল টেবিল রেন্ডারার (২০ জুলাই পর্যন্ত)
+         // ফুল টেবিল শিডিউল জেনারেটর
         function renderFullSchedule() {
             const tbody = document.getElementById("full-schedule-tbody");
             tbody.innerHTML = matchSchedule.map(m => `
@@ -433,11 +413,11 @@
              `).join('');
         }
 
-         function toggleScheduleViaFooter() {
+        function toggleScheduleViaFooter() {
             const section = document.getElementById("full-schedule-section");
             const footerBtn = document.getElementById("footer-sports-btn");
 
-             if (section.classList.contains("hidden")) {
+            if (section.classList.contains("hidden")) {
                 section.classList.remove("hidden");
                 footerBtn.classList.add("text-blue-500");
                 setTimeout(() => section.scrollIntoView({ behavior: 'smooth' }), 50);
@@ -447,11 +427,10 @@
             }
         }
 
-         document.addEventListener("DOMContentLoaded", () => {
+        document.addEventListener("DOMContentLoaded", () => {
             renderRollingSevenDaysSchedule();
             renderFullSchedule();
             
-             // অটো আপডেট ইন্টারভাল (৩০ সেকেন্ড)
             setInterval(() => {
                 renderRollingSevenDaysSchedule();
             }, 30000);
