@@ -66,7 +66,7 @@
                 Sportzfy <span class="text-blue-500">Tv</span>
             </h1>
             <p class="text-[9px] text-slate-400 font-mono tracking-widest mt-1 opacity-80">
-                enjoy all sports free and fast
+                by Sany Ahmed Raaz
             </p>
         </div>
         <div class="w-full space-y-1.5 mb-6">
@@ -170,7 +170,7 @@
             <div class="bg-[#1c1d26] rounded-xl border border-[#232433] overflow-hidden shadow-2xl">
                 <div class="p-2 bg-[#212330] border-b border-[#232433]">
                     <h3 class="text-[10px] font-bold text-blue-400 tracking-wide">
-                        <i class="fa-solid fa-globe mr-1"></i> Full Tournament Schedule🔔
+                        <i class="fa-solid fa-globe mr-1"></i> Full Tournament Schedule
                     </h3>
                 </div>
                 <div class="overflow-x-auto max-h-[300px] overflow-y-auto scrollbar-none">
@@ -213,62 +213,35 @@
         // M3U Playlist URL
         const m3uPlaylistUrl = "https://raw.githubusercontent.com/sm-monirulislam/SM-Live-TV/refs/heads/main/World_Cup.m3u";
 
-        // ২১ জুন থেকে শুরু করে সব ম্যাচ রিয়েল ডাটা (month: 5 মানে June)
+        // স্ক্রিনশট থেকে Round of 32 এর সব ম্যাচ যোগ করা হলো (month: 5 মানে June, month: 6 মানে July)
         const matchSchedule = [
-            // 21 June Matches
-            { date: "21 June", month: 5, day: 21, match: "Germany - Ivory Coast", group: "E", team1Flag: "🇩🇪", team2Flag: "🇨🇮", time: "02:00 AM", hour: 2, streamLink: "http://212.102.34.8:9080/AndFlixHD/video.m3u8" },
-            { date: "21 June", month: 5, day: 21, match: "Ecuador - Curacao", group: "E", team1Flag: "🇪🇨", team2Flag: "🇨🇼", time: "06:00 AM", hour: 6, streamLink: "http://212.102.34.8:9080/AndFlixHD/video.m3u8" },
-            { date: "21 June", month: 5, day: 21, match: "Tunisia - Japan", group: "F", team1Flag: "🇹🇳", team2Flag: "🇯🇵", time: "10:00 AM", hour: 10, streamLink: "" },
-            { date: "21 June", month: 5, day: 21, match: "Spain - Saudi Arabia", group: "H", team1Flag: "🇪🇸", team2Flag: "🇸🇦", time: "10:00 PM", hour: 22, streamLink: "http://212.102.34.8:9080/AndFlixHD/video.m3u8" },
+            // 29 June Matches (Tomorrow from SS)
+            { date: "29 June", month: 5, day: 29, match: "South Africa - Canada", group: "R32", team1Flag: "🇿🇦", team2Flag: "🇨🇦", time: "01:00 AM", hour: 1, streamLink: "" },
+            { date: "29 June", month: 5, day: 29, match: "Brazil - Japan", group: "R32", team1Flag: "🇧🇷", team2Flag: "🇯🇵", time: "11:00 PM", hour: 23, streamLink: "" },
             
-            // 22 June Matches
-            { date: "22 June", month: 5, day: 22, match: "Belgium - Iran", group: "G", team1Flag: "🇧🇪", team2Flag: "🇮🇷", time: "01:00 AM", hour: 1, streamLink: "http://212.102.34.8:9080/AndFlixHD/video.m3u8" },
-            { date: "22 June", month: 5, day: 22, match: "Uruguay - Cape Verde", group: "H", team1Flag: "🇨🇻", team2Flag: "🇨🇻", time: "04:00 AM", hour: 4, streamLink: "http://212.102.34.8:9080/AndFlixHD/video.m3u8" },
-            { date: "22 June", month: 5, day: 22, match: "New Zealand - Egypt", group: "G", team1Flag: "🇳🇿", team2Flag: "🇪🇬", time: "07:00 AM", hour: 7, streamLink: "http://212.102.34.8:9080/AndFlixHD/video.m3u8" },
-            { date: "22 June", month: 5, day: 22, match: "Argentina - Austria", group: "J", team1Flag: "🇦🇷", team2Flag: "🇦🇹", time: "11:00 PM", hour: 23, streamLink: "http://212.102.34.8:9080/AndFlixHD/video.m3u8" },
+            // 30 June Matches
+            { date: "30 June", month: 5, day: 30, match: "Germany - Paraguay", group: "R32", team1Flag: "🇩🇪", team2Flag: "🇵🇾", time: "02:30 AM", hour: 2.5, streamLink: "" },
+            { date: "30 June", month: 5, day: 30, match: "Netherlands - Morocco", group: "R32", team1Flag: "🇳🇱", team2Flag: "🇲🇦", time: "07:00 AM", hour: 7, streamLink: "" },
+            { date: "30 June", month: 5, day: 30, match: "Côte d'Ivoire - Norway", group: "R32", team1Flag: "🇨🇮", team2Flag: "🇳🇴", time: "11:00 PM", hour: 23, streamLink: "" },
             
-            // 23 June Matches
-            { date: "23 June", month: 5, day: 23, match: "France - Iraq", group: "I", team1Flag: "🇫🇷", team2Flag: "🇮🇶", time: "02:00 AM", hour: 2, streamLink: "http://212.102.34.8:9080/AndFlixHD/video.m3u8" },
-            { date: "23 June", month: 5, day: 23, match: "Norway - Senegal", group: "I", team1Flag: "🇳🇴", team2Flag: "🇸🇳", time: "03:00 AM", hour: 3, streamLink: "http://212.102.34.8:9080/AndFlixHD/video.m3u8" },
-            { date: "23 June", month: 5, day: 23, match: "Jordan - Algeria", group: "J", team1Flag: "🇯🇴", team2Flag: "🇩🇿", time: "09:00 AM", hour: 9, streamLink: "" },
-            { date: "23 June", month: 5, day: 23, match: "Portugal - Uzbekistan", group: "K", team1Flag: "🇵🇹", team2Flag: "🇺🇿", time: "11:00 PM", hour: 23, streamLink: "" },
+            // 1 July Matches
+            { date: "1 July", month: 6, day: 1, match: "France - Sweden", group: "R32", team1Flag: "🇫🇷", team2Flag: "🇸🇪", time: "03:00 AM", hour: 3, streamLink: "" },
+            { date: "1 July", month: 6, day: 1, match: "Mexico - Ecuador", group: "R32", team1Flag: "🇲🇽", team2Flag: "🇪🇨", time: "07:00 AM", hour: 7, streamLink: "" },
+            { date: "1 July", month: 6, day: 1, match: "England - DR Congo", group: "R32", team1Flag: "🏴\u200D󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇨🇩", time: "10:00 PM", hour: 22, streamLink: "" },
             
-            // 24 June Matches
-            { date: "24 June", month: 5, day: 24, match: "England - Ghana", group: "L", team1Flag: "🏴\u200D󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇬🇭", time: "02:00 AM", hour: 2, streamLink: "" },
-            { date: "24 June", month: 5, day: 24, match: "Panama - Croatia", group: "L", team1Flag: "🇵🇦", team2Flag: "🇭🇷", time: "05:00 AM", hour: 5, streamLink: "" },
-            { date: "24 June", month: 5, day: 24, match: "Colombia - DR Congo", group: "K", team1Flag: "🇨🇴", team2Flag: "🇨🇩", time: "08:00 AM", hour: 8, streamLink: "" },
+            // 2 July Matches
+            { date: "2 July", month: 6, day: 2, match: "Belgium - Senegal", group: "R32", team1Flag: "🇧🇪", team2Flag: "🇸🇳", time: "02:00 AM", hour: 2, streamLink: "" },
+            { date: "2 July", month: 6, day: 2, match: "USA - Bosnia and Herzegovina", group: "R32", team1Flag: "🇺🇸", team2Flag: "🇧🇦", time: "06:00 AM", hour: 6, streamLink: "" },
             
-            // 25 June Matches
-            { date: "25 June", month: 5, day: 25, match: "Switzerland - Canada", group: "B", team1Flag: "🇨🇭", team2Flag: "🇨🇦", time: "01:00 AM", hour: 1, streamLink: "" },
-            { date: "25 June", month: 5, day: 25, match: "Bosnia - Qatar", group: "B", team1Flag: "🇧🇦", team2Flag: "🇶🇦", time: "01:00 AM", hour: 1, streamLink: "" },
-            { date: "25 June", month: 5, day: 25, match: "Morocco - Haiti", group: "C", team1Flag: "🇲🇦", team2Flag: "🇭🇹", time: "04:00 AM", hour: 4, streamLink: "" },
-            { date: "25 June", month: 5, day: 25, match: "Scotland - Brazil", group: "C", team1Flag: "🏴\u200D󠁢󠁥󠁮󠁧󠁿", team2Flag: "🇧🇷", time: "04:00 AM", hour: 4, streamLink: "" },
-            { date: "25 June", month: 5, day: 25, match: "South Africa - South Korea", group: "A", team1Flag: "🇿🇦", team2Flag: "🇰🇷", time: "07:00 AM", hour: 7, streamLink: "" },
-            { date: "25 June", month: 5, day: 25, match: "Czech Republic - Mexico", group: "A", team1Flag: "🇨🇿", team2Flag: "🇲🇽", time: "07:00 AM", hour: 7, streamLink: "" },
+            // 3 July Matches
+            { date: "3 July", month: 6, day: 3, match: "Spain - Austria", group: "R32", team1Flag: "🇪🇸", team2Flag: "🇦🇹", time: "01:00 AM", hour: 1, streamLink: "" },
+            { date: "3 July", month: 6, day: 3, match: "Portugal - Croatia", group: "R32", team1Flag: "🇵🇹", team2Flag: "🇭🇷", time: "05:00 AM", hour: 5, streamLink: "" },
+            { date: "3 July", month: 6, day: 3, match: "Switzerland - Algeria", group: "R32", team1Flag: "🇨🇭", team2Flag: "🇩🇿", time: "09:00 AM", hour: 9, streamLink: "" },
             
-            // 26 June Matches
-            { date: "26 June", month: 5, day: 26, match: "Curacao - Ivory Coast", group: "E", team1Flag: "🇨🇼", team2Flag: "🇨🇮", time: "02:00 AM", hour: 2, streamLink: "" },
-            { date: "26 June", month: 5, day: 26, match: "Ecuador - Germany", group: "E", team1Flag: "🇪🇨", team2Flag: "🇩🇪", time: "02:00 AM", hour: 2, streamLink: "" },
-            { date: "26 June", month: 5, day: 26, match: "Tunisia - Netherlands", group: "F", team1Flag: "🇹🇳", team2Flag: "🇳🇱", time: "05:00 AM", hour: 5, streamLink: "" },
-            { date: "26 June", month: 5, day: 26, match: "Japan - Sweden", group: "F", team1Flag: "🇯🇵", team2Flag: "🇸🇪", time: "05:00 AM", hour: 5, streamLink: "" },
-            { date: "26 June", month: 5, day: 26, match: "Turkey - USA", group: "D", team1Flag: "🇹🇷", team2Flag: "🇺🇸", time: "08:00 AM", hour: 8, streamLink: "" },
-            { date: "26 June", month: 5, day: 26, match: "Paraguay - Australia", group: "D", team1Flag: "🇵🇾", team2Flag: "🇦🇺", time: "08:00 AM", hour: 8, streamLink: "" },
-            
-            // 27 June Matches
-            { date: "27 June", month: 5, day: 27, match: "Norway - France", group: "I", team1Flag: "🇳🇴", team2Flag: "🇫🇷", time: "01:00 AM", hour: 1, streamLink: "" },
-            { date: "27 June", month: 5, day: 27, match: "Senegal - Iraq", group: "I", team1Flag: "🇸🇳", team2Flag: "🇮🇶", time: "01:00 AM", hour: 1, streamLink: "" },
-            { date: "27 June", month: 5, day: 27, match: "Cape Verde - Saudi Arabia", group: "H", team1Flag: "🇨🇻", team2Flag: "🇸🇦", time: "06:00 AM", hour: 6, streamLink: "" },
-            { date: "27 June", month: 5, day: 27, match: "Uruguay - Spain", group: "H", team1Flag: "🇺🇾", team2Flag: "🇪🇸", time: "06:00 AM", hour: 6, streamLink: "" },
-            { date: "27 June", month: 5, day: 27, match: "New Zealand - Belgium", group: "G", team1Flag: "🇳🇿", team2Flag: "🇧🇪", time: "09:00 AM", hour: 9, streamLink: "" },
-            { date: "27 June", month: 5, day: 27, match: "Egypt - Iran", group: "G", team1Flag: "🇪🇬", team2Flag: "🇮🇷", time: "09:00 AM", hour: 9, streamLink: "" },
-            
-            // 28 June Matches
-            { date: "28 June", month: 5, day: 28, match: "Panama - England", group: "L", team1Flag: "🇵🇦", team2Flag: "🏴\u200D󠁢󠁥󠁮󠁧󠁿", time: "03:00 AM", hour: 3, streamLink: "" },
-            { date: "28 June", month: 5, day: 28, match: "Croatia - Ghana", group: "L", team1Flag: "🇭🇷", team2Flag: "🇬🇭", time: "03:00 AM", hour: 3, streamLink: "" },
-            { date: "28 June", month: 5, day: 28, match: "Colombia - Portugal", group: "K", team1Flag: "🇨🇴", team2Flag: "🇵🇹", time: "05:30 AM", hour: 5.5, streamLink: "" },
-            { date: "28 June", month: 5, day: 28, match: "DR Congo - Uzbekistan", group: "K", team1Flag: "🇨🇩", team2Flag: "🇺🇿", time: "05:30 AM", hour: 5.5, streamLink: "" },
-            { date: "28 June", month: 5, day: 28, match: "Algeria - Austria", group: "J", team1Flag: "🇩🇿", team2Flag: "🇦🇹", time: "08:00 AM", hour: 8, streamLink: "" },
-            { date: "28 June", month: 5, day: 28, match: "Jordan - Argentina", group: "J", team1Flag: "🇯🇴", team2Flag: "🇦🇷", time: "08:00 AM", hour: 8, streamLink: "" }
+            // 4 July Matches
+            { date: "4 July", month: 6, day: 4, match: "Australia - Egypt", group: "R32", team1Flag: "🇦🇺", team2Flag: "🇪🇬", time: "12:00 AM", hour: 0, streamLink: "" },
+            { date: "4 July", month: 6, day: 4, match: "Argentina - Cabo Verde", group: "R32", team1Flag: "🇦🇷", team2Flag: "🇨🇻", time: "04:00 AM", hour: 4, streamLink: "" },
+            { date: "4 July", month: 6, day: 4, match: "Colombia - Ghana", group: "R32", team1Flag: "🇨🇴", team2Flag: "🇬🇭", time: "07:30 AM", hour: 7.5, streamLink: "" }
         ];
 
         // Free Fire style Loading Screen
